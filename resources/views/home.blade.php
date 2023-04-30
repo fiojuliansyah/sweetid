@@ -270,7 +270,7 @@
                 <div class="dashboard-area">
                     <!-- Categorie -->
                     <div class="d-flex justify-content-between align-item-center">
-                        <h5 class="title">Best Category Lesson 🏆</h5>
+                        <h5 class="title">Class Category 🏆</h5>
                         <a href="javascript:void(0);" class="btn-link">View All</a>
                     </div>
                     <div class="swiper-btn-center-lr">
@@ -279,7 +279,7 @@
                                 <div class="swiper-slide">
                                     <div class="offer-bx">
                                         <div class="offer-content">
-                                            <h6>CAKE</h6>
+                                            <h6>E-Course</h6>
                                             <small> <b>1410</b> Students</small>
                                         </div>
                                         <div class="icon-bx bg-primary">
@@ -312,7 +312,7 @@
                                 <div class="swiper-slide">
                                     <div class="offer-bx">
                                         <div class="offer-content">
-                                            <h6>BREAD</h6>
+                                            <h6>Online Class</h6>
                                             <small> <b>1410</b> Students</small>
                                         </div>
                                         <div class="icon-bx bg-primary">
@@ -345,7 +345,7 @@
                                 <div class="swiper-slide">
                                     <div class="offer-bx">
                                         <div class="offer-content">
-                                            <h6>COOKIES</h6>
+                                            <h6>Offline Class</h6>
                                             <small> <b>1410</b> Students</small>
                                         </div>
                                         <div class="icon-bx bg-primary">
