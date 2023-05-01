@@ -28,19 +28,24 @@
             <li>
                 <a href="{{ route('admin.dashboard') }}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-025-dashboard"></i>
-                    <span class="nav-text">Dahsboard</span>
+                    <span class="nav-text">Dashboard</span>
                 </a>
             </li>
-        </ul>
-        <br>
-        <ul class="metismenu" id="menu">
             <li>
-                <strong>Server Side</strong>
-            </li>
-            <li><a href="widget-basic.html" class="ai-icon" aria-expanded="false">
-                <i class="fa fa-user"></i>
-                <span class="nav-text">User</span>
-            </a>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-050-info"></i>
+                    <span class="nav-text">Server Side</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('cruds.index') }}">CRUD Module</a></li>
+                    <li><a href="{{ route('users.index') }}">Users</a></li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Roles & Permissions</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('roles.index') }}">Roles</a></li>
+                            <li><a href="#">Permissions</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>

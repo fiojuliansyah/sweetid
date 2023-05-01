@@ -2,23 +2,23 @@
     
 namespace App\Http\Controllers;
     
-use App\Models\Course;
+use App\Models\Crud;
 use Illuminate\Http\Request;
     
-class CourseController extends Controller
+class CrudController extends Controller
 { 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    // function __construct()
-    // {
-    //      $this->middleware('permission:course-list|product-create|course-edit|course-delete', ['only' => ['index','show']]);
-    //      $this->middleware('permission:course-create', ['only' => ['create','store']]);
-    //      $this->middleware('permission:course-edit', ['only' => ['edit','update']]);
-    //      $this->middleware('permission:course-delete', ['only' => ['destroy']]);
-    // }
+    function __construct()
+    {
+         $this->middleware('permission:crud-list|product-create|crud-edit|crud-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:crud-create', ['only' => ['create','store']]);
+         $this->middleware('permission:crud-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:crud-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,8 +26,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::latest()->paginate(5);
-        return view('courses.index',compact('courses'))
+        $cruds = Crud::latest()->paginate(5);
+        return view('admin.cruds.index',compact('cruds'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
     
@@ -38,7 +38,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('courses.create');
+        return view('admin.cruds.create');
     }
     
     /**
@@ -54,9 +54,9 @@ class CourseController extends Controller
             'detail' => 'required',
         ]);
     
-        Course::create($request->all());
+        Crud::create($request->all());
     
-        return redirect()->route('courses.index')
+        return redirect()->route('cruds.index')
                         ->with('success','Product created successfully.');
     }
     
@@ -66,9 +66,9 @@ class CourseController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Crud $crud)
     {
-        return view('courses.show',compact('course'));
+        return view('admin.cruds.show',compact('crud'));
     }
     
     /**
@@ -77,9 +77,9 @@ class CourseController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Courses $course)
+    public function edit(Crud $crud)
     {
-        return view('courses.edit',compact('course'));
+        return view('admin.cruds.edit',compact('crud'));
     }
     
     /**
@@ -89,16 +89,16 @@ class CourseController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Crud $crud)
     {
          request()->validate([
             'name' => 'required',
             'detail' => 'required',
         ]);
     
-        $course->update($request->all());
+        $crud->update($request->all());
     
-        return redirect()->route('courses.index')
+        return redirect()->route('cruds.index')
                         ->with('success','Product updated successfully');
     }
     
@@ -108,11 +108,11 @@ class CourseController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(Crud $crud)
     {
-        $course->delete();
+        $crud->delete();
     
-        return redirect()->route('courses.index')
+        return redirect()->route('cruds.index')
                         ->with('success','Product deleted successfully');
     }
 }
