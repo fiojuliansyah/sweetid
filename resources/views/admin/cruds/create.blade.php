@@ -37,11 +37,31 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{ route('cruds.store') }}" method="POST">
+                            <form action="{{ route('cruds.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
+                                            <strong>Post Image:</strong>
+                                             <input type="file" name="image" class="form-control">
+                                            @error('image')
+                                              <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                           @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <br>
+                                            <strong>Post Thumbnail:</strong>
+                                             <input type="file" name="thumbnail" class="form-control">
+                                            @error('thumbnail')
+                                              <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                           @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <br>
                                             <strong>Name:</strong>
                                             <input type="text" name="name" class="form-control" placeholder="Name">
                                         </div>

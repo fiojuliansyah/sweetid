@@ -49,13 +49,21 @@ class CrudController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
+        $request->validate([
             'name' => 'required',
+            'thumbnail' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'detail' => 'required',
         ]);
-    
-        Crud::create($request->all());
-    
+        $path = $request->file('image')->store('public/images');
+        $path2 = $request->file('thumbnail')->store('public/thumbnails');
+        $crud = new Crud;
+        $crud->name = $request->name;
+        $crud->detail = $request->detail;
+        $crud->image = $path;
+        $crud->thumbnail = $path2;
+        $crud->save();
+        // Crud::create($request->all());
         return redirect()->route('cruds.index')
                         ->with('success','Product created successfully.');
     }
@@ -91,13 +99,32 @@ class CrudController extends Controller
      */
     public function update(Request $request, Crud $crud)
     {
-         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
         ]);
-    
-        $crud->update($request->all());
-    
+        
+        $crud = Crud::find($id);
+        if($request->hasFile('image')){
+            $request->validate([
+              'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $path = $request->file('image')->store('public/images');
+            $post->image = $path;
+        }
+
+        if($request->hasFile('thumbnail')){
+            $request->validate([
+              'thumbnail' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $path = $request->file('thumbnail')->store('public/thumbnails');
+            $post->thumbnail = $path;
+        }
+
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->save();
+        // $crud->update($request->all());
         return redirect()->route('cruds.index')
                         ->with('success','Product updated successfully');
     }
@@ -111,7 +138,9 @@ class CrudController extends Controller
     public function destroy(Crud $crud)
     {
         $crud->delete();
-    
+        \Storage::delete($crud->image);
+        \Storage::delete($crud->thumbnail);
+        
         return redirect()->route('cruds.index')
                         ->with('success','Product deleted successfully');
     }

@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('cruds', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('detail');
+            $table->string('thumbnail')->nullable();
+            $table->string('image')->nullable();
+            $table->string('name')->nullable();
+            $table->text('detail')->nullable();
             $table->timestamps();
         });
     }

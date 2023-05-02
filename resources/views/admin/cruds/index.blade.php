@@ -36,6 +36,8 @@
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>No</th>
+                                        <th>Image</th>
+                                        <th>Thumbnail</th>
                                         <th>Name</th>
                                         <th>Details</th>
                                         <th width="280px">Action</th>
@@ -43,6 +45,8 @@
                                     @foreach ($cruds as $crud)
                                     <tr>
                                         <td>{{ ++$i }}</td>
+                                        <td><img src="{{ Storage::url($crud->image) }}" height="75" width="75" alt="" /></td>
+                                        <td><img src="{{ Storage::url($crud->thumbnail) }}" height="75" width="75" alt="" /></td>
                                         <td>{{ $crud->name }}</td>
                                         <td>{{ $crud->detail }}</td>
                                         <td>
