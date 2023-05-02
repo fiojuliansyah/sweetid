@@ -57,6 +57,7 @@ class CrudController extends Controller
         ]);
         $path = $request->file('image')->store('public/images');
         $path2 = $request->file('thumbnail')->store('public/thumbnails');
+        
         $crud = new Crud;
         $crud->name = $request->name;
         $crud->detail = $request->detail;
@@ -123,6 +124,7 @@ class CrudController extends Controller
 
         $post->title = $request->title;
         $post->description = $request->description;
+        
         $post->save();
         // $crud->update($request->all());
         return redirect()->route('cruds.index')
@@ -140,7 +142,7 @@ class CrudController extends Controller
         $crud->delete();
         \Storage::delete($crud->image);
         \Storage::delete($crud->thumbnail);
-        
+
         return redirect()->route('cruds.index')
                         ->with('success','Product deleted successfully');
     }

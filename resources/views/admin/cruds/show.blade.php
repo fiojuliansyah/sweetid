@@ -41,6 +41,20 @@
                                         {{ $crud->detail }}
                                     </div>
                                 </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <br>
+                                        <strong>Image:</strong>
+                                        <img src="{{ Storage::url($crud->image) }}" width="350" alt="" />
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <br>
+                                        <strong>Thumbnail:</strong>
+                                        <img src="{{ Storage::url($crud->thumbnail) }}" width="350" alt="" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

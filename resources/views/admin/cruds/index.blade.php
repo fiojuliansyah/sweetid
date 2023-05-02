@@ -45,8 +45,8 @@
                                     @foreach ($cruds as $crud)
                                     <tr>
                                         <td>{{ ++$i }}</td>
-                                        <td><img src="{{ Storage::url($crud->image) }}" height="75" width="75" alt="" /></td>
-                                        <td><img src="{{ Storage::url($crud->thumbnail) }}" height="75" width="75" alt="" /></td>
+                                        <td><img src="{{ Storage::url($crud->image) }}" width="75" alt="" /></td>
+                                        <td><img src="{{ Storage::url($crud->thumbnail) }}" width="75" alt="" /></td>
                                         <td>{{ $crud->name }}</td>
                                         <td>{{ $crud->detail }}</td>
                                         <td>
