@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ClasstypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('courses', CourseController::class);
     Route::resource('cruds', CrudController::class);
+    Route::resource('classtypes', ClasstypeController::class);
 });
 
 require __DIR__.'/auth.php';

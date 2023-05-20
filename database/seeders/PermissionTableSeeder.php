@@ -30,6 +30,10 @@ class PermissionTableSeeder extends Seeder
             'crud-create',
             'crud-edit',
             'crud-delete',
+            'classtype-list',
+            'classtype-create',
+            'classtype-edit',
+            'classtype-delete',
         ];
        
         foreach ($permissions as $permission) {

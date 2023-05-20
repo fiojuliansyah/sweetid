@@ -26,9 +26,7 @@ class CrudController extends Controller
      */
     public function index()
     {
-        $cruds = Crud::latest()->paginate(5);
-        return view('admin.cruds.index',compact('cruds'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('admin.cruds.index');
     }
     
     /**
@@ -101,8 +99,8 @@ class CrudController extends Controller
     public function update(Request $request, Crud $crud)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'name' => 'required',
+            'detail' => 'required',
         ]);
         
         $crud = Crud::find($id);
@@ -111,21 +109,21 @@ class CrudController extends Controller
               'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ]);
             $path = $request->file('image')->store('public/images');
-            $post->image = $path;
+            $crud->image = $path;
         }
 
         if($request->hasFile('thumbnail')){
             $request->validate([
               'thumbnail' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ]);
-            $path = $request->file('thumbnail')->store('public/thumbnails');
-            $post->thumbnail = $path;
+            $path2 = $request->file('thumbnail')->store('public/thumbnails');
+            $crud->thumbnail = $path2;
         }
 
-        $post->title = $request->title;
-        $post->description = $request->description;
+        $crud->name = $request->name;
+        $crud->detail = $request->detail;
         
-        $post->save();
+        $crud->save();
         // $crud->update($request->all());
         return redirect()->route('cruds.index')
                         ->with('success','Product updated successfully');

@@ -32,6 +32,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('classtypes.index') }}" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-025-dashboard"></i>
+                    <span class="nav-text">Class Types</span>
+                </a>
+            </li>
+            <li>
                 <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                 <i class="flaticon-050-info"></i>
                     <span class="nav-text">Server Side</span>

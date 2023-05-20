@@ -24,6 +24,7 @@
 	<link rel="stylesheet" href="{{ asset('/') }}admin/vendor/nouislider/nouislider.min.css">
 	<!-- Style css -->
     <link href="{{ asset('/') }}admin/css/style.css" rel="stylesheet">
+	@livewireStyles
 	
 </head>
 <body>
@@ -630,6 +631,7 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
+	@livewireScripts
     <script src="{{ asset('/') }}admin/vendor/global/global.min.js"></script>
 	<script src="v{{ asset('/') }}admin/endor/chart.js/Chart.bundle.min.js"></script>
 	<script src="{{ asset('/') }}admin/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
