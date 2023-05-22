@@ -34,6 +34,10 @@ class PermissionTableSeeder extends Seeder
             'classtype-create',
             'classtype-edit',
             'classtype-delete',
+            'category-list',
+            'category-create',
+            'category-edit',
+            'category-delete',
         ];
        
         foreach ($permissions as $permission) {

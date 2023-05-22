@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Category;
+use App\Models\Classtype;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Classtype extends Model
+class Category extends Model
 {
     use HasFactory;
 }

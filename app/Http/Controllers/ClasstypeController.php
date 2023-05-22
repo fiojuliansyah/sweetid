@@ -50,7 +50,7 @@ class ClasstypeController extends Controller
             'detail' => 'required',
         ]);
 
-        $path = $request->file('image')->store('public/classtypes-icon');
+        $path = $request->file('icon')->store('public/classtypes-icon');
         
         $class = new Classtype;
         $class->icon = $path;
@@ -104,6 +104,10 @@ class ClasstypeController extends Controller
      */
     public function destroy(Classtype $classtype)
     {
-        //
+        $classtype->delete();
+        \Storage::delete($classtype->icon);
+
+        return redirect()->route('classtypes.index')
+                        ->with('message','Class type deleted successfully');
     }
 }

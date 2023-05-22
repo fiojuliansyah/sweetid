@@ -33,8 +33,14 @@
             </li>
             <li>
                 <a href="{{ route('classtypes.index') }}" class="ai-icon" aria-expanded="false">
-                    <i class="flaticon-025-dashboard"></i>
+                    <i class="flaticon-086-star"></i>
                     <span class="nav-text">Class Types</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('categories.index') }}" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-043-menu"></i>
+                    <span class="nav-text">Categories</span>
                 </a>
             </li>
             <li>
