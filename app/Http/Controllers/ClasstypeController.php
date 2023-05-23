@@ -55,6 +55,7 @@ class ClasstypeController extends Controller
         $class = new Classtype;
         $class->icon = $path;
         $class->name = $request->name;
+        $class->slug = $request->slug;
         $class->detail = $request->detail;
         $class->save();
         // Crud::create($request->all());

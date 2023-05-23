@@ -2,10 +2,12 @@
     
 namespace App\Http\Controllers;
     
-use App\Models\Course;
+use App\Models\Room;
+use App\Models\Category;
+use App\Models\Classtype;
 use Illuminate\Http\Request;
     
-class CourseController extends Controller
+class RoomController extends Controller
 { 
     /**
      * Display a listing of the resource.
@@ -26,9 +28,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::latest()->paginate(5);
-        return view('courses.index',compact('courses'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('admin.rooms.index');
     }
     
     /**
@@ -38,7 +38,9 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('courses.create');
+        $classtype = Classtype::all();
+        $category = Category::all();
+        return view('admin.rooms.create', compact('classtype','category'));
     }
     
     /**
@@ -49,15 +51,37 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
+        $request->validate([
+            'classtype_id' => 'required',
+            'category_id' => 'required',
+            'cover' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'trailer' => 'required|mimes:mp4,mkv,webm',
         ]);
-    
-        Course::create($request->all());
-    
-        return redirect()->route('courses.index')
-                        ->with('success','Product created successfully.');
+
+        $path = $request->file('cover')->store('public/covers');
+        $trailer = $request->file('trailer')->store('public/trailers');
+
+        $classroom = new Room;
+        $classroom->classtype_id = $request->classtype_id;
+        $classroom->category_id = $request->category_id;
+        $classroom->cover = $path;
+        $classroom->title = $request->title;
+        $classroom->slug = $request->slug;
+        $classroom->short_description = $request->short_description;
+        $classroom->description = $request->description;
+        $classroom->duration = $request->duration;
+        $classroom->price = $request->price;
+        $classroom->disc_price = $request->disc_price;
+        $classroom->trailer = $trailer;
+        $classroom->is_featured = $request->is_featured;
+        $classroom->is_recomended = $request->is_recomended;
+        $classroom->is_active = $request->is_active;
+        $classroom->started_at = $request->started_at;
+        $classroom->ended_at = $request->ended_at;
+        $classroom->meta_title = $request->title;
+        $classroom->meta_keyword = $request->meta_keyword;
+        $classroom->save();
+
     }
     
     /**

@@ -55,6 +55,7 @@ class CategoryController extends Controller
         $cat = new Category;
         $cat->icon = $path;
         $cat->name = $request->name;
+        $cat->slug = $request->slug;
         $cat->detail = $request->detail;
         $cat->save();
         // Crud::create($request->all());
@@ -104,6 +105,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        \Storage::delete($category->icon);
+
+        return redirect()->route('categories.index')
+                        ->with('message','Category deleted successfully');
     }
 }

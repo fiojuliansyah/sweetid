@@ -17,7 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('icon')->nullable();
             $table->string('name')->nullable();
+            $table->string('slug')->nullable();
             $table->text('detail')->nullable();
+
+            $table->string('meta_title')->nullable();
+            $table->string('meta_keyword')->nullable();
             $table->timestamps();
         });
     }

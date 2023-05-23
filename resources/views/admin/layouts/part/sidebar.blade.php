@@ -32,16 +32,22 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('classtypes.index') }}" class="ai-icon" aria-expanded="false">
-                    <i class="flaticon-086-star"></i>
-                    <span class="nav-text">Class Types</span>
+                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-022-copy"></i>
+                    <span class="nav-text">Courses & Sessions</span>
                 </a>
-            </li>
-            <li>
-                <a href="{{ route('categories.index') }}" class="ai-icon" aria-expanded="false">
-                    <i class="flaticon-043-menu"></i>
-                    <span class="nav-text">Categories</span>
-                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ route('classtypes.index') }}">Class Types</a></li>
+                    <li><a href="{{ route('categories.index') }}">Class Categories</a></li>
+                    <li><a href="{{ route('rooms.index') }}">Class Room</a></li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Add New</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('roles.index') }}">Online Course</a></li>
+                            <li><a href="{{ route('roles.index') }}">Training Session</a></li>
+                            <li><a href="{{ route('roles.index') }}">Training Session Online</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

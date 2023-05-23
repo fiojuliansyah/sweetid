@@ -19,7 +19,7 @@
 	
 	<!-- FAVICONS ICON -->
 	<link rel="shortcut icon" type="image/png" href="{{ asset('/') }}admin/images/favicon.png">
-	
+	@yield('css')
 	<link href="{{ asset('/') }}admin/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('/') }}admin/vendor/nouislider/nouislider.min.css">
 	<!-- Style css -->
@@ -637,6 +637,7 @@
 	<script src="{{ asset('/') }}admin/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 	
 	<!-- Apex Chart -->
+	@yield('js')
 	<script src="{{ asset('/') }}admin/vendor/apexchart/apexchart.js"></script>
 	<script src="{{ asset('/') }}admin/vendor/nouislider/nouislider.min.js"></script>
 	<script src="{{ asset('/') }}admin/vendor/wnumb/wNumb.js"></script>
