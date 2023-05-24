@@ -55,11 +55,11 @@ class RoomController extends Controller
             'classtype_id' => 'required',
             'category_id' => 'required',
             'cover' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'trailer' => 'required|mimes:mp4,mkv,webm',
+            'trailer' => 'required',
         ]);
 
         $path = $request->file('cover')->store('public/covers');
-        $trailer = $request->file('trailer')->store('public/trailers');
+        $path2 = $request->file('trailer')->store('public/trailers');
 
         $classroom = new Room;
         $classroom->classtype_id = $request->classtype_id;
@@ -72,15 +72,17 @@ class RoomController extends Controller
         $classroom->duration = $request->duration;
         $classroom->price = $request->price;
         $classroom->disc_price = $request->disc_price;
-        $classroom->trailer = $trailer;
+        $classroom->trailer = $path2;
         $classroom->is_featured = $request->is_featured;
-        $classroom->is_recomended = $request->is_recomended;
+        $classroom->is_recommended = $request->is_recommended;
         $classroom->is_active = $request->is_active;
         $classroom->started_at = $request->started_at;
         $classroom->ended_at = $request->ended_at;
-        $classroom->meta_title = $request->title;
         $classroom->meta_keyword = $request->meta_keyword;
         $classroom->save();
+
+        return redirect()->route('rooms.index')
+                        ->with('success','Class Room created successfully.');
 
     }
     
@@ -90,9 +92,9 @@ class RoomController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Room $room)
     {
-        return view('courses.show',compact('course'));
+        return view('admin.rooms.show',compact('room'));
     }
     
     /**

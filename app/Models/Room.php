@@ -2,8 +2,10 @@
   
 namespace App\Models;
   
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Category;
+use App\Models\Classtype;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
   
 class Room extends Model
 {
@@ -14,8 +16,16 @@ class Room extends Model
      *  
      * @var array
      */
-    protected $fillable = [
-        'name', 'detail'
-    ];
+    protected $guarded = [];
+
+    public function classtype()
+    {
+        return $this->belongsTo(Classtype::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
 }

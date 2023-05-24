@@ -21,11 +21,13 @@ class RoomsTable extends Component
     public function render()
     {
         if ($this->search != '') {
-            $data = Room::where('name', 'like', '%' . $this->search . '%')
-                ->orWhere('detail', 'like', '%' . $this->search . '%')
-                ->paginate(10);
+            $data = Room::whereRelation('classtype', 'name', 'like', '%' . $this->search . '%')
+                ->whereRelation('category', 'name', 'like', '%' . $this->search . '%')
+                ->orWhere('title', 'like', '%' . $this->search . '%')
+                ->orWhere('short_description', 'like', '%' . $this->search . '%')
+                ->paginate(6);
         } else {
-            $data = Room::paginate(10);
+            $data = Room::paginate(6);
         }
 
         return view('admin.livewire.rooms-table', compact('data'));

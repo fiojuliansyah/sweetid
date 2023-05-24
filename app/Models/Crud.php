@@ -14,8 +14,6 @@ class Crud extends Model
      *  
      * @var array
      */
-    protected $fillable = [
-        'name', 'detail', 'image', 'thumbnail'
-    ];
+    protected $guarded = [];
 
 }

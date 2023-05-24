@@ -35,8 +35,6 @@ return new class extends Migration
 
             $table->string('started_at')->nullable();
             $table->string('ended_at')->nullable();
-
-            $table->string('meta_title')->nullable();
             $table->string('meta_keyword')->nullable();
             $table->timestamps();
         });

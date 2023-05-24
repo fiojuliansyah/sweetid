@@ -9,42 +9,64 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12 col-xl-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row m-b-30">
-                                <div class="col-md-5 col-xxl-12">
-                                    <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
-                                        <div class="new-arrivals-img-contnent">
-                                            <img class="img-fluid" src="images/product/2.jpg" alt="">
+                @foreach ($data as $room)
+                    <div class="col-lg-12 col-xl-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row m-b-30">
+                                    <div class="col-md-5 col-xxl-12">
+                                        <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
+                                            <div class="new-arrivals-img-contnent">
+                                                <img class="img-fluid" src="{{ Storage::url($room->cover) }}" alt="">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-7 col-xxl-12">
-                                    <div class="new-arrival-content position-relative">
-                                        <h4><a href="ecom-product-detail.html">Solid Women's V-neck Dark T-Shirt</a></h4>
-                                        <div class="comment-review star-rating">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-empty"></i></li>
-                                                <li><i class="fa fa-star-half-empty"></i></li>
-                                            </ul>
-                                            <span class="review-text">(34 reviews) / </span><a class="product-review" href="" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a review?</a>
-                                            <p class="price">$320.00</p>
+                                    <div class="col-md-7 col-xxl-12">
+                                        <div class="new-arrival-content position-relative">
+                                            <h4><a href="{{ route('rooms.show',$room->id) }}">{{ $room->title }}</a></h4>
+                                            <div class="comment-review star-rating">
+                                                <ul>
+                                                    <li>
+                                                        @if ($room->is_featured == '1')
+                                                            <span class="badge badge-warning" >Featured</span>
+                                                        @endif
+                                                    </li>
+                                                    <li>
+                                                        @if ($room->is_recommended == '1')
+                                                            <span class="badge badge-info" >Recommended</span>
+                                                        @endif
+                                                    </li>
+                                                </ul>
+                                                <br>
+                                                <span class="review-text">(34 member) / </span><a class="product-review" href="" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a review?</a>
+                                                <p class="price">@currency($room->disc_price)</p>
+                                            </div>
+                                            <p>price: <span style="color: green">@currency($room->price)</span></p>
+                                            <p>Is Active: <span class="item">
+                                                @if ($room->is_active == '1')
+                                                    Active <i class="fa fa-check-circle text-success"></i></span>
+                                                @else
+                                                    Deactive <i class="fas fa-circle text-danger"></i></span>
+                                                @endif
+                                            </p>
+                                            <p>Duration: <span class="item">{{ $room->duration }}</span> </p>
+                                            <p>Class Type:&nbsp;&nbsp;
+                                                <span class="badge badge-danger light">{{ $room->classtype['name'] }}</span>
+                                            </p>
+                                            <p>Category:&nbsp;&nbsp;
+                                                <span class="badge badge-success light">{{ $room->category['name'] }}</span>
+                                            </p>
+                                            <p>Description: <span class="item">{{ $room->short_description }}</span></p>
+                                            <button class="btn btn-xs btn-danger">Delete Class Room</button>
                                         </div>
-                                        <p>Availability: <span class="item"> In stock <i class="fa fa-check-circle text-success"></i></span></p>
-                                        <p>Product code: <span class="item">0405689</span> </p>
-                                        <p>Brand: <span class="item">Lee</span></p>
-                                        <p class="text-content">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
+            {!! $data->links() !!}
         </div>
     </div>
 </div>
