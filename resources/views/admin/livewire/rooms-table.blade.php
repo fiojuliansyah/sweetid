@@ -57,7 +57,6 @@
                                                 <span class="badge badge-success light">{{ $room->category['name'] }}</span>
                                             </p>
                                             <p>Description: <span class="item">{{ $room->short_description }}</span></p>
-                                            <button class="btn btn-xs btn-danger">Delete Class Room</button>
                                         </div>
                                     </div>
                                 </div>

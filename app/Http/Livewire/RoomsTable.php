@@ -22,7 +22,7 @@ class RoomsTable extends Component
     {
         if ($this->search != '') {
             $data = Room::whereRelation('classtype', 'name', 'like', '%' . $this->search . '%')
-                ->whereRelation('category', 'name', 'like', '%' . $this->search . '%')
+                ->orWhereRelation('category', 'name', 'like', '%' . $this->search . '%')
                 ->orWhere('title', 'like', '%' . $this->search . '%')
                 ->orWhere('short_description', 'like', '%' . $this->search . '%')
                 ->paginate(6);

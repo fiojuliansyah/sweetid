@@ -13948,7 +13948,7 @@ button {
 
 .recomended-list {
   width: 228px;
-  height: 256px;
+  height: 280px;
   background-color: var(--dark);
   border-radius: var(--border-radius-base);
   overflow: hidden;

@@ -4,7 +4,9 @@
             <div class="collapse navbar-collapse justify-content-between">
                 <div class="header-left">
                     <div class="dashboard_bar">
-                        @yield('sub-title')
+                        <h3>
+                            @yield('sub-title')
+                        </h3>
                     </div>
                 </div>
                 <ul class="navbar-nav header-right">

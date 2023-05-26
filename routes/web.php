@@ -25,7 +25,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('home', HomeController::class);
+Route::get('home', [HomeController::class, 'index']);
+Route::get('/product/{room}', [HomeController::class, 'productShow'])->name('product.show');
 
 Route::middleware('auth')->group(function () {
     

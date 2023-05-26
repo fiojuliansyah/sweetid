@@ -91,6 +91,8 @@ Detail {{ $room->title }} | SweetTroops Baking Studio
                                                 </div>
                                             </div>
                                         </div>
+                                        <br>
+                                        <button class="btn btn-xs btn-danger" >Delete Class Room</button>
                                     </div>
                                 </div>
                             </div>

@@ -28,6 +28,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ asset('') }}mobile/vendor/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}mobile/css/style.css">
+    @yield('sticky')
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
