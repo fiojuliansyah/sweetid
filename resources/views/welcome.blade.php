@@ -79,7 +79,7 @@
         <!-- Footer -->
         <footer class="footer border-0">
             <div class="container">
-                <a href="{{ route('login') }}" class="btn btn-primary btn-rounded d-block">LET'S ROCK</a>
+                <a href="{{ url('home') }}" class="btn btn-primary btn-rounded d-block">LET'S ROCK</a>
             </div>
         </footer>
         <!-- Footer End-->

@@ -3,7 +3,11 @@
         <ul class="metismenu" id="menu">
             <li class="dropdown header-profile">
                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                    <img src="images/profile/pic1.jpg" width="20" alt="">
+                    @if(Auth::user()->profile?->avatar != null)
+                    <img src="{{ Storage::url(Auth::user()->profile->avatar) }}" width="20" alt="">    
+                    @else
+                    <img src="{{asset('/storage/avatars/default.png')}}"  alt="">      
+                    @endif
                     <div class="header-info ms-3">
                         <span class="font-w600 ">Hi, <b>{{ Auth::user()->name }}</b></span>
                         <small class="text-end font-w400">{{ Auth::user()->email }}</small>
@@ -26,9 +30,30 @@
                 </div>
             </li>
             <li>
+                <a href="{{ route('member.dashboard') }}" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-025-dashboard"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('member.market') }}" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-022-copy"></i>
+                    <span class="nav-text">Class Market</span>
+                </a>
+            </li>
+            <div class="copyright">
+                <p><strong>Admin Side</strong></p>
+            </div>
+            <li>
                 <a href="{{ route('admin.dashboard') }}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-025-dashboard"></i>
                     <span class="nav-text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('transactions.index') }}" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-041-graph"></i>
+                    <span class="nav-text">Transaction</span>
                 </a>
             </li>
             <li>
@@ -49,6 +74,9 @@
                     </li>
                 </ul>
             </li>
+            <div class="copyright">
+                <p><strong>Server Side</strong></p>
+            </div>
             <li>
                 <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                 <i class="flaticon-050-info"></i>

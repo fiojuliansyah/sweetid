@@ -20,6 +20,7 @@
 	<!-- FAVICONS ICON -->
 	<link rel="shortcut icon" type="image/png" href="{{ asset('/') }}admin/images/favicon.png">
 	@yield('css')
+	<link href="{{ asset('/') }}admin/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
 	<link href="{{ asset('/') }}admin/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('/') }}admin/vendor/nouislider/nouislider.min.css">
 	<!-- Style css -->
@@ -637,7 +638,6 @@
 	<script src="{{ asset('/') }}admin/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 	
 	<!-- Apex Chart -->
-	@yield('js')
 	<script src="{{ asset('/') }}admin/vendor/apexchart/apexchart.js"></script>
 	<script src="{{ asset('/') }}admin/vendor/nouislider/nouislider.min.js"></script>
 	<script src="{{ asset('/') }}admin/vendor/wnumb/wNumb.js"></script>
@@ -649,6 +649,9 @@
 	<script src="{{ asset('/') }}admin/js/dlabnav-init.js"></script>
 	<script src="{{ asset('/') }}admin/js/demo.js"></script>
     <script src="{{ asset('/') }}admin/js/styleSwitcher.js"></script>
+	@yield('footer')
+	<script src="{{ asset('/') }}admin/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="{{ asset('/') }}admin/js/plugins-init/sweetalert.init.js"></script>
 	
 </body>
 </html>

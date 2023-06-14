@@ -47,6 +47,13 @@
                             <div class="input-group">
                                 <button type="submit" class="btn mt-2 btn-primary w-100 btn-rounded">SIGN IN</button>
                             </div>
+                            <div style="text-align: center">
+                                <h6 class="title">Or</h6>
+                            </div>
+                            <div class="input-group">
+                                <a href="https://accounts.google.com/signin" class="btn mt-2 btn-dark w-100 btn-rounded"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" width="20" alt="">&nbsp; &nbsp;Sig In With Google Account</a>
+                            </div>
+                            
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="form-check">
                                     <input id="remember_me" name="remember" class="form-check-input" type="checkbox" value="" checked>

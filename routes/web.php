@@ -6,9 +6,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClasstypeController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,17 +29,23 @@ Route::get('/', function () {
 });
 
 Route::get('home', [HomeController::class, 'index']);
+Route::get('/products', [HomeController::class, 'products'])->name('products');
 Route::get('/product/{room}', [HomeController::class, 'productShow'])->name('product.show');
 
 Route::middleware('auth')->group(function () {
     
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/member/dashboard', [MemberController::class, 'dashboard'])->name('member.dashboard');
+    Route::get('/member/classmarket', [MemberController::class, 'classMarket'])->name('member.market');
+    Route::get('/member/myclass', [MemberController::class, 'myClass'])->name('member.myclass');
+    Route::get('/member/{room}/detail', [MemberController::class, 'detail'])->name('member.detail');
+    Route::get('/member/{room}/checkout', [MemberController::class, 'checkout'])->name('member.checkout');
+    Route::post('/member/checkout', [MemberController::class, 'storeCheckout'])->name('member.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post ('/profile',[ProfileController::class, 'updateUserDetail'])->name('profile.detail');
 
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
@@ -44,6 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('cruds', CrudController::class);
     Route::resource('classtypes', ClasstypeController::class);
     Route::resource('categories', CategoryController::class);
+    Route::resource('transactions', TransactionController::class);
 });
 
 require __DIR__.'/auth.php';

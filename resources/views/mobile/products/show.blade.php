@@ -86,12 +86,9 @@
                             <h6 class="mb-0 ms-2">{{ $room->duration }}</h6>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" class="item-content item-link"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal4">
-                                <div class="dz-inner">
-                                    <span class="badge badge-warning"> <marquee behavior="" direction="">View Trailer</marquee> </span>
-                                </div>
-                            </a>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge badge-sm badge-warning">{{ $room->classtype['name'] }}</span>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -110,11 +107,8 @@
                     <div class="price">
                         <span class="text-style">Price</span>
                         <h3>@currency($room->disc_price)<del> @currency($room->price)</del></h3>
+                        <div class="badge badge-danger font-w400 px-3"><span id="discount"></span>% OFF DISCOUNT</div>
                     </div>
-                </div>
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="badge badge-danger font-w400 px-3">20% OFF DISCOUNT</div>
-                    <a href="javascript:void(0);" class="btn-link font-16">Apply promo code</a>
                 </div>
                 <div class="card-body">
                     <div class="dz-tab">
@@ -129,53 +123,75 @@
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
                                         data-bs-target="#profile-tab-pane" type="button" role="tab"
-                                        aria-controls="profile-tab-pane" aria-selected="false">Dark</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
-                                        data-bs-target="#contact-tab-pane" type="button" role="tab"
-                                        aria-controls="contact-tab-pane" aria-selected="false">Content</button>
+                                        aria-controls="profile-tab-pane" aria-selected="false">Community Forum</button>
                                 </li>
                             </ul>
                         </div>
                         <div class="tab-content" id="myTabContent1">
                             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
                                 aria-labelledby="home-tab" tabindex="0">
-                                <ul>
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li><li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li><li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
-
-                                    <li>1</li>
-                                    <li>1</li>
-                                    
-                                </ul>
+                                <div class="container pt-0">
+                                    <!-- Masseges List -->
+                                    <ul class="dz-list message-list">
+                                        <li>
+                                            <a href="javascript:void(0);" class="item-content item-link"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                                                <div class="rounded-circle">
+                                                    <i class="fas fa-play" style="font-size: 30px;" ></i>
+                                                </div>
+                                                <div class="media-content">
+                                                    <div>
+                                                        <h6 class="name">Trailer Video</h6>
+                                                        <p class="my-1">
+                                                            {{ $room->title }}
+                                                        </p>
+                                                    </div>
+                                                    <span class="time">02:00</span>
+                                                </div>
+                                            </a>
+                                            <br>
+                                            @if (Route::has('login'))
+                                                @auth
+                                                <a href="javascript:void(0);" class="item-content item-link"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                                                    <div class="rounded-circle">
+                                                        <i class="fas fa-play" style="font-size: 30px;" ></i>
+                                                    </div>
+                                                    <div class="media-content">
+                                                        <div>
+                                                            <h6 class="name">Teknik Mengaduk</h6>
+                                                            <p class="my-1">
+                                                            Step 1
+                                                            </p>
+                                                        </div>
+                                                        <span class="time">02:00</span>
+                                                    </div>
+                                                </a>
+                                                @else
+                                                <a href="#">
+                                                    <div class="rounded-circle">
+                                                        <i class="fas fa-lock" style="font-size: 20px;" ></i>
+                                                    </div>
+                                                    <div class="media-content">
+                                                        <div>
+                                                            <h6 class="name">Teknik Mengaduk</h6>
+                                                            <p class="my-1">
+                                                            Step 1
+                                                            </p>
+                                                        </div>
+                                                        <span class="time">02:00</span>
+                                                    </div>
+                                                </a>
+                                                @endauth
+                                            @endif
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
                                 aria-labelledby="profile-tab" tabindex="0">
-                                <h6>Dark Ready</h6>
-                                <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                            </div>
-                            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel"
-                                aria-labelledby="contact-tab" tabindex="0">
-                                <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit
-                                    Lorem ipsum, consectetur adipisicing elit.</p>
+                                <h6>Community</h6>
+                                <p class="mb-0">Buy This Class to View Community</p>
                             </div>
                         </div>
                     </div>
@@ -185,98 +201,16 @@
     </div>
     <!-- Page Content End -->
 
-    <!-- Theme Color Settings -->
-    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom">
-        <div class="offcanvas-body small">
-            <ul class="theme-color-settings">
-                <li>
-                    <input class="filled-in" id="primary_color_8" name="theme_color" type="radio"
-                        value="color-primary" />
-                    <label for="primary_color_8"></label>
-                    <span>Default</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_2" name="theme_color" type="radio"
-                        value="color-green" />
-                    <label for="primary_color_2"></label>
-                    <span>Green</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_3" name="theme_color" type="radio"
-                        value="color-blue" />
-                    <label for="primary_color_3"></label>
-                    <span>Blue</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_4" name="theme_color" type="radio"
-                        value="color-pink" />
-                    <label for="primary_color_4"></label>
-                    <span>Pink</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_5" name="theme_color" type="radio"
-                        value="color-yellow" />
-                    <label for="primary_color_5"></label>
-                    <span>Yellow</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_6" name="theme_color" type="radio"
-                        value="color-orange" />
-                    <label for="primary_color_6"></label>
-                    <span>Orange</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_7" name="theme_color" type="radio"
-                        value="color-purple" />
-                    <label for="primary_color_7"></label>
-                    <span>Purple</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_1" name="theme_color" type="radio"
-                        value="color-red" />
-                    <label for="primary_color_1"></label>
-                    <span>Red</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_9" name="theme_color" type="radio"
-                        value="color-lightblue" />
-                    <label for="primary_color_9"></label>
-                    <span>Lightblue</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_10" name="theme_color" type="radio"
-                        value="color-teal" />
-                    <label for="primary_color_10"></label>
-                    <span>Teal</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_11" name="theme_color" type="radio"
-                        value="color-lime" />
-                    <label for="primary_color_11"></label>
-                    <span>Lime</span>
-                </li>
-                <li>
-                    <input class="filled-in" id="primary_color_12" name="theme_color" type="radio"
-                        value="color-deeporange" />
-                    <label for="primary_color_12"></label>
-                    <span>Deeporange</span>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- Theme Color Settings End -->
-
     <!-- Footer -->
     <div class="footer fixed">
         <div class="container">
             @if (Route::has('login'))
                 <div>
                     @auth
-                        <a href="order.html" class="btn btn-primary text-start w-100 btn-rounded">
-                            ENROLL NOW
-                        </a>
+                    <a href="javascript:void(0);" class="btn scrollTop btn-primary btn-rounded px-3 chat-btn"><i
+                        class="	fas fa-money-bill me-2"></i> Enroll Now</a>
                     @else
-                    <a href="{{ route('login') }}" class="btn btn-primary text-start w-100 btn-rounded">
+                    <a href="{{ route('login') }}" class="btn scrollTop btn-primary btn-rounded px-3 chat-btn">
                         LOGIN or REGISTER
                     </a>
                     @endauth
@@ -292,5 +226,13 @@
 <script src="{{ asset('') }}mobile/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
 <script>
     $(".stepper").TouchSpin();
+</script>
+<script>
+    var w = {{ $room->price }};
+    var x = {{ $room->disc_price }};
+    var y = w - x;
+    var z1 = y / {{ $room->price }} * 100;
+    var z2 = Math.ceil(z1);
+    document.getElementById("discount").innerHTML = z2;
 </script>
 @endsection

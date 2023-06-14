@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use App\Models\User;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -16,9 +17,41 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $user = Auth::user();
         return view('admin.profile.edit', [
             'user' => $request->user(),
         ]);
+    }
+
+    public function updateUserDetail(Request $request)
+    {
+        $user = User::findOrFail(Auth::user()->id);
+
+        if ($request->file('avatar') == null) {
+            $path1 = "";
+        }else{
+            $path1 = $request->file('avatar')->store('public/avatars');  
+        }
+
+        if ($request->file('thumbnail') == null) {
+            $path2 = "";
+        }else{
+            $path2 = $request->file('thumbnail')->store('public/thumbnails');  
+        }
+
+        $user->profile()->updateOrCreate(
+            [
+                'user_id' => $user->id,
+            ],
+            [
+                'avatar' => $path1,
+                'thumbnail' => $path2,
+                'address' => $request->address,
+                'phone' => $request->phone,
+            ]
+        );
+        return redirect()->route('profile.edit')
+        ->with('status','profile-updated-successfully');
     }
 
     /**

@@ -59,7 +59,17 @@
 <div class="sidebar">
     <div class="author-box">
         <div class="dz-media">
-            <img src="{{ asset('') }}mobile/images/message/pic5.jpg" alt="author-image">
+            @if (Route::has('login'))
+                @auth
+                    @if(Auth::user()->profile?->avatar != null)
+                        <img src="{{ Storage::url(Auth::user()->profile->avatar) }}"  alt="author-image">       
+                    @else
+                        <img src="{{asset('/storage/avatars/default.png')}}"  alt="author-image">  
+                    @endif
+                    @else
+                    <img src="{{asset('/storage/avatars/default.png')}}"  alt="author-image"> 
+                @endauth    
+            @endif
         </div>
         <div class="dz-info">
             <span>Good Morning</span>
