@@ -41,6 +41,12 @@
                     <span class="nav-text">Class Market</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('member.myorder') }}" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-022-copy"></i>
+                    <span class="nav-text">My Order</span>
+                </a>
+            </li>
             <div class="copyright">
                 <p><strong>Admin Side</strong></p>
             </div>

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('classtype_id')->nullable();
             $table->string('payment_method')->nullable();
-            $table->enum('status', ['0', '1', '2']);
+            $table->enum('status', ['0', '1']);
             $table->timestamps();
         });
     }

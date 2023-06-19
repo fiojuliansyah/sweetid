@@ -27,7 +27,9 @@ Checkout {{ $room->title }} | SweetTroops Baking Studio
                                             <h6 class="my-0"><strong> {{ $room->classtype['name'] }} </strong> {{ $room->title }}</h6>
                                             <small class="text-muted">{{ $room->short_description }}</small>
                                         </div>
-                                        <span class="text-muted">@currency($room->price)</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                        <span style="color: green">@currency($room->price)</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between active">
                                         <div class="text-white">
@@ -65,13 +67,17 @@ Checkout {{ $room->title }} | SweetTroops Baking Studio
                                                 Valid first name is required.
                                             </div>
                                         </div>
+                                        @if($user ? $user->profile?->phone : '')        
                                         <div class="col-md-6 mb-3">
                                             <label for="lastName" class="form-label">Phone</label>
                                             <input type="text" class="form-control" name="phone" value="{{ $user ? $user->profile?->phone : '' }}" required="">
                                             <div class="invalid-feedback">
                                                 Valid last name is required.
                                             </div>
-                                        </div>
+                                        </div>                                   
+                                        @else
+
+                                        @endif
                                     </div>
 
                                     <div class="mb-3">
@@ -81,7 +87,7 @@ Checkout {{ $room->title }} | SweetTroops Baking Studio
                                             Please enter a valid email address for shipping updates.
                                         </div>
                                     </div>
-
+                                    @if ($user ? $user->profile?->address : '') 
                                     <div class="mb-3">
                                         <label for="address" class="form-label">Address</label>
                                         <input type="text" class="form-control" name="address" value="{{ $user ? $user->profile?->address : '' }}" required="">
@@ -89,7 +95,8 @@ Checkout {{ $room->title }} | SweetTroops Baking Studio
                                             Please enter your shipping address.
                                         </div>
                                     </div>
-
+                                    @else
+                                    @endif
                                     <div class="form-check custom-checkbox mb-2">
                                         <input type="checkbox" class="form-check-input" id="save-info">
                                         <label class="form-check-label" for="save-info">Save this
@@ -98,8 +105,13 @@ Checkout {{ $room->title }} | SweetTroops Baking Studio
                                             time</label>
                                     </div>
                                     <hr class="mb-4">
+                                    @if ($user ? $user->profile?->address : '') 
                                     <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to
                                         payment</button>
+                                    @else
+                                    <p style="color: red">*Lengkapi No Telepon dan Alamat di Profile</p>
+                                    <a href="{{ route('profile.edit') }}" class="btn btn-warning btn-lg btn-block" type="submit">Go To Profile</a>
+                                    @endif
                                 </form>
                             </div>
                         </div>

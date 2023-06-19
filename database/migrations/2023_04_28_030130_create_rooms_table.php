@@ -33,8 +33,6 @@ return new class extends Migration
             $table->string('is_featured')->nullable();
             $table->string('is_recommended')->nullable();
 
-            $table->string('started_at')->nullable();
-            $table->string('ended_at')->nullable();
             $table->string('meta_keyword')->nullable();
             $table->timestamps();
         });

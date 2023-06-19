@@ -40,7 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/member/myclass', [MemberController::class, 'myClass'])->name('member.myclass');
     Route::get('/member/{room}/detail', [MemberController::class, 'detail'])->name('member.detail');
     Route::get('/member/{room}/checkout', [MemberController::class, 'checkout'])->name('member.checkout');
-    Route::post('/member/checkout', [MemberController::class, 'storeCheckout'])->name('member.store');
+    Route::post('/member/invoice', [MemberController::class, 'storeCheckout'])->name('member.store');
+    Route::get('/member/myorder', [MemberController::class, 'myOrder'])->name('member.myorder');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -22,9 +22,8 @@ class TransactionsTable extends Component
     {
         if ($this->search != '') {
             $data = Transaction::whereRelation('classtype', 'name', 'like', '%' . $this->search . '%')
-                ->orWhereRelation('category', 'name', 'like', '%' . $this->search . '%')
                 ->orWhereRelation('user', 'name', 'like', '%' . $this->search . '%')
-                ->orWhereRelation('room', 'name', 'like', '%' . $this->search . '%')
+                ->orWhereRelation('room', 'title', 'like', '%' . $this->search . '%')
                 ->orWhere('invoice_id', 'like', '%' . $this->search . '%')
                 ->paginate(6);
         } else {

@@ -7,13 +7,13 @@
         @csrf
         <div>
             <x-input-label class="form-label" for="avatar" :value="__('Avatar')" />
-            <input id="avatar" name="avatar" type="file" class="form-control" value="" required autofocus autocomplete="avatar" />
+            <input id="avatar" name="avatar" type="file" class="form-control" value="{{ $user ? $user->profile?->avatar : '' }}" autofocus autocomplete="avatar" />
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
         </div>
         <br>
         <div>
             <x-input-label class="form-label" for="thumbnail" :value="__('thumbnail')" />
-            <input id="thumbnail" name="thumbnail" type="file" class="form-control" value="" required autofocus autocomplete="thumbnail" />
+            <input id="thumbnail" name="thumbnail" type="file" class="form-control" value="{{ $user ? $user->profile?->thumbnail : '' }}" autofocus autocomplete="thumbnail" />
             <x-input-error class="mt-2" :messages="$errors->get('thumbnail')" />
         </div>
         <br>

@@ -10,18 +10,23 @@
                                 <a class="nav-link active" href="javascript:void(0);" data-bs-toggle="tab" id="transaction-tab" data-bs-target="#AllTransaction" role="tab">All transaction</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="javascript:void(0);" data-bs-toggle="tab" id="Completed-tab" data-bs-target="#Completed" role="tab">Completed</a>
+                                <a class="nav-link" href="javascript:void(0);" data-bs-toggle="tab" id="Completed-tab" data-bs-target="#Completed" role="tab">unpaid</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="javascript:void(0);" data-bs-toggle="tab" id="Pending-tab" data-bs-target="#Pending" role="tab">Pending</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="javascript:void(0);" data-bs-toggle="tab" id="Canceled-tab" data-bs-target="#Canceled" role="tab">Canceled</a>
+                                <a class="nav-link" href="javascript:void(0);" data-bs-toggle="tab" id="Pending-tab" data-bs-target="#Pending" role="tab">Paid</a>
                             </li>
                         </ul>
                     </div>
                 </div>
+                <div class="mb-3 col-md-4">
+                    <div class="input-group search-area">
+                        <input wire:model="search" id="search" type="text" class="form-control" name="keyword" placeholder="Search...">
+                    </div>   
+                </div>
                 <a href="javascript:void(0);" class="btn btn-outline-primary mb-3"><i class="fa fa-calendar me-3 scale3"></i>Filter Date</a>
+            </div>
+            <div class="row">
+                
             </div>
             <div class="row">
                 <div class="col-xl-12 tab-content">
@@ -32,7 +37,7 @@
                                     <tr>
                                         <th>ID Invoice</th>
                                         <th>Date</th>
-                                        <th>Class</th>
+                                        <th>Class Room</th>
                                         <th>Recipient</th>
                                         <th>Amount</th>
                                         <th>Type</th>
@@ -44,33 +49,20 @@
                                     @foreach ($data as $inv)
                                     <tr>
                                         <td><span>{{ $inv->invoice_id }}</span></td>
-                                        <td><span class="text-nowrap">{{ \Carbon\Carbon::parse($inv->created_at)->diffForHumans() }}</span></td>
-                                        <td><span>{{ $inv->room['title'] }}</span></td>
+                                        <td><span class="text-nowrap">{{ \Carbon\Carbon::parse($inv->created_at)->format('M d Y') }}</span></td>
+                                        <td><span>{{ Str::limit($inv->room['title'], 40) }}</span></td>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="images/avatar/1.jpg" alt="" class="rounded-circle me-3" width="50">
-                                                <div>
-                                                    <h6 class="fs-16 mb-0 text-nowrap">{{ $inv->user['name'] }}</h6>
-                                                </div>
-                                            </div>
+                                            <h6 class="fs-16 mb-0 text-nowrap">{{ $inv->user['name'] }}</h6>
                                         </td>
                                         <td><span>@currency($inv->price)</span></td>
                                         <td>
-                                            <div>
-                                                <span class="badge badge-primary light">
-                                                    <img src="{{ Storage::url($inv->classtype['icon']) }}" width="30" alt="" />
-                                                </span>
-                                                &nbsp; {{ $inv->classtype['name'] }}
-                                            </div>
+                                            <span>{{ $inv->classtype['name'] }}</span>
                                         </td>
                                         @if ( $inv->status == '0' )
-                                        <td><a href="javascript:void(0)" class="btn btn-warning btn-rounded light">Pending</a></td> 
+                                        <td><a href="javascript:void(0)" class="btn btn-danger btn-rounded light">Unpaid</a></td> 
                                         
                                         @elseif ( $inv->status == '1' )
                                         <td><a href="javascript:void(0)" class="btn btn-success btn-rounded light">Approve</a></td>
-
-                                        @elseif ( $inv->status == '2' )
-                                        <td><a href="javascript:void(0)" class="btn btn-danger btn-rounded light">Cancel</a></td>
 
                                         @endif
                                         <td>

@@ -127,14 +127,6 @@
                             </div>
                             <div class="row">
                                 <div class="mb-3 col-md-4">
-                                    <label class="form-label">Started At</label>
-                                    <input type="date" id="started_at" name="started_at" class="form-control">
-                                </div>
-                                <div class="mb-3 col-md-4">
-                                    <label class="form-label">Ended At</label>
-                                    <input type="date" id="ended_at" name="ended_at" class="form-control">
-                                </div>
-                                <div class="mb-3 col-md-4">
                                     <label class="form-label">Meta Keyword</label>
                                     <input type="text" id="meta_keyword" name="meta_keyword" class="form-control" placeholder="cake, bread, sweettroops, kue, roti">
                                 </div>

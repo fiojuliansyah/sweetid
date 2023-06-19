@@ -76,8 +76,6 @@ class RoomController extends Controller
         $classroom->is_featured = $request->is_featured;
         $classroom->is_recommended = $request->is_recommended;
         $classroom->is_active = $request->is_active;
-        $classroom->started_at = $request->started_at;
-        $classroom->ended_at = $request->ended_at;
         $classroom->meta_keyword = $request->meta_keyword;
         $classroom->save();
 

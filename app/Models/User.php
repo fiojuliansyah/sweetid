@@ -2,7 +2,10 @@
   
 namespace App\Models;
   
+use App\Models\Room;
 use App\Models\Profile;
+use App\Models\Competition;
+use App\Models\Transaction;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -21,7 +24,17 @@ class User extends Authenticatable
      */
     public function profile()
     {
-        return $this->hasOne(Profile::class, 'user_id', 'id');
+        return $this->hasOne(Profile::class, 'user_id', 'id', 'phone', 'address');
+    }
+
+    public function transaction()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function competition()
+    {
+        return $this->hasMany(Competition::class);
     }
 
     protected $fillable = [
