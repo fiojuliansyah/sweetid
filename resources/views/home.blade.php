@@ -289,7 +289,7 @@
                             <div class="swiper-wrapper">
                                 @foreach ($category as $cat)
                                 <div class="swiper-slide">
-                                    <a href="javascript:void(0);" class="categore-box style-2 secondary">
+                                    <a href="{{ route('product.category',$cat->slug) }}" class="categore-box style-2 secondary">
                                         <div class="icon-bx">
                                             <img src="{{ Storage::url($cat->icon) }}" width="35" alt="">
                                         </div>
@@ -425,7 +425,7 @@
                         @endif
                     @endforeach
                     <!-- Item box Start -->
-                    <a href="product.html" class="btn btn-outline-primary btn-rounded btn-block">VIEW MORE</a>
+                    <a href="{{ route('product.list') }}" class="btn btn-outline-primary btn-rounded btn-block">VIEW MORE</a>
                 </div>
             </div>
         </div>

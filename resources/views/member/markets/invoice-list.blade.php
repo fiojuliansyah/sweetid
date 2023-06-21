@@ -67,12 +67,16 @@
                                         <td><a href="javascript:void(0)" class="btn btn-danger btn-rounded light">Unpaid</a></td> 
                                         
                                         @elseif ( $inv->status == '1' )
-                                        <td><a href="javascript:void(0)" class="btn btn-success btn-rounded light">Approve</a></td>
+                                        <td><a href="javascript:void(0)" class="btn btn-success btn-rounded light">Paid</a></td>
 
                                         @endif
+                                        @if ( $inv->status == '0' )
                                         <td>
                                             <a href="{{ route('member.checkout',$inv->room['id']) }}" class="btn btn-sm btn-success">Pay Now</a>
                                         </td>
+                                        @else
+                                            
+                                        @endif
                                     </tr>
                                     @endforeach
                                     @else

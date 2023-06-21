@@ -75,7 +75,6 @@
                                                     </svg>
                                                 </a>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="las la-times-circle text-danger scale5 me-3"></i>Cancel Transactions</a>
                                                     <a class="dropdown-item" href="transaction-details.html"><i class="las la-info-circle scale5 me-3"></i>View Details</a>
                                                 </div>
                                             </div>

@@ -44,6 +44,8 @@
 
 <body class="bg-white">
 
+    @yield('navbar')
+
     @yield('content')
     <!--**********************************
     Scripts

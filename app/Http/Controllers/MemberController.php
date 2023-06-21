@@ -117,4 +117,5 @@ class MemberController extends Controller
         } else {
         }
     }
+    
 }

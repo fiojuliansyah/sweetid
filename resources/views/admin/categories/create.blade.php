@@ -53,6 +53,20 @@
                                             <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
                                         </div>
                                     </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <br>
+                                            <label>Slug:</label>
+                                            <input type="text" name="slug" class="form-control" placeholder="Slug" required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <br>
+                                            <label>Meta Keyword:</label>
+                                            <input type="text" name="meta_keyword" class="form-control" placeholder="Meta Keyword" required="">
+                                        </div>
+                                    </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                                         <br>
                                         <button type="submit" class="btn btn-primary">Submit</button>

@@ -29,8 +29,10 @@ Route::get('/', function () {
 });
 
 Route::get('home', [HomeController::class, 'index']);
-Route::get('/products', [HomeController::class, 'products'])->name('products');
-Route::get('/product/{room}', [HomeController::class, 'productShow'])->name('product.show');
+Route::get('/classes', [HomeController::class, 'products'])->name('products');
+Route::get('/class/{room}', [HomeController::class, 'productShow'])->name('product.show');
+Route::get('/category-pclass/{slug}', [HomeController::class, 'productByCat'])->name('product.category');
+Route::get('/class-list', [HomeController::class, 'productList'])->name('product.list');
 
 Route::middleware('auth')->group(function () {
     
