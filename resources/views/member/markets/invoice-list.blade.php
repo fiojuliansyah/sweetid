@@ -7,7 +7,7 @@
     <!-- row -->
     <div class="container-fluid">
         <div class="d-flex flex-wrap align-items-center mb-3">
-            <div class="mb-3 me-auto">
+            {{-- <div class="mb-3 me-auto">
                 <div class="card-tabs style-1 mt-3 mt-sm-0">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
@@ -21,13 +21,13 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
             <div class="mb-3 col-md-4">
                 <div class="input-group search-area">
                     <input wire:model="search" id="search" type="text" class="form-control" name="keyword" placeholder="Search...">
                 </div>   
             </div>
-            <a href="javascript:void(0);" class="btn btn-outline-primary mb-3"><i class="fa fa-calendar me-3 scale3"></i>Filter Date</a>
+            {{-- <a href="javascript:void(0);" class="btn btn-outline-primary mb-3"><i class="fa fa-calendar me-3 scale3"></i>Filter Date</a> --}}
         </div>
         <div class="row">
             
@@ -75,7 +75,9 @@
                                             <a href="{{ route('member.checkout',$inv->room['id']) }}" class="btn btn-sm btn-success">Pay Now</a>
                                         </td>
                                         @else
-                                            
+                                        {{-- <td>
+                                            <a href="{{ url('/member/invoice',$inv->room['id']) }}" class="btn btn-sm btn-info">Detail</a>
+                                        </td> --}}
                                         @endif
                                     </tr>
                                     @endforeach

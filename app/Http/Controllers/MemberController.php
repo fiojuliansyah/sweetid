@@ -93,24 +93,21 @@ class MemberController extends Controller
                 $transaction->update([
                     'status' => '1'
                 ]);
-
-                $userCompetition = Auth::user()->id;
-                $roomCompetition = Transaction::where('room_id', $request->order_id)->first();
-
-                $competition = new Competition;
-                $competition->user_id = $userCompetition;
-                $competition->room_id = $roomCompetition;
-                $competition->save();
-                
             }
         }
+    }
+
+    public function invoiceDone($id)
+    {
+        $transaction = Transaction::find($id);
+        return view ('member.markets.invoice-done', compact ('transaction'));
     }
     
     public function myOrder()
     {
         $user = Auth::user();
 
-        if ($user) {
+        if ($user) {    
             $invoices = $user->transaction;
             // Tampilkan daftar invoice yang dimiliki oleh user
             return view('member.markets.invoice-list', compact('invoices'));

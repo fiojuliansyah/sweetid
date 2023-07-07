@@ -19,6 +19,8 @@
     <meta property="og:image" content="#" />
     <meta name="format-detection" content="telephone=no">
 
+    @yield('css')
+
     <!-- Favicons Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('') }}mobile/images/favicon.png" />
 

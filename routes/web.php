@@ -33,6 +33,9 @@ Route::get('/classes', [HomeController::class, 'products'])->name('products');
 Route::get('/class/{room}', [HomeController::class, 'productShow'])->name('product.show');
 Route::get('/category-pclass/{slug}', [HomeController::class, 'productByCat'])->name('product.category');
 Route::get('/class-list', [HomeController::class, 'productList'])->name('product.list');
+Route::get('/class/{room}/checkout', [HomeController::class, 'checkout'])->name('product.checkout');
+Route::post('/class/invoice', [HomeController::class, 'storeCheckout'])->name('product.store');
+Route::get('/class/invoice/{id}', [HomeController::class, 'invoiceDone']);
 
 Route::middleware('auth')->group(function () {
     
@@ -44,6 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/member/{room}/checkout', [MemberController::class, 'checkout'])->name('member.checkout');
     Route::post('/member/invoice', [MemberController::class, 'storeCheckout'])->name('member.store');
     Route::get('/member/myorder', [MemberController::class, 'myOrder'])->name('member.myorder');
+    Route::get('/member/invoice/{id}', [MemberController::class, 'invoiceDone']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
