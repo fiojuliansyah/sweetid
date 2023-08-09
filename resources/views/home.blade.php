@@ -20,12 +20,16 @@
                 <div class="mid-content">
                 </div>
                 <div class="right-content">
-                    <a href="javascript:void(0);" class="theme-color" data-bs-toggle="offcanvas"
+                    <a href="{{ url('/member/dashboard') }}" class="theme-color"
                         data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
-                        <svg class="color-plate" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 0 24 24"
-                            width="30px" fill="#000000">
-                            <path
-                                d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
+                        <svg fill="#000000" height="24px" width="24px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                            viewBox="0 0 230.359 230.359" xml:space="preserve">
+                        <path d="M210.322,5.604H20.023C8.982,5.604,0,14.587,0,25.628v142.519c0,11.048,8.982,20.037,20.023,20.037h62.14v21.572H58.241
+                            c-4.142,0-7.5,3.358-7.5,7.5c0,4.142,3.358,7.5,7.5,7.5h31.422h51.01h31.432c4.143,0,7.5-3.358,7.5-7.5c0-4.142-3.357-7.5-7.5-7.5
+                            h-23.932v-21.572h62.149c11.049,0,20.037-8.988,20.037-20.037V25.628C230.359,14.587,221.371,5.604,210.322,5.604z M15,51.128
+                            h200.359v91.521H15V51.128z M20.023,20.604h190.299c2.777,0,5.037,2.254,5.037,5.024v10.501H15V25.628
+                            C15,22.858,17.253,20.604,20.023,20.604z M133.173,209.755h-36.01v-21.572h36.01V209.755z M210.322,173.183h-69.649h-51.01h-69.64
+                            c-2.77,0-5.023-2.259-5.023-5.037V157.65h200.359v10.497C215.359,170.924,213.099,173.183,210.322,173.183z"/>
                         </svg>
                     </a>
                     <a href="javascript:void(0);" class="theme-btn">
@@ -145,6 +149,7 @@
                     @endauth
                 </div>
          @endif
+        @can('admin')
         <li class="nav-label">Admin Panel</li>
         <li>
             <a class="nav-link" href="{{ url('/admin/dashboard') }}">
@@ -155,10 +160,10 @@
                             d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" />
                     </svg>
                 </span>
-                <span>Dekstop Mode</span>
+                <span>Admin Dashboard</span>
             </a>
         </li>
-        <li class="nav-color" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
+        {{-- <li class="nav-color" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
             aria-controls="offcanvasBottom">
             <a href="javascript:void(0);" class="nav-link">
                 <span class="dz-icon">
@@ -193,7 +198,8 @@
                     <label class="custom-switch-label" for="toggle-dark-menu"></label>
                 </div>
             </div>
-        </li>
+        </li> --}}        
+        @endcan
     </ul>
     <div class="sidebar-bottom">
         <h6 class="name">SweetTroops - Baking Studio</h6>
@@ -355,7 +361,7 @@
                     <!-- Recomended Start -->
                     <div class="title-bar">
                         <h5 class="title">Recomended 👌</h5>
-                        <a class="btn-link" href="product.html">View more</a>
+                        <a class="btn-link" href="{{ route('product.list') }}">View more</a>
                     </div>
 
                     <div class="swiper-btn-center-lr">

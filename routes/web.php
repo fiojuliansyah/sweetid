@@ -12,6 +12,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClasstypeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\LoginWithGoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,8 @@ use App\Http\Controllers\TransactionController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('authorized/google', [LoginWithGoogleController::class, 'redirectToGoogle']);
+Route::get('authorized/google/callback', [LoginWithGoogleController::class, 'handleGoogleCallback']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,7 +35,7 @@ Route::get('/', function () {
 Route::get('home', [HomeController::class, 'index']);
 Route::get('/classes', [HomeController::class, 'products'])->name('products');
 Route::get('/class/{room}', [HomeController::class, 'productShow'])->name('product.show');
-Route::get('/category-pclass/{slug}', [HomeController::class, 'productByCat'])->name('product.category');
+Route::get('/category-class/{slug}', [HomeController::class, 'productByCat'])->name('product.category');
 Route::get('/class-list', [HomeController::class, 'productList'])->name('product.list');
 Route::get('/class/{room}/checkout', [HomeController::class, 'checkout'])->name('product.checkout');
 Route::post('/class/invoice', [HomeController::class, 'storeCheckout'])->name('product.store');

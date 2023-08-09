@@ -76,6 +76,9 @@
         <!-- Footer -->
         <footer class="footer fixed">
             <div class="container">
+                <a href="{{ url('authorized/google') }}" class="btn mt-2 btn-dark w-100 btn-rounded"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" width="20" alt="">&nbsp; &nbsp;Sign Up With Google Account</a>
+            </div>
+            <div class="container">
                 <a href="{{ route('login') }}" class="btn btn-transparent btn-rounded d-block">SIGN IN</a>
             </div>
         </footer>

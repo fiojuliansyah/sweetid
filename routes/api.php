@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/midtrans-callback', [MemberController::class, 'callback'])->name('midtrans.callback');
 Route::post('/midtrans-callback', [HomeController::class, 'callback'])->name('midtrans.callback');
+Route::post('/zoom-create-meeting', 'ZoomController@createZoom');

@@ -62,7 +62,7 @@
                                         <td><a href="javascript:void(0)" class="btn btn-danger btn-rounded light">Unpaid</a></td> 
                                         
                                         @elseif ( $inv->status == '1' )
-                                        <td><a href="javascript:void(0)" class="btn btn-success btn-rounded light">Approve</a></td>
+                                        <td><a href="javascript:void(0)" class="btn btn-success btn-rounded light">Paid</a></td>
 
                                         @endif
                                         <td>

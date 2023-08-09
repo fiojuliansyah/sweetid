@@ -51,10 +51,10 @@ Detail {{ $room->title }} | SweetTroops Baking Studio
                                                 <a class="nav-link active" data-bs-toggle="tab" href="#detail"><i class="la la-home me-2"></i> Detail</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-bs-toggle="tab" href="#playlist"><i class="la la-user me-2"></i> Playlist</a>
+                                                <a class="nav-link" data-bs-toggle="tab" href="#playlist"><i class="la la-play me-2"></i> Playlist</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-bs-toggle="tab" href="#forum"><i class="la la-phone me-2"></i>  Forum</a>
+                                                <a class="nav-link" data-bs-toggle="tab" href="#forum"><i class="la la-users me-2"></i>  Forum</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content">
@@ -94,7 +94,7 @@ Detail {{ $room->title }} | SweetTroops Baking Studio
                                                             <span class="badge badge-success light">{{ $room->category['name'] }}</span>
                                                         </p>
                                                         <p class="text-content">{{ $room->description }}</p>
-                                                        <div class="d-flex align-items-end flex-wrap mt-4">
+                                                        {{-- <div class="d-flex align-items-end flex-wrap mt-4">
                                                             <div class="filtaring-area me-3">
                                                                 <div class="size-filter">
                                                                     <h4 class="m-b-15">Trailer Video</h4>
@@ -103,7 +103,7 @@ Detail {{ $room->title }} | SweetTroops Baking Studio
                                                                     </video>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                         <br>
                                                         <a href="{{ route('member.checkout',$room->id) }}" class="btn btn-primary">Enroll Now <span class="btn-icon-end"><i class="fas fa-money-bill"></i></span>
                                                         </a>
@@ -112,11 +112,76 @@ Detail {{ $room->title }} | SweetTroops Baking Studio
                                             </div>
                                             <div class="tab-pane fade" id="playlist">
                                                 <div class="pt-4">
-                                                    <h4>This is profile title</h4>
-                                                    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor.
-                                                    </p>
-                                                    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor.
-                                                    </p>
+                                                    {{-- <div class="container pt-0">
+                                                        <!-- Masseges List -->
+                                                        <ul class="dz-list message-list">
+                                                            <li>
+                                                                <a href="javascript:void(0);">
+                                                                    <div style="content: ""; display: table; clear: both;">
+                                                                        <div style="float: left; width: 30%;">
+                                                                            <i class="fas fa-play" style="font-size: 30px;" ></i>
+                                                                        </div>
+                                                                        <div style="float: left; width: 30%;">
+                                                                            <h6 class="name">Trailer Video</h6>
+                                                                            <p class="my-1">
+                                                                                {{ $room->title }}
+                                                                            </p>
+                                                                        </div>
+                                                                        <div style="float: left; width: 40%;">
+                                                                            <span class="time">02:00</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                                <br>
+                                                                {{-- @if (Route::has('login'))
+                                                                    @auth
+                                                                    <a href="javascript:void(0);" class="item-content item-link"
+                                                                        data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                                                                        <div class="rounded-circle">
+                                                                            <i class="fas fa-play" style="font-size: 30px;" ></i>
+                                                                        </div>
+                                                                        <div class="media-content">
+                                                                            <div>
+                                                                                <h6 class="name">Teknik Mengaduk</h6>
+                                                                                <p class="my-1">
+                                                                                Step 1
+                                                                                </p>
+                                                                            </div>
+                                                                            <span class="time">02:00</span>
+                                                                        </div>
+                                                                    </a>
+                                                                    @else
+                                                                    <a href="#">
+                                                                        <div class="rounded-circle">
+                                                                            <i class="fas fa-lock" style="font-size: 20px;" ></i>
+                                                                        </div>
+                                                                        <div class="media-content">
+                                                                            <div>
+                                                                                <h6 class="name">Teknik Mengaduk</h6>
+                                                                                <p class="my-1">
+                                                                                Step 1
+                                                                                </p>
+                                                                            </div>
+                                                                            <span class="time">02:00</span>
+                                                                        </div>
+                                                                    </a>
+                                                                    @endauth
+                                                                @endif
+                                                            </li>
+                                                        </ul>
+                                                    </div> --}}
+                                                    <table style="width:100%">
+                                                        <tr>
+                                                          <th> </th>
+                                                          <th> </th>
+                                                          <th> </th>
+                                                        </tr>
+                                                        <tr>
+                                                          <td><i class="fas fa-play" style="font-size: 30px;" ></i></td>
+                                                          <td>{{ $room->title }}</td>
+                                                          <td>{{ $room->duration }}</td>
+                                                        </tr>
+                                                      </table>
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="forum">

@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => 'your client id',
+        'client_secret' => 'your client secret key',
+        'redirect' => 'http://localhost:8000/authorized/google/callback',
+    ],
+
 ];
