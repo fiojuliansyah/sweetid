@@ -6,7 +6,7 @@
                     @if(Auth::user()->profile?->avatar != null)
                     <img src="{{ Storage::url(Auth::user()->profile->avatar) }}" width="20" alt="">    
                     @else
-                    <img src="{{asset('/storage/avatars/default.png')}}"  alt="">      
+                    <img src="{{asset('/admin/images/avatar/1.png')}}"  alt="">      
                     @endif
                     <div class="header-info ms-3">
                         <span class="font-w600 ">Hi, <b>{{ Auth::user()->name }}</b></span>

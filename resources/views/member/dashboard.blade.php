@@ -20,7 +20,7 @@
                                                 @if(Auth::user()->profile?->avatar != null)
                                                 <img src="{{ Storage::url(Auth::user()->profile->avatar) }}" width="70" alt="image">    
                                                 @else
-                                                <img src="{{asset('/storage/avatars/default.png')}}" width="70" alt="image">      
+                                                <img src="{{asset('/admin/images/avatar/1.png')}}" width="70" alt="image">      
                                                 @endif
                                                 <br>
                                             </div>
