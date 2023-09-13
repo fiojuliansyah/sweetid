@@ -23,6 +23,7 @@ return new class extends Migration
             $table->mediumText('short_description')->nullable();
             $table->longText('description')->nullable();
             $table->string('duration')->nullable();
+            $table->string('point')->nullable();
             
             $table->string('price')->nullable();
             $table->string('disc_price')->nullable();
