@@ -38,6 +38,10 @@ class PermissionTableSeeder extends Seeder
             'category-create',
             'category-edit',
             'category-delete',
+            'pointmarket-list',
+            'pointmarket-create',
+            'pointmarket-edit',
+            'pointmarket-delete',
         ];
        
         foreach ($permissions as $permission) {

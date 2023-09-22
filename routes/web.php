@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClasstypeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PointmarketController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\LoginWithGoogleController;
@@ -65,6 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('classtypes', ClasstypeController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('transactions', TransactionController::class);
+    Route::resource('pointmarkets', PointmarketController::class);
 });
 
 require __DIR__.'/auth.php';

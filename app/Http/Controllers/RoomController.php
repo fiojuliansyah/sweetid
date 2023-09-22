@@ -70,6 +70,7 @@ class RoomController extends Controller
         $classroom->short_description = $request->short_description;
         $classroom->description = $request->description;
         $classroom->duration = $request->duration;
+        $classroom->point = $request->point;
         $classroom->price = $request->price;
         $classroom->disc_price = $request->disc_price;
         $classroom->trailer = $path2;

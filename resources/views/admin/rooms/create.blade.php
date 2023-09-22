@@ -86,9 +86,13 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="mb-3 col-md-4">
+                                <div class="mb-3 col-md-2">
                                     <label class="form-label">Duration</label>
                                     <input type="text" id="duration" name="duration" class="form-control" placeholder="Durasi Video">
+                                </div>
+                                <div class="mb-3 col-md-2">
+                                    <label class="form-label">Point</label>
+                                    <input type="text" id="point" name="point" class="form-control" placeholder="Point">
                                 </div>
                                 <div class="mb-3 col-md-4">
                                     <label class="form-label">Price</label>

@@ -80,6 +80,12 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a href="{{ route('pointmarkets.index') }}" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-041-graph"></i>
+                    <span class="nav-text">Point Markets</span>
+                </a>
+            </li>
             <div class="copyright">
                 <p><strong>Server Side</strong></p>
             </div>
