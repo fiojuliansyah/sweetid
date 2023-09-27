@@ -28,7 +28,8 @@ class HomeController extends Controller
 
     public function productShow(Room $room)
     {
-        return view('mobile.products.show',compact('room'));
+        $courses = $room->courses;
+        return view('mobile.products.show',compact('room','courses'));
     }
 
     public function productByCat($slug)

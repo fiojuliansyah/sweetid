@@ -114,16 +114,11 @@ class RoomController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Room $room)
     {
-         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
-        ]);
+        $room->update($request->all());
     
-        $course->update($request->all());
-    
-        return redirect()->route('courses.index')
+        return redirect()->route('rooms.index')
                         ->with('success','Product updated successfully');
     }
     
@@ -133,11 +128,11 @@ class RoomController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(Room $room)
     {
-        $course->delete();
+        $room->delete();
     
-        return redirect()->route('courses.index')
+        return redirect()->route('rooms.index')
                         ->with('success','Product deleted successfully');
     }
 }

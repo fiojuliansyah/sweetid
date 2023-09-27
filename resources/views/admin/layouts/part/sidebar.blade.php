@@ -73,7 +73,7 @@
                     <li><a href="{{ route('rooms.index') }}">Class Room</a></li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Add New</a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ route('roles.index') }}">Online Course</a></li>
+                            <li><a href="{{ route('courses.index') }}">Online Course</a></li>
                             <li><a href="{{ route('roles.index') }}">Training Session</a></li>
                             <li><a href="{{ route('roles.index') }}">Training Session Online</a></li>
                         </ul>

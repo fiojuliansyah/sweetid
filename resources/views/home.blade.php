@@ -1,6 +1,6 @@
 @extends('mobile.layouts.master')
 
-@section('tile', 'Home | SweetTroops - Baking Studio Apps')
+@section('title', 'Home | SweetTroops - Baking Studio Apps')
 
 
 @section('header')
@@ -68,10 +68,10 @@
                     @if(Auth::user()->profile?->avatar != null)
                         <img src="{{ Storage::url(Auth::user()->profile->avatar) }}"  alt="author-image">       
                     @else
-                        <img src="{{asset('/storage/avatars/default.png')}}"  alt="author-image">  
+                        <img src="{{ asset('') }}mobile/images/avatar/1.jpg"  alt="author-image">  
                     @endif
                     @else
-                    <img src="{{asset('/storage/avatars/default.png')}}"  alt="author-image"> 
+                    <img src="{{ asset('') }}mobile/images/avatar/1.jpg"  alt="author-image"> 
                 @endauth    
             @endif
         </div>
@@ -90,7 +90,7 @@
     </div>
     <ul class="nav navbar-nav">
         <li class="nav-label">Main Menu</li>
-        <li><a class="nav-link" href="index.html">
+        <li><a class="nav-link" href="/home">
                 <span class="dz-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
                         fill="#000000">
