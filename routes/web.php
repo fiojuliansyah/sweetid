@@ -16,6 +16,7 @@ use App\Http\Controllers\PointmarketController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\LoginWithGoogleController;
+use App\Http\Controllers\MeetingRoomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +28,12 @@ use App\Http\Controllers\LoginWithGoogleController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('authorized/google', [LoginWithGoogleController::class, 'redirectToGoogle']);
 Route::get('authorized/google/callback', [LoginWithGoogleController::class, 'handleGoogleCallback']);
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
 Route::get('home', [HomeController::class, 'index']);
@@ -44,31 +46,35 @@ Route::post('/class/invoice', [HomeController::class, 'storeCheckout'])->name('p
 Route::get('/class/invoice/{id}', [HomeController::class, 'invoiceDone']);
 
 Route::middleware('auth')->group(function () {
-    
-    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/member/dashboard', [MemberController::class, 'dashboard'])->name('member.dashboard');
-    Route::get('/member/classmarket', [MemberController::class, 'classMarket'])->name('member.market');
-    Route::get('/member/myclass', [MemberController::class, 'myClass'])->name('member.myclass');
-    Route::get('/member/{room}/detail', [MemberController::class, 'detail'])->name('member.detail');
-    Route::get('/member/{room}/checkout', [MemberController::class, 'checkout'])->name('member.checkout');
-    Route::post('/member/invoice', [MemberController::class, 'storeCheckout'])->name('member.store');
-    Route::get('/member/myorder', [MemberController::class, 'myOrder'])->name('member.myorder');
-    Route::get('/member/invoice/{id}', [MemberController::class, 'invoiceDone']);
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::post ('/profile',[ProfileController::class, 'updateUserDetail'])->name('profile.detail');
+  Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+  Route::get('/member/dashboard', [MemberController::class, 'dashboard'])->name('member.dashboard');
+  Route::get('/member/classmarket', [MemberController::class, 'classMarket'])->name('member.market');
+  Route::get('/member/myclass', [MemberController::class, 'myClass'])->name('member.myclass');
+  Route::get('/member/{room}/detail', [MemberController::class, 'detail'])->name('member.detail');
+  Route::get('/member/{room}/checkout', [MemberController::class, 'checkout'])->name('member.checkout');
+  Route::post('/member/invoice', [MemberController::class, 'storeCheckout'])->name('member.store');
+  Route::get('/member/myorder', [MemberController::class, 'myOrder'])->name('member.myorder');
+  Route::get('/member/invoice/{id}', [MemberController::class, 'invoiceDone']);
 
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
-    Route::resource('rooms', RoomController::class);
-    Route::resource('cruds', CrudController::class);
-    Route::resource('classtypes', ClasstypeController::class);
-    Route::resource('categories', CategoryController::class);
-    Route::resource('transactions', TransactionController::class);
-    Route::resource('pointmarkets', PointmarketController::class);
-    Route::resource('courses', CourseController::class);
+  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+  Route::post('/profile', [ProfileController::class, 'updateUserDetail'])->name('profile.detail');
+
+  Route::resource('roles', RoleController::class);
+  Route::resource('users', UserController::class);
+  Route::resource('rooms', RoomController::class);
+  Route::resource('cruds', CrudController::class);
+  Route::resource('classtypes', ClasstypeController::class);
+  Route::resource('categories', CategoryController::class);
+  Route::resource('transactions', TransactionController::class);
+  Route::resource('pointmarkets', PointmarketController::class);
+  Route::resource('courses', CourseController::class);
+
+  // Meeting Room
+  Route::resource('meetingrooms', MeetingRoomController::class);
+  Route::get('/meetingrooms/{meetingroom}/join', [MeetingRoomController::class, 'join'])->name('meetingrooms.join');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
