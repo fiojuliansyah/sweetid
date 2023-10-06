@@ -34,7 +34,11 @@
                         <td>{{ $meetingroom->room->title }}</td>
                         <td>
                             <a class="btn btn-xs btn-primary mb-2"
-                                href="{{ route('meetingrooms.join', $meetingroom->id) }}" target="__BLANK">Join</a>
+                                href="{{ route('meetingrooms.join', $meetingroom->id) }}" target="__BLANK">Join Using
+                                Link</a>
+                            <a class="btn btn-xs btn-primary mb-2"
+                                href="{{ route('meetingrooms.show', $meetingroom->id) }}" target="__BLANK">Join Using
+                                App</a>
                             <form action="{{ route('meetingrooms.destroy', $meetingroom->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

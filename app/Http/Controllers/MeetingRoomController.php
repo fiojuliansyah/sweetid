@@ -77,7 +77,9 @@ class MeetingRoomController extends Controller
    */
   public function show($id)
   {
-    //
+    $meeting = MeetingRoom::findOrFail($id);
+
+    return view('admin.meetingrooms.show', compact('meeting'));
   }
 
   /**
