@@ -185,7 +185,7 @@ return [
     /*
          * Package Service Providers...
          */
-    Jubaer\Zoom\ZoomServiceProvider::class,
+    Jubaer\Zoom\ZoomServiceProvider::class,    
 
     /*
          * Application Service Providers...

@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\Course;
+
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 
@@ -51,14 +55,15 @@ class CourseController extends Controller
             'video' => 'required',
             'title' => 'required',
             'duration' => 'required',
-        ]);
-        $path = $request->file('video')->store('public/videos');
+        ]);                
+
+        $file = Storage::disk('google')->put(Str::slug($request->title), $request->file('video'));
         
         $course = new Course;
         $course->room_id = $request->room_id;
         $course->title = $request->title;
         $course->duration = $request->duration;
-        $course->video = $path;
+        $course->video = $file;
         $course->save();
         return redirect()->route('courses.index')
                         ->with('success','Product created successfully.');
@@ -72,7 +77,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        return view('admin.courses.show',compact('course'));
     }
 
     /**
@@ -130,7 +135,7 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         $course->delete();
-        \Storage::delete($crud->video);
+        \Storage::delete($course->video);
         return redirect()->route('courses.index')
                         ->with('success','Product deleted successfully');
     }

@@ -195,6 +195,22 @@
                                 aria-labelledby="profile-tab" tabindex="0">
                                 <h6>Community</h6>
                                 <p class="mb-0">Buy This Class to View Community</p>
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <div class="row">
+                                        <div class="col">
+                                          Kenapa saya tidak bisa belajar ?
+                                        </div>
+                                        <div class="col">
+                                          <div class="d-flex justify-content-end">
+                                            <a href="#">
+                                              <div class="badge badge-primary badge-pill">Lihat</div>
+                                            </a>                                            
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                             </div>
                         </div>
                     </div>
