@@ -194,23 +194,34 @@
                             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
                                 aria-labelledby="profile-tab" tabindex="0">
                                 <h6>Community</h6>
-                                <p class="mb-0">Buy This Class to View Community</p>
-                                  <div class="card">
-                                    <div class="card-body">
-                                      <div class="row">
-                                        <div class="col">
-                                          Kenapa saya tidak bisa belajar ?
-                                        </div>
-                                        <div class="col">
-                                          <div class="d-flex justify-content-end">
-                                            <a href="#">
-                                              <div class="badge badge-primary badge-pill">Lihat</div>
-                                            </a>                                            
+                                @guest                                
+                                  <p class="mb-0">Buy This Class to View Community</p>
+                                @endguest
+                                @auth
+                                  <p class="mb-0">Community Discussion</p>
+                                  <div style="text-align: right;">
+                                    <a href="{{ route('product.create.discussion', $room->id) }}" class="btn btn-primary btn-sm btn-rounded pull-right">Create Discussion</a>
+                                  </div>                                  
+                                  @foreach ($room->discussions as $discussion)
+                                    <div class="card">
+                                      <div class="card-body">
+                                        <div class="row">
+                                          <div class="col">
+                                            {{ $discussion->title }}
+                                            <br><span class="blockquote-footer">{{ $discussion->user->name .' - '. $discussion->created_at }}</span>
+                                          </div>
+                                          <div class="col">
+                                            <div class="d-flex justify-content-end">
+                                              <a href="{{ route('product.discussion', $discussion->id) }}">
+                                                <div class="badge badge-primary badge-pill">Lihat</div>
+                                              </a>                                            
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
-                                  </div>
+                                  @endforeach
+                                @endauth
                             </div>
                         </div>
                     </div>

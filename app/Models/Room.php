@@ -33,4 +33,9 @@ class Room extends Model
         return $this->hasMany(Course::class, 'room_id');
     }
 
+    public function discussions()
+    {
+        return $this->hasMany(Discussion::class, 'room_id');
+    }
+
 }

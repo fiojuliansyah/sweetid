@@ -17,6 +17,8 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\LoginWithGoogleController;
 use App\Http\Controllers\MeetingRoomController;
+use App\Http\Controllers\DiscussionController;
+use App\Http\Controllers\DiscussionDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +46,10 @@ Route::get('/class-list', [HomeController::class, 'productList'])->name('product
 Route::get('/class/{room}/checkout', [HomeController::class, 'checkout'])->name('product.checkout');
 Route::post('/class/invoice', [HomeController::class, 'storeCheckout'])->name('product.store');
 Route::get('/class/invoice/{id}', [HomeController::class, 'invoiceDone']);
+Route::get('/class/{id}/discussion', [HomeController::class, 'discussion'])->name('product.discussion');
+Route::post('/class/discussion', [HomeController::class, 'storeDiscussion'])->name('product.store.discussion');
+Route::get('/class/discussion/create/{id}', [HomeController::class, 'createDiscussion'])->name('product.create.discussion');
+Route::post('/class/discussion/room', [HomeController::class, 'storeDiscussionRoom'])->name('product.store.discussion.room');
 
 Route::middleware('auth')->group(function () {
 
@@ -70,11 +76,21 @@ Route::middleware('auth')->group(function () {
   Route::resource('categories', CategoryController::class);
   Route::resource('transactions', TransactionController::class);
   Route::resource('pointmarkets', PointmarketController::class);
-  Route::resource('courses', CourseController::class);
+
+  // Course
+  Route::resource('courses', CourseController::class);  
 
   // Meeting Room
   Route::resource('meetingrooms', MeetingRoomController::class);
   Route::get('/meetingrooms/{meetingroom}/join', [MeetingRoomController::class, 'join'])->name('meetingrooms.join');
+
+  // Discussion
+  Route::resource('discussions', DiscussionController::class);
+  Route::get('/discussions/{discussion}/room', [DiscussionController::class, 'room'])->name('discussions.room');  
+
+  // Discussion Detail
+  Route::resource('discussiondetails', DiscussionDetailController::class);
+
 });
 
 require __DIR__ . '/auth.php';
