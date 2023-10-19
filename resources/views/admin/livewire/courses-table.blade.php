@@ -26,9 +26,9 @@
                 <tr>
                     <td>{{ ($data->currentPage() - 1) * $data->perpage() + $loop->index + 1 }}</td>
                     <td>{{ $course->room['title'] }}</td>
-                    <td>{{ $course->title }}</td>
-                    <td>detail</td>
+                    <td>{{ $course->title }}</td>                    
                     <td>
+                        <a class="btn btn-xs btn-primary" href="{{ route('courses.show',$course->id) }}">Show</a>
                         <form action="{{ route('courses.destroy',$course->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
