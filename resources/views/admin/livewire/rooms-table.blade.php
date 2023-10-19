@@ -57,6 +57,7 @@
                                                 <span class="badge badge-success light">{{ $room->category['name'] }}</span>
                                             </p>
                                             <p>Description: <span class="item">{{ $room->short_description }}</span></p>
+                                            <a href="{{ route('discussions.index',['room' => $room->id]) }}" class="btn btn-primary btn-sm">Discussion</a>
                                         </div>
                                     </div>
                                 </div>

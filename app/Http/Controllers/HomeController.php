@@ -6,8 +6,12 @@ use App\Models\Room;
 use App\Models\Category;
 use App\Models\Classtype;
 use App\Models\Transaction;
+use App\Models\Discussion;
+use App\Models\DiscussionDetail;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -123,4 +127,82 @@ class HomeController extends Controller
         } else {
         }
     }
+
+    /**
+     * Display the discussion room for a given discussion ID.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function discussion($id)
+    {
+      $discussion = Discussion::find($id);
+      $room = Room::find($discussion->room_id);
+
+      return view ('mobile.products.discussion_room', compact ('discussion', 'room'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeDiscussion(Request $request)
+    {
+      // Validate the request data
+      $request->validate([
+        'discussion_id' => 'required',                        
+        'body' => 'required',
+      ]);                        
+      
+      // Create a new DiscussionDetail instance
+      $discussion = new DiscussionDetail;
+      $discussion->discussion_id = $request->discussion_id;
+      $discussion->user_id = Auth::user()->id;
+      $discussion->body = $request->body;
+
+      // Check if there is an attachment file in the request
+      if ($request->hasFile('attachment')) {
+        $file = $request->file('attachment');
+        $filename = Str::random(9).'.'.$file->getClientOriginalExtension();
+        $file->storeAs('public/discussion', $filename);
+        $discussion->attachment = $filename;
+      }
+
+      // Save the DiscussionDetail instance to the database
+      $discussion->save();        
+
+      // Redirect to the discussions room with a success message
+      return redirect()->route('product.discussion',$request->discussion_id)
+              ->with('success','Chat created successfully.');
+    }
+
+    public function createDiscussion($id)
+    {
+      $room = Room::find($id);
+      return view ('mobile.products.discussion_create', compact ('room'));
+    }
+
+    public function storeDiscussionRoom(Request $request)
+    {
+      // Validate the request data
+      $request->validate([
+        'room_id' => 'required',            
+        'title' => 'required',
+        'body' => 'required',
+      ]);                        
+      
+      $discussion = new Discussion;
+      $discussion->room_id = $request->room_id;
+      $discussion->user_id = Auth::user()->id;
+      $discussion->title = $request->title;
+      $discussion->body = $request->body;        
+      $discussion->save();      
+
+      // Redirect to the discussions room with a success message
+      return redirect()->route('product.show',$request->room_id)
+              ->with('success','Chat created successfully.');
+    }
+
 }
