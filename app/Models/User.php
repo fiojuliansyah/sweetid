@@ -34,7 +34,7 @@ class User extends Authenticatable
 
     public function competition()
     {
-        return $this->hasMany(Competition::class);
+        return $this->hasMany(Competition::class, 'user_id', 'id');
     }
 
     protected $fillable = [
