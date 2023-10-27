@@ -51,7 +51,7 @@ class SuccessPaid extends Notification
     public function toWhatsapp($notifiable)
     {
         return [
-            'number'    => $notifiable->phone,
+            'number'    => $notifiable->profile->phone ?? 0,
             'data'      => 'Your payment of order #' . $this->code . ' has been successfully paid.',
         ];
     }

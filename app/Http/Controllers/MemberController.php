@@ -15,9 +15,19 @@ class MemberController extends Controller
 {
     public function dashboard()
     {
-        $rooms = Room::paginate(4);        
+        $rooms = Room::paginate(4);   
+        
+        $user = User::find(auth()->user()->id);
 
-        User::find(Auth::id())->notify(new SuccessPaid('INV-01012021'));
+        $competitionId = $user->competition->pluck('id');
+
+        foreach ($rooms as $key => $value) {
+            if ($competitionId->contains($value->id)) {
+                $rooms[$key]['is_joined'] = true;
+            } else {
+                $rooms[$key]['is_joined'] = false;
+            }
+        }
 
         return view ('member.dashboard',compact('rooms'));
     }
@@ -35,6 +45,16 @@ class MemberController extends Controller
     public function detail(Room $room)
     {
         $courses = $room->courses;
+        
+        $user = Auth::user();
+
+        $isJoin = $user->competition->contains($room->id);
+
+        if ($isJoin) {
+            $room['is_joined'] = true;
+        } else {
+            $room['is_joined'] = false;
+        }
 
         return view('member.markets.detail', compact('courses', 'room'));
     }

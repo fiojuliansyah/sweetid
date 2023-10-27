@@ -198,29 +198,34 @@
                                   <p class="mb-0">Buy This Class to View Community</p>
                                 @endguest
                                 @auth
-                                  <p class="mb-0">Community Discussion</p>
-                                  <div style="text-align: right;">
-                                    <a href="{{ route('product.create.discussion', $room->id) }}" class="btn btn-primary btn-sm btn-rounded pull-right">Create Discussion</a>
-                                  </div>                                  
-                                  @foreach ($room->discussions as $discussion)
-                                    <div class="card">
-                                      <div class="card-body">
-                                        <div class="row">
-                                          <div class="col">
-                                            {{ $discussion->title }}
-                                            <br><span class="blockquote-footer">{{ $discussion->user->name .' - '. $discussion->created_at }}</span>
-                                          </div>
-                                          <div class="col">
-                                            <div class="d-flex justify-content-end">
-                                              <a href="{{ route('product.discussion', $discussion->id) }}">
-                                                <div class="badge badge-primary badge-pill">Lihat</div>
-                                              </a>                                            
+                                  
+                                    <p class="mb-0">Community Discussion</p>
+                                  @if ($room->is_joined)
+                                    <div style="text-align: right;">
+                                      <a href="{{ route('product.create.discussion', $room->id) }}" class="btn btn-primary btn-sm btn-rounded pull-right">Create Discussion</a>
+                                    </div>                                  
+                                    @foreach ($room->discussions as $discussion)
+                                      <div class="card">
+                                        <div class="card-body">
+                                          <div class="row">
+                                            <div class="col">
+                                              {{ $discussion->title }}
+                                              <br><span class="blockquote-footer">{{ $discussion->user->name .' - '. $discussion->created_at }}</span>
+                                            </div>
+                                            <div class="col">
+                                              <div class="d-flex justify-content-end">
+                                                <a href="{{ route('product.discussion', $discussion->id) }}">
+                                                  <div class="badge badge-primary badge-pill">Lihat</div>
+                                                </a>                                            
+                                              </div>
                                             </div>
                                           </div>
                                         </div>
-                                      </div>
-                                    </div>
-                                  @endforeach
+                                      </div>                                    
+                                    @endforeach
+                                  @else
+                                    <p class="mb-0">Buy This Class to View Community</p>
+                                  @endif
                                 @endauth
                             </div>
                         </div>
@@ -253,14 +258,16 @@
             @if (Route::has('login'))
                 <div>
                     @auth
-                    <a href="{{ route('product.checkout',$room->id) }}" class="btn btn-primary text-start w-100 btn-rounded">
-                        <i
-                        class="	fas fa-money-bill me-2"></i> Enroll Now</a>
-                    </a>
+                      @if(!$room->is_joined)
+                        <a href="{{ route('product.checkout',$room->id) }}" class="btn btn-primary text-start w-100 btn-rounded">
+                            <i
+                            class="	fas fa-money-bill me-2"></i> Enroll Now</a>
+                        </a>
+                      @endif
                     @else
-                    <a href="{{ route('login') }}" class="btn btn-danger text-start w-100 btn-rounded">
-                        LOGIN or REGISTER
-                    </a>
+                      <a href="{{ route('login') }}" class="btn btn-danger text-start w-100 btn-rounded">
+                          LOGIN or REGISTER
+                      </a>
                     @endauth
                 </div>
             @endif

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewCourse extends Notification
+class Otp extends Notification
 {
     use Queueable;
 
@@ -29,28 +29,14 @@ class NewCourse extends Notification
      */
     public function via($notifiable)
     {
-        return ['database', 'whatsapp'];
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-          'type'      => 'new_course',
-          'data'      => 'New course has been added.',
-        ];
+        return ['whatsapp'];
     }
 
     public function toWhatsapp($notifiable)
     {
-        return [
+      return [
           'number'    => $notifiable->profile->phone ?? 0,
-          'data'      => 'New course has been added.',
-        ];
+          'data'      => 'Your OTP is 11111',
+      ];
     }
 }
