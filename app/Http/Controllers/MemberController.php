@@ -6,6 +6,8 @@ use App\Models\Room;
 use App\Models\User;
 use App\Models\Competition;
 use App\Models\Transaction;
+use App\Notifications\SuccessPaid;
+use App\Notifications\FailedPaid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +15,9 @@ class MemberController extends Controller
 {
     public function dashboard()
     {
-        $rooms = Room::paginate(4);
+        $rooms = Room::paginate(4);        
+
+        User::find(Auth::id())->notify(new SuccessPaid('INV-01012021'));
 
         return view ('member.dashboard',compact('rooms'));
     }
@@ -100,8 +104,14 @@ class MemberController extends Controller
                     // Set informasi kompetisi lainnya sesuai kebutuhan
                     // ...
                     $competition->save();
+
+                    User::find(Auth::id())->notify(new SuccessPaid($request->order_id));
                 }
+            } else {
+              User::find(Auth::id())->notify(new FailedPaid($request->order_id));
             }
+        } else {
+          User::find(Auth::id())->notify(new FailedPaid($request->order_id));
         }
     }
 

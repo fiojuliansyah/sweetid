@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\DiscussionDetail;
+use App\Models\Discussion;
+use App\Models\User;
+
+use App\Notifications\DiscussionReply;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -67,7 +71,15 @@ class DiscussionDetailController extends Controller
             $discussion->attachment = $filename;
         }
 
-        $discussion->save();        
+        $discussion->save();
+        
+        $discusionData = Discussion::find($request->discussion_id);
+        User::find($discusionData->user_id)->notify(new DiscussionReply($discussion));
+
+        $admins = User::role('Admin')->get();
+        foreach ($admins as $admin) {
+            $admin->notify(new DiscussionReply());
+        }        
 
         return redirect()->route('discussions.room',$request->discussion_id)
                         ->with('success','Chat created successfully.');
