@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Room;
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -20,6 +21,9 @@ class MarketsTable extends Component
 
     public function render()
     {
+        $user = User::find(auth()->user()->id);
+        $competitionId = $user->competition->pluck('id');      
+
         if ($this->search != '') {
             $data = Room::whereRelation('classtype', 'name', 'like', '%' . $this->search . '%')
                 ->orWhereRelation('category', 'name', 'like', '%' . $this->search . '%')
@@ -29,6 +33,14 @@ class MarketsTable extends Component
         } else {
             $data = Room::paginate(6);
         }
+        
+        foreach ($data as $key => $value) {
+            if ($competitionId->contains($value->id)) {
+                $data[$key]['is_joined'] = true;
+            } else {
+                $data[$key]['is_joined'] = false;
+            }
+        }        
 
         return view('livewire.markets-table', compact('data'));
     }

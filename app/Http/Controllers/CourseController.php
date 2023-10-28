@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\Course;
+use App\Notifications\NewCourse;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -65,6 +66,12 @@ class CourseController extends Controller
         $course->duration = $request->duration;
         $course->video = $file;
         $course->save();
+        
+        $users = User::all();
+        foreach ($users as $user) {
+          $user->notify(new NewCourse());
+        }
+
         return redirect()->route('courses.index')
                         ->with('success','Product created successfully.');
     }
