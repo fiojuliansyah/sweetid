@@ -5,6 +5,8 @@ namespace App\Providers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use App\Channels\WhatsappChannel;
+use Illuminate\Support\Facades\Notification;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,5 +32,9 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::directive('currency', function ( $expression ) 
         { return "Rp. <?php echo number_format($expression,0,',','.'); ?>"; });
+
+        Notification::extend('whatsapp', function ($app) {
+            return new WhatsappChannel();
+        });
     }
 }

@@ -44,8 +44,13 @@
                                     </p>
                                     <p>Description: <span class="item">{{ $room->short_description }}</span></p>
                                     <div class="col text-center">
+                                      @if ($room->is_joined).
+                                        <a href="{{ route('member.detail',$room->id) }}" class="btn btn-primary">View Detail <span class="btn-icon-end"><i class="fas fa-eye"></i></span>
+                                        </a>
+                                      @else
                                         <a href="{{ route('member.checkout',$room->id) }}" class="btn btn-primary">Enroll Now <span class="btn-icon-end"><i class="fas fa-money-bill"></i></span>
                                         </a>
+                                      @endif
                                     </div>
                                 </div>
                             </div>

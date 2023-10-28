@@ -33,6 +33,17 @@ class HomeController extends Controller
     public function productShow(Room $room)
     {
         $courses = $room->courses;
+
+        $user = Auth::user();
+
+        $isJoin = $user->competition->contains($room->id);
+
+        if ($isJoin) {
+            $room['is_joined'] = true;
+        } else {
+            $room['is_joined'] = false;
+        }
+
         return view('mobile.products.show',compact('room','courses'));
     }
 

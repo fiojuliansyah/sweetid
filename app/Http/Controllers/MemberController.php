@@ -6,6 +6,8 @@ use App\Models\Room;
 use App\Models\User;
 use App\Models\Competition;
 use App\Models\Transaction;
+use App\Notifications\SuccessPaid;
+use App\Notifications\FailedPaid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +15,19 @@ class MemberController extends Controller
 {
     public function dashboard()
     {
-        $rooms = Room::paginate(4);
+        $rooms = Room::paginate(4);   
+        
+        $user = User::find(auth()->user()->id);
+
+        $competitionId = $user->competition->pluck('id');
+
+        foreach ($rooms as $key => $value) {
+            if ($competitionId->contains($value->id)) {
+                $rooms[$key]['is_joined'] = true;
+            } else {
+                $rooms[$key]['is_joined'] = false;
+            }
+        }
 
         return view ('member.dashboard',compact('rooms'));
     }
@@ -31,6 +45,16 @@ class MemberController extends Controller
     public function detail(Room $room)
     {
         $courses = $room->courses;
+        
+        $user = Auth::user();
+
+        $isJoin = $user->competition->contains($room->id);
+
+        if ($isJoin) {
+            $room['is_joined'] = true;
+        } else {
+            $room['is_joined'] = false;
+        }
 
         return view('member.markets.detail', compact('courses', 'room'));
     }
@@ -100,8 +124,14 @@ class MemberController extends Controller
                     // Set informasi kompetisi lainnya sesuai kebutuhan
                     // ...
                     $competition->save();
+
+                    User::find(Auth::id())->notify(new SuccessPaid($request->order_id));
                 }
+            } else {
+              User::find(Auth::id())->notify(new FailedPaid($request->order_id));
             }
+        } else {
+          User::find(Auth::id())->notify(new FailedPaid($request->order_id));
         }
     }
 

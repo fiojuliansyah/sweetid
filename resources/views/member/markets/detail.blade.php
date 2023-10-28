@@ -105,8 +105,10 @@ Detail {{ $room->title }} | SweetTroops Baking Studio
                                                             </div>
                                                         </div> --}}
                                                         <br>
-                                                        <a href="{{ route('member.checkout',$room->id) }}" class="btn btn-primary">Enroll Now <span class="btn-icon-end"><i class="fas fa-money-bill"></i></span>
-                                                        </a>
+                                                        @if(!$room->is_joined)
+                                                          <a href="{{ route('member.checkout',$room->id) }}" class="btn btn-primary">Enroll Now <span class="btn-icon-end"><i class="fas fa-money-bill"></i></span>
+                                                          </a>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
