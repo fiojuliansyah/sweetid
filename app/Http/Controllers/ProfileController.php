@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Otp as ModelsOtp;
+use App\Notifications\Otp;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,8 +48,7 @@ class ProfileController extends Controller
             [
                 'avatar' => $path1,
                 'thumbnail' => $path2,
-                'address' => $request->address,
-                'phone' => $request->phone,
+                'address' => $request->address,                
             ]
         );
         return redirect()->route('profile.edit')
@@ -89,5 +90,54 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/admin/dashboard');
+    }
+
+    public function sendOTP(Request $request)
+    {
+        $phone = $request->phone;
+
+        $otp = rand(1000,9999);        
+
+        $user = User::find(Auth::user()->id);
+
+        $user->notify(new Otp($phone, $otp));
+
+        $otp = ModelsOtp::create([
+            'number' => $phone,
+            'otp' => $otp,
+            'type' => 'verify_phone',
+            'user_id' => Auth::user()->id
+        ]);
+
+        return redirect()->route('profile.edit')
+                        ->with('success','OTP sent successfully')
+                        ->with('status','verification-link-sent');
+    }
+
+    public function verifyOTP(Request $request)
+    {
+        $otp = ModelsOtp::where('otp', $request->otp)->first();
+
+        if($otp){
+            $otp->status = 'verified';
+            $otp->save();
+            
+            $user = User::find(Auth::user()->id);
+            
+            $user->profile()->updateOrCreate(
+                [
+                    'user_id' => $user->id,
+                ],
+                [
+                    'phone' => $otp->number,                
+                ]
+            );
+
+            return redirect()->route('profile.edit')
+                        ->with('success','OTP verified successfully');                        
+        }else{
+            return redirect()->route('profile.edit')
+                        ->with('error','OTP verification failed');
+        }
     }
 }
