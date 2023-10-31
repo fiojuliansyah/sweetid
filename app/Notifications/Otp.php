@@ -11,14 +11,18 @@ class Otp extends Notification
 {
     use Queueable;
 
+    protected $number;
+    protected $otp;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($number, $otp)
     {
-        //
+        $this->number = $number;
+        $this->otp = $otp;
     }
 
     /**
@@ -32,11 +36,11 @@ class Otp extends Notification
         return ['whatsapp'];
     }
 
-    public function toWhatsapp($notifiable)
+    public function toWhatsapp()
     {
       return [
-          'number'    => $notifiable->profile->phone ?? 0,
-          'data'      => 'Your OTP is 11111',
+          'number'    => $this->number,
+          'data'      => 'This is your OTP '.$this->otp.', please do not share this with anyone.',        
       ];
     }
 }

@@ -67,6 +67,8 @@ Route::middleware('auth')->group(function () {
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
   Route::post('/profile', [ProfileController::class, 'updateUserDetail'])->name('profile.detail');
+  Route::post('/profile/get-otp', [ProfileController::class, 'sendOTP'])->name('profile.get-otp');
+  Route::post('/profile/verify-otp', [ProfileController::class, 'verifyOTP'])->name('profile.verify-otp');
 
   Route::resource('roles', RoleController::class);
   Route::resource('users', UserController::class);
