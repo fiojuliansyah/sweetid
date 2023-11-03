@@ -15,9 +15,12 @@
     <meta property="og:description" content="SweetTroops - Baking Studio Apps" />
     <meta property="og:image" content="#" />
     <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#6777ef"/>
+    <link rel="apple-touch-icon" href="{{ asset('logo.PNG') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
 
     <!-- Favicons Icon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('') }}mobile/images/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('') }}logo.png" />
 
     <!-- Title -->
     <title>@yield('title')</title>
@@ -84,6 +87,7 @@
     <script>
         $(".stepper").TouchSpin();
     </script>
+    @stack('pwa')
 </body>
 
 <!-- Mirrored from SweetTroops.dexignzone.com/xhtml/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Apr 2023 02:51:27 GMT -->

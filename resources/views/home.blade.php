@@ -628,18 +628,66 @@
     <!-- CART -->
 
     <!-- PWA Offcanvas -->
-    {{-- <div class="offcanvas offcanvas-bottom pwa-offcanvas">
+    <div class="offcanvas offcanvas-bottom pwa-offcanvas">
         <div class="container">
             <div class="offcanvas-body small">
-                <img class="logo" src="{{ asset('') }}mobile/images/icon.png" alt="">
+                <img class="logo" src="{{ asset('') }}logo.png" alt="">
                 <h5 class="title">SweetTroops on Your Home Screen</h5>
-                <p>Install SweetTroops - Food Restaurant on your home screen, and access it just like a regular app
-                </p>
-                <a href="javascrpit:void(0);" class="btn btn-sm btn-primary pwa-btn">Add to Home Screen</a>
-                <a href="javascrpit:void(0);" class="btn btn-sm pwa-close light btn-secondary ms-2">Maybe
-                    later</a>
+                <p>Install SweetTroops - Food Restaurant on your home screen, and access it just like a regular app</p>
+                <a href="javascript:void(0);" class="btn btn-sm btn-primary pwa-btn"> <span id="addToHomeScreenButton">Add to Home Screen</span></a>
+                <a href="javascript:void(0);" class="btn btn-sm pwa-close light btn-secondary ms-2">Maybe later</a>
             </div>
         </div>
     </div>
-    <div class="offcanvas-backdrop pwa-backdrop"></div> --}}
+    <div class="offcanvas-backdrop pwa-backdrop"></div>
 @endsection
+@push('pwa')
+<script src="{{ asset('/sw.js') }}"></script>
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("beforeinstallprompt", (event) => {
+            // Prevent the browser's default install prompt
+            event.preventDefault();
+
+            // Save the event for later use
+            let deferredPrompt = event;
+
+            // Show the "Add to Home Screen" button
+            const addToHomeScreenButton = document.getElementById("addToHomeScreenButton");
+            addToHomeScreenButton.style.display = "block";
+
+            addToHomeScreenButton.addEventListener("click", () => {
+                // Show the browser's install prompt
+                deferredPrompt.prompt();
+
+                // Wait for the user to respond to the prompt
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === "accepted") {
+                        console.log("User accepted the A2HS prompt");
+                    } else {
+                        console.log("User dismissed the A2HS prompt");
+                    }
+
+                    // Reset the deferredPrompt
+                    deferredPrompt = null;
+
+                    // Hide the "Add to Home Screen" button
+                    addToHomeScreenButton.style.display = "none";
+                });
+            });
+        });
+
+        // Register a service worker hosted at the root of the site using the default scope
+        navigator.serviceWorker.register("/sw.js").then(
+            (registration) => {
+                console.log("Service worker registration succeeded:", registration);
+            },
+            (error) => {
+                console.error(`Service worker registration failed: ${error}`);
+            }
+        );
+    } else {
+        console.error("Service workers are not supported.");
+    }
+</script>
+@endpush

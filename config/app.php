@@ -181,6 +181,7 @@ return [
     Illuminate\Translation\TranslationServiceProvider::class,
     Illuminate\Validation\ValidationServiceProvider::class,
     Illuminate\View\ViewServiceProvider::class,
+    Ladumor\LaravelPwa\PWAServiceProvider::class,
 
     /*
          * Package Service Providers...
@@ -211,6 +212,7 @@ return [
 
   'aliases' => Facade::defaultAliases()->merge([
     'Zoom' => Jubaer\Zoom\Facades\Zoom::class,
+    'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
   ])->toArray(),
 
 ];
