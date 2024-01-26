@@ -38,6 +38,10 @@ Route::get('/', function () {
   return view('welcome');
 });
 
+Route::get('/foo', function () {
+  Artisan::call('storage:link');
+});
+
 Route::get('home', [HomeController::class, 'index']);
 Route::get('/classes', [HomeController::class, 'products'])->name('products');
 Route::get('/class/{room}', [HomeController::class, 'productShow'])->name('product.show');
