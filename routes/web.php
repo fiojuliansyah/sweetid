@@ -38,6 +38,11 @@ Route::get('/', function () {
   return view('welcome');
 });
 
+Route::get('/generate', function(){
+  \Illuminate\Support\Facades\Artisan::call('storage:link');
+  echo 'ok';
+});
+
 Route::get('home', [HomeController::class, 'index']);
 Route::get('/classes', [HomeController::class, 'products'])->name('products');
 Route::get('/class/{room}', [HomeController::class, 'productShow'])->name('product.show');
