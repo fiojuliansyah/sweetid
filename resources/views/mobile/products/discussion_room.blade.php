@@ -3,218 +3,147 @@
     {{ $room->title }} | SweetTroops - Baking Studio Apps
 @endsection
 
+{{-- @section('refresh')
+<meta http-equiv="refresh" content="10">
+@endsection --}}
+
 @section('content')
-<div class="page-wraper">
-
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="spinner"></div>
-    </div>
-    <!-- Preloader end-->
-
-    <!-- Header -->
-    <header class="header transparent">
-        <div class="main-bar">
-            <div class="container">
-                <div class="header-content">
-                    <div class="left-content">
-                        <a href="javascript:void(0);" class="back-btn">
-                            <svg width="18" height="18" viewBox="0 0 10 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M9.03033 0.46967C9.2966 0.735936 9.3208 1.1526 9.10295 1.44621L9.03033 1.53033L2.561 8L9.03033 14.4697C9.2966 14.7359 9.3208 15.1526 9.10295 15.4462L9.03033 15.5303C8.76406 15.7966 8.3474 15.8208 8.05379 15.6029L7.96967 15.5303L0.96967 8.53033C0.703403 8.26406 0.679197 7.8474 0.897052 7.55379L0.96967 7.46967L7.96967 0.46967C8.26256 0.176777 8.73744 0.176777 9.03033 0.46967Z"
-                                    fill="#fff" />
-                            </svg>
-                        </a>
-                        <h5 class="mb-0 ms-2 text-nowrap">Discussion Room</h5>
-                    </div>
-                    <div class="mid-content">
-                    </div>
-                    <div class="right-content d-flex align-items-center">
-                        <a href="javascript:void(0);" class="item-bookmark icon-2 mb-1">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M16.785 2.04751C15.9489 2.04694 15.1209 2.21163 14.3486 2.53212C13.5764 2.85261 12.8751 3.32258 12.285 3.91501L12 4.18501L11.73 3.91501C11.1492 3.2681 10.4424 2.74652 9.65306 2.3822C8.86367 2.01787 8.00824 1.81847 7.13912 1.79618C6.27 1.7739 5.40547 1.9292 4.59845 2.25259C3.79143 2.57599 3.05889 3.06066 2.44566 3.67695C1.83243 4.29325 1.35142 5.02819 1.03206 5.83682C0.712696 6.64544 0.561704 7.51073 0.588323 8.37973C0.614942 9.24873 0.818613 10.1032 1.18687 10.8907C1.55513 11.6783 2.08022 12.3824 2.73002 12.96L12 22.2675L21.3075 12.96C22.2015 12.0677 22.8109 10.9304 23.0589 9.6919C23.3068 8.45338 23.1822 7.16915 22.7006 6.00144C22.2191 4.83373 21.4023 3.83492 20.3534 3.13118C19.3045 2.42744 18.0706 2.05034 16.8075 2.04751H16.785Z"
-                                    fill="white"></path>
-                            </svg>
-                        </a>
+    <div class="page-wraper">
+        <header class="header">
+            <div class="main-bar">
+                <div class="container">
+                    <div class="header-content">
+                        <div class="left-content">
+                            <a href="{{ url('home') }}">
+                                <svg width="18" height="18" viewBox="0 0 10 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9.03033 0.46967C9.2966 0.735936 9.3208 1.1526 9.10295 1.44621L9.03033 1.53033L2.561 8L9.03033 14.4697C9.2966 14.7359 9.3208 15.1526 9.10295 15.4462L9.03033 15.5303C8.76406 15.7966 8.3474 15.8208 8.05379 15.6029L7.96967 15.5303L0.96967 8.53033C0.703403 8.26406 0.679197 7.8474 0.897052 7.55379L0.96967 7.46967L7.96967 0.46967C8.26256 0.176777 8.73744 0.176777 9.03033 0.46967Z"
+                                        fill="#a19fa8" />
+                                </svg>
+                            </a>
+                            <h5 class="mb-0 ms-2">Back</h5>
+                        </div>
+                        <div class="mid-content">
+                        </div>
                     </div>
                 </div>
+            </div>
+        </header>
+        <div id="show" class="page-content message-content">
+            <div class="container chat-box-area bottom-content">
+                <div class="chat-content {{ $discussion->user->id == Auth::user()->id ? 'user' : '' }}">
+                    <div class="message-item">
+                        <h6>{{ $discussion->user->name }}</h6>
+                        <div class="bubble">{{ $discussion->body }}</div>
+                        <div class="message-time">{{ $discussion->created_at->diffForHumans() }}</div>
+                    </div>
+                </div>
+                @foreach ($discussion->discussion_details as $chat)
+                    <div class="chat-content {{ $chat->user->id == Auth::user()->id ? 'user' : '' }}">
+                        <div class="message-item">
+                            @if ($chat->attachment)
+                            <small>
+                                <a href="{{ asset('storage/discussion/'.$chat->attachment) }}" target="_blank">
+                                    <i class="fa fa-paperclip">
+                                    </i> Lihat Lampiran
+                                </a>
+                            </small>
+                            @endif
+                            <h6>{{ $chat->user->id == Auth::user()->id ? '' : $chat->user->name }}</h6>
+                            <div class="bubble">{{ $chat->body }}</div>
+                            <div class="message-time">{{ $chat->created_at->diffForHumans() }}</div>
+                        </div>
+                    </div>
+                    @if ($chat->user->id != Auth::user()->id)
+                        <br>
+                    @endif
+                @endforeach
             </div>
         </div>
-    </header>
-    <!-- Header End -->
-
-
-    <!-- Page Content -->
-    <div class="page-content">
-        <div class="content-body fb">
-            <div class="swiper-btn-center-lr my-0">
-                <div class="swiper-container demo-swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="dz-banner-heading">
-                                <div class="overlay-black-light">
-                                    <img src="{{ Storage::url($room->cover) }}" class="bnr-img">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-btn">
-                        <div class="swiper-pagination style-2 flex-1"></div>
-                    </div>
-                </div>
-            </div>
+        <footer class="footer border-0 fixed transparent">
             <div class="container">
-                <div class="company-detail">
-                    <div class="detail-content">
-                        <div class="flex-1">
-                            <h4>{{ $room->title }}</h4>
-                            <p>{{ $room->short_description }}</p>
-                        </div>
-                    </div>
-                    <ul class="item-inner">
-                        <li>
-                            <div class="reviews-info">
-                                <i class="fa fa-star"></i>
-                                <h6 class="reviews">4.5</h6>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fa-solid fa-clock"></i>
-                            <h6 class="mb-0 ms-2">{{ $room->duration }}</h6>
-                        </li>
-                        <li>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge badge-sm badge-warning">{{ $room->classtype['name'] }}</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="modal fade" tabindex="-1" id="exampleModal4" aria-labelledby="exampleModal4" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-body text-center small p-4">
-                                <video width="300" controls autoplay controlsList="nodownload" oncontextmenu="return false;">
-                                    <source src="{{ Storage::url($room->trailer) }}" type="video/mp4" />
-                                </video>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                  <h4>Discussion Room</h4>
-                  <div id="table-wrapper">
-                    <div id="table-scroll">
-                      <table class="table table-hover mt-2" id="table-chat">
-                        <thead style='display:none;'>
-                          <tr>
-                            <th>Pesan</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td style="text-align:{{ $discussion->user->id == Auth::user()->id ? 'right' : 'left' }}">{{ $discussion->body }} 
-                                <br><span class="blockquote-footer">{{ $discussion->user->name .' - '. $discussion->created_at }}</span> 
-                            </td>
-                          </tr>
-                          @foreach($discussion->discussion_details as $chat)
-                            <tr>
-                              <td style="text-align:{{ $chat->user->id == Auth::user()->id ? 'right' : 'left' }};">
-                              {{ $chat->body }} 												
-                              @if ($chat->attachment)
-                                <br>
-                                <small>
-                                  <a href="{{ asset('storage/discussion/'.$chat->attachment) }}" target="_blank">
-                                    <i class="fa fa-paperclip"></i> Unduh Lampiran
-                                </small>
-                              @endif
-                              <br><span class="blockquote-footer">{{ $chat->user->name .' - '. $chat->created_at }}</span> </td>
-                            </tr>
-                          @endforeach
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>     
-                  
-                  <div class="row mt-2">
-                    <div class="col">
-                      <div class="card shadow">
-                        <div class="card-body">
-                          <div class="container-fluid">
-                            <form action="{{ route('product.store.discussion') }}" method="POST" enctype="multipart/form-data">
-                              @csrf
-                              <div class="row">								
-                                <div class="col-3">
-                                  <div class="form-group">
-                                    <label>Lampiran</label>
-                                    <input type="file" name="attachment" class="form-control-file" id="attachment">
+                <div class="chat-footer">
+                    <div class="form-group boxed">
+                        <img id="image-preview" src="{{ asset('') }}mobile/images/empty.png" alt="Preview"
+                            class="preload-img img-fluid bottom-20">
+                        <br>
+                        <form id="discussionForm" action="{{ route('product.store.discussion') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="input-wrapper message-area">
+                                <div class="append-media"></div>
+                                <div class="icon-popup">
+                                    <label for="file-upload">
+                                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M14 0C6.26613 0 0 6.26613 0 14C0 21.7339 6.26613 28 14 28C21.7339 28 28 21.7339 28 14C28 6.26613 21.7339 0 14 0ZM18.5161 9.48387C19.5153 9.48387 20.3226 10.2911 20.3226 11.2903C20.3226 12.2895 19.5153 13.0968 18.5161 13.0968C17.5169 13.0968 16.7097 12.2895 16.7097 11.2903C16.7097 10.2911 17.5169 9.48387 18.5161 9.48387ZM9.48387 9.48387C10.4831 9.48387 11.2903 10.2911 11.2903 11.2903C11.2903 12.2895 10.4831 13.0968 9.48387 13.0968C8.48468 13.0968 7.67742 12.2895 7.67742 11.2903C7.67742 10.2911 8.48468 9.48387 9.48387 9.48387ZM20.4806 19.0919C18.8718 21.0226 16.5121 22.129 14 22.129C11.4879 22.129 9.12823 21.0226 7.51935 19.0919C6.75161 18.1718 8.14032 17.0202 8.90806 17.9347C10.1726 19.4532 12.0242 20.3169 14 20.3169C15.9758 20.3169 17.8274 19.4476 19.0919 17.9347C19.8484 17.0202 21.2427 18.1718 20.4806 19.0919Z"
+                                                fill="#CAC6C1"></path>
+                                        </svg>
+                                    </label>
                                     <input type="hidden" name="discussion_id" value="{{ $discussion->id }}">
-                                  </div>
+                                    <input type="file" name="attachment" id="file-upload" onchange="previewImage()"
+                                        style="display: none;" accept="image/*">
                                 </div>
-                                <div class="col">
-                                  <div class="form-group">
-                                    <label>Pesan</label>
-                                    <textarea name="body" class="form-control" id="body" rows="3" placeholder="Tulis pesan disini" required></textarea>									
-                                  </div>
-                                </div>														
-                              </div>				
-                              <div style="text-align:right;" class="mt-2">									                                
-                                <button type="submit" class="btn btn-sm btn-primary float-right">Kirim</button>								
-                              </div>
-                            </form>
-                          </div>									
-                        </div>
-                      </div>
+                                <input type="text" name="body" class="form-control" placeholder="Type message...">
+                        </form>
+                        <a href="#"
+                            onclick="event.preventDefault(); document.getElementById('discussionForm').submit();""
+                            class="btn btn-chat btn-icon btn-primary light p-2 btn-rounded">
+                            <svg class="text-primary" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M21.4499 11.11L3.44989 2.11C3.27295 2.0187 3.07279 1.9823 2.87503 2.00546C2.67728 2.02862 2.49094 2.11029 2.33989 2.24C2.18946 2.37064 2.08149 2.54325 2.02982 2.73567C1.97815 2.9281 1.98514 3.13157 2.04989 3.32L4.99989 12L2.09989 20.68C2.05015 20.8267 2.03517 20.983 2.05613 21.1364C2.0771 21.2899 2.13344 21.4364 2.2207 21.5644C2.30797 21.6924 2.42378 21.7984 2.559 21.874C2.69422 21.9496 2.84515 21.9927 2.99989 22C3.15643 21.9991 3.31057 21.9614 3.44989 21.89L21.4499 12.89C21.6137 12.8061 21.7512 12.6786 21.8471 12.5216C21.9431 12.3645 21.9939 12.184 21.9939 12C21.9939 11.8159 21.9431 11.6355 21.8471 11.4784C21.7512 11.3214 21.6137 11.1939 21.4499 11.11ZM4.70989 19L6.70989 13H16.7099L4.70989 19ZM6.70989 11L4.70989 5L16.7599 11H6.70989Z"
+                                    fill="#40189D" />
+                            </svg>
+                        </a>
                     </div>
-                  </div>
                 </div>
             </div>
-        </div>
     </div>
-    <!-- Page Content End -->
+    </footer>
 
-    <!-- Footer -->
-    {{-- <div class="footer fixed">
-        <div class="container">
-            @if (Route::has('login'))
-                <div>
-                    @auth
-                    <a href="javascript:void(0);" class="btn scrollTop btn-primary btn-rounded px-3 chat-btn"><i
-                        class="	fas fa-money-bill me-2"></i> Enroll Now</a>
-                    @else
-                    <a href="{{ route('login') }}" class="btn scrollTop btn-primary btn-rounded px-3 chat-btn">
-                        LOGIN or REGISTER
-                    </a>
-                    @endauth
-                </div>
-            @endif
-        </div>
-    </div> --}}
-    <div class="footer fixed">
-        <div class="container">
-            <a href="{{ route('product.show',$room->id) }}" class="btn btn-danger text-start w-100 btn-rounded">
-                <i
-                class="	fas fa-left-arrow me-2"></i> Back</a>
-            </a>
-        </div>
     </div>
-    <!-- Footer End -->
-
-</div>
 @endsection
 @section('footer')
-<script src="{{ asset('') }}mobile/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
-<script>
-    $(".stepper").TouchSpin();
-</script>
-<script>
-    var w = {{ $room->price }};
-    var x = {{ $room->disc_price }};
-    var y = w - x;
-    var z1 = y / {{ $room->price }} * 100;
-    var z2 = Math.ceil(z1);
-    document.getElementById("discount").innerHTML = z2;
-</script>
+    <script src="{{ asset('') }}mobile/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <script>
+        $(".stepper").TouchSpin();
+    </script>
+    <script>
+        function previewImage() {
+            var input = document.getElementById('file-upload');
+            var imageContainer = document.getElementById('image-preview');
+            var files = input.files;
+            var file = files[files.length - 1]; // Mengambil file terakhir dari yang dipilih
+
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                imageContainer.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+    </script>
+    <script type="text/javascript">
+        function doRefresh() {
+            $.ajax({
+                url: "{{ route('product.discussion', $discussion->id) }}",  // Replace with the actual route URL for refreshing content
+                type: "GET",
+                dataType: "html",
+                success: function(response) {
+                    $("#show").html(response);
+                },
+                error: function(xhr) {
+                    console.error("Error refreshing content: " + xhr.statusText);
+                }
+            });
+        }
+    
+        // Refresh every 5 seconds (5000 milliseconds)
+        $(function() {
+            setInterval(doRefresh, 2000);
+        });
+    </script>
 @endsection

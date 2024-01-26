@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Models\Category;
 use App\Models\Classtype;
-use App\Models\Transaction;
 use App\Models\Discussion;
-use App\Models\DiscussionDetail;
+use App\Models\Competition;
+use App\Models\Transaction;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\DiscussionDetail;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,41 @@ class HomeController extends Controller
         return view('home',compact('classtype','category', 'rooms'));
     }
 
+    public function myclass()
+    {
+        // Check if the user is authenticated
+        if (Auth::check()) {
+            $user = Auth::user();
+    
+            // Fetch the user's competitions (rooms)
+            $myClass = Competition::where('user_id', $user->id)->get();
+    
+            // Pass the data to the view
+            return view('mobile.my-class.index', compact('myClass'));
+        } else {
+            // Redirect or handle the case where the user is not authenticated
+            return redirect()->route('login');
+        }
+    }
+
+    public function classShow(Room $room)
+    {
+        // Check if the user is authenticated
+        if (Auth::check()) {
+            $user = Auth::user();
+            $isJoin = $user->competition->contains($room->id);
+        } else {
+            // If user is not authenticated, set $isJoin to false
+            $isJoin = false;
+        }
+    
+        $room['is_joined'] = $isJoin;
+    
+        $courses = $room->courses;
+    
+        return view('mobile.my-class.show', compact('room', 'courses'));
+    }
+
     public function productList()
     {
         $allCategory = Category::all();
@@ -32,19 +68,20 @@ class HomeController extends Controller
 
     public function productShow(Room $room)
     {
-        $courses = $room->courses;
-
-        $user = Auth::user();
-
-        $isJoin = $user->competition->contains($room->id);
-
-        if ($isJoin) {
-            $room['is_joined'] = true;
+        // Check if the user is authenticated
+        if (Auth::check()) {
+            $user = Auth::user();
+            $isJoin = $user->competition->contains($room->id);
         } else {
-            $room['is_joined'] = false;
+            // If user is not authenticated, set $isJoin to false
+            $isJoin = false;
         }
-
-        return view('mobile.products.show',compact('room','courses'));
+    
+        $room['is_joined'] = $isJoin;
+    
+        $courses = $room->courses;
+    
+        return view('mobile.products.show', compact('room', 'courses'));
     }
 
     public function productByCat($slug)
@@ -151,6 +188,14 @@ class HomeController extends Controller
       $room = Room::find($discussion->room_id);
 
       return view ('mobile.products.discussion_room', compact ('discussion', 'room'));
+    }
+
+    public function discussionPart($id)
+    {
+      $discussion = Discussion::find($id);
+      $room = Room::find($discussion->room_id);
+
+      return view ('mobile.products.discussion_room_part', compact ('discussion', 'room'));
     }
 
     /**

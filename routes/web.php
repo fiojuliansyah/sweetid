@@ -38,9 +38,11 @@ Route::get('/', function () {
   return view('welcome');
 });
 
-Route::get('/linkstorage', function () { $targetFolder = base_path().'/storage/app/public'; $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/storage'; symlink($targetFolder, $linkFolder); });
-
 Route::get('home', [HomeController::class, 'index']);
+
+Route::get('/my-classes', [HomeController::class, 'myclass'])->name('myclass');
+Route::get('/my-classes/{room}', [HomeController::class, 'classShow'])->name('class.show');
+
 Route::get('/classes', [HomeController::class, 'products'])->name('products');
 Route::get('/class/{room}', [HomeController::class, 'productShow'])->name('product.show');
 Route::get('/category-class/{slug}', [HomeController::class, 'productByCat'])->name('product.category');
@@ -49,6 +51,7 @@ Route::get('/class/{room}/checkout', [HomeController::class, 'checkout'])->name(
 Route::post('/class/invoice', [HomeController::class, 'storeCheckout'])->name('product.store');
 Route::get('/class/invoice/{id}', [HomeController::class, 'invoiceDone']);
 Route::get('/class/{id}/discussion', [HomeController::class, 'discussion'])->name('product.discussion');
+Route::get('/class/{id}/discussion/part', [HomeController::class, 'discussionPart'])->name('product.discussion.part');
 Route::post('/class/discussion', [HomeController::class, 'storeDiscussion'])->name('product.store.discussion');
 Route::get('/class/discussion/create/{id}', [HomeController::class, 'createDiscussion'])->name('product.create.discussion');
 Route::post('/class/discussion/room', [HomeController::class, 'storeDiscussionRoom'])->name('product.store.discussion.room');
