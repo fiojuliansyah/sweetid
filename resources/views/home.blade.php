@@ -426,7 +426,7 @@
 @endsection
 
 @section('section')
-    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom">
+    {{-- <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom">
         <div class="offcanvas-body small">
             <ul class="theme-color-settings">
                 <li>
@@ -503,10 +503,10 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div> --}}
     <!-- Theme Color Settings End -->
     <!-- CART -->
-    <div class="offcanvas offcanvas-bottom rounded-0" tabindex="-1" id="offcanvasBottom2">
+    {{-- <div class="offcanvas offcanvas-bottom rounded-0" tabindex="-1" id="offcanvasBottom2">
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
             <i class="fa-solid fa-xmark"></i>
         </button>
@@ -624,7 +624,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- CART -->
 
     <!-- PWA Offcanvas -->

@@ -59,6 +59,7 @@
                     <span class="nav-text">My Order</span>
                 </a>
             </li>
+            @can('admin-dashboard')   
             <div class="copyright">
                 <p><strong>Admin Side</strong></p>
             </div>
@@ -68,12 +69,16 @@
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
+            @endcan
+            @can('admin-transaction')
             <li>
                 <a href="{{ route('transactions.index') }}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-041-graph"></i>
                     <span class="nav-text">Transaction</span>
                 </a>
-            </li>
+            </li> 
+            @endcan
+            @can('admin-course')
             <li>
                 <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-022-copy"></i>
@@ -91,13 +96,17 @@
                         </ul>
                     </li>
                 </ul>
-            </li>
+            </li>    
+            @endcan
+            @can('admin-pointmarket')
             <li>
                 <a href="{{ route('pointmarkets.index') }}" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-041-graph"></i>
                     <span class="nav-text">Point Markets</span>
                 </a>
             </li>
+            @endcan
+            @can('server-side')
             <div class="copyright">
                 <p><strong>Server Side</strong></p>
             </div>
@@ -117,6 +126,7 @@
                     </li>
                 </ul>
             </li>
+            @endcan
         </ul>
     </div>
 </div>

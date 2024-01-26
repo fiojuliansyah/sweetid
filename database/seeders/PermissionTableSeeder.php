@@ -18,6 +18,11 @@ class PermissionTableSeeder extends Seeder
     {
         //Permissions
         $permissions = [
+            'admin-dashboard',
+            'admin-transaction',
+            'admin-course',
+            'admin-pointmarket',
+            'server-side',
             'user-list',
             'user-create',
             'user-edit',
@@ -46,6 +51,10 @@ class PermissionTableSeeder extends Seeder
             'course-create',
             'course-edit',
             'course-delete',
+            'meeting-list',
+            'meeting-create',
+            'meeting-edit',
+            'meeting-delete',
         ];
        
         foreach ($permissions as $permission) {

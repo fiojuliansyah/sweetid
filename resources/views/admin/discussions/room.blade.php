@@ -13,17 +13,10 @@
                             <div id="table-wrapper">
                               <div id="table-scroll">
                                 <table class="table table-hover mt-2" id="table-chat">
-                                  <thead style='display:none;'>
-                                    <tr>
-                                      <th>Pesan</th>
-                                    </tr>
-                                  </thead>
+                                  <h2 style="text-align: left">{{ $discussion->body }} 
+                                      <br><span style="font-size: 10px">{{ $discussion->user->name .' - '. $discussion->created_at }}</span> 
+                                  </h2>
                                   <tbody>
-                                    <tr>
-                                      <td style="text-align:{{ $discussion->user->id == Auth::user()->id ? 'right' : 'left' }}">{{ $discussion->body }} 
-                                          <br><span class="blockquote-footer">{{ $discussion->user->name .' - '. $discussion->created_at }}</span> 
-                                      </td>
-                                    </tr>
                                     @foreach($discussion->discussion_details as $chat)
                                       <tr>
                                         <td style="text-align:{{ $chat->user->id == Auth::user()->id ? 'right' : 'left' }};">
@@ -35,7 +28,7 @@
                                               <i class="fa fa-paperclip"></i> Unduh Lampiran
                                           </small>
                                         @endif
-                                        <br><span class="blockquote-footer">{{ $chat->user->name .' - '. $chat->created_at }}</span> </td>
+                                        <br><span style="font-size: 10px">{{ $chat->user->name .' - '. $chat->created_at }}</span> </td>
                                       </tr>
                                     @endforeach
                                   </tbody>

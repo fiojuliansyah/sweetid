@@ -65,7 +65,7 @@
         <!-- Page Content End-->
 
         <!-- Menubar -->
-        @include('mobile.layouts.part.menubar')
+        {{-- @include('mobile.layouts.part.menubar') --}}
         <!-- Menubar -->
 
         <!-- Theme Color Settings -->

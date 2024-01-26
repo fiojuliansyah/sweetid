@@ -12,6 +12,13 @@ use Carbon\Carbon;
 
 class MeetingRoomController extends Controller
 {
+  public function __construct()
+  {
+       $this->middleware('permission:meeting-list|product-create|meeting-edit|meeting-delete', ['only' => ['index','show']]);
+       $this->middleware('permission:meeting-create', ['only' => ['create','store']]);
+       $this->middleware('permission:meeting-edit', ['only' => ['edit','update']]);
+       $this->middleware('permission:meeting-delete', ['only' => ['destroy']]);
+  }
   /**
    * Display a listing of the resource.
    *

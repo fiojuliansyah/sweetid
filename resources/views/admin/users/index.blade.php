@@ -11,9 +11,6 @@
                 <a href="{{ route('users.create') }}" type="button" class="btn btn-sm btn-success"><i class="fa fa-plus color-info"></i> Add User</a>
                 <div class="btn-group">
                     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown">Import</button>
-                    <div class="dropdown-menu"><a class="dropdown-item" href="javascript:void()">Dropdown link</a>
-                        <a class="dropdown-item" href="javascript:void()">Dropdown link</a>
-                    </div>
                 </div>
                 <div class="btn-group">
                     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown">Import</button>
@@ -36,6 +33,12 @@
                     <div class="card-body">
                         @livewire('users-table')
                     </div>
+                    <form action="{{ route('users.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="file" class="form-control">
+                        <br>
+                        <button class="btn btn-success">Import User Data</button>
+                    </form>
                 </div>
             </div>
         </div>
