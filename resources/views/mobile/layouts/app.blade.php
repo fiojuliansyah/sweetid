@@ -60,21 +60,6 @@
     <script src="{{ asset('') }}mobile/vendor/wow/dist/wow.min.js"></script>
     <script src="{{ asset('') }}mobile/js/settings.js"></script>
     <script src="{{ asset('') }}mobile/js/custom.js"></script>
-    @yield('footer')
     @stack('pwa')
-    <script>
-        new WOW().init();
-
-        var wow = new WOW({
-            boxClass: 'wow', // animated element css class (default is wow)
-            animateClass: 'animated', // animation css class (default is animated)
-            offset: 50, // distance to the element when triggering the animation (default is 0)
-            mobile: false // trigger animations on mobile devices (true is default)
-        });
-        wow.init();
-    </script>
 </body>
-
-<!-- Mirrored from SweetTroops.dexignzone.com/xhtml/onboading.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Apr 2023 02:51:44 GMT -->
-
 </html>
