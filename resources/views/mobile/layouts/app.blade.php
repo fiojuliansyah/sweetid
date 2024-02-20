@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from SweetTroops.dexignzone.com/xhtml/onboading.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Apr 2023 02:51:41 GMT -->
-
 <head>
 
     <!-- Meta -->
@@ -11,7 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
     <meta name="theme-color" content="#2196f3">
-    <meta name="author" content="DexignZone" />
+    <meta name="author" content="Sweettroops" />
     <meta name="keywords" content="" />
     <meta name="robots" content="" />
     <meta name="description" content="SweetTroops - Baking Studio Apps" />
@@ -19,11 +16,14 @@
     <meta property="og:description" content="SweetTroops - Baking Studio Apps" />
     <meta property="og:image" content="#" />
     <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#6777ef"/>
+    <link rel="apple-touch-icon" href="{{ asset('logo.PNG') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
 
     @yield('css')
 
     <!-- Favicons Icon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('') }}mobile/images/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('') }}logo.png" />
 
     <!-- Title -->
     <title>@yield('title')</title>
@@ -61,6 +61,7 @@
     <script src="{{ asset('') }}mobile/js/settings.js"></script>
     <script src="{{ asset('') }}mobile/js/custom.js"></script>
     @yield('footer')
+    @stack('pwa')
     <script>
         new WOW().init();
 

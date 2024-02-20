@@ -24,6 +24,11 @@ class HomeController extends Controller
         return view('home',compact('classtype','category', 'rooms'));
     }
 
+    public function install()
+    {
+        return view('install');
+    }
+
     public function myclass()
     {
         // Check if the user is authenticated

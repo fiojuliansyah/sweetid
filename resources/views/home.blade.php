@@ -104,6 +104,18 @@
                 </a>
             </li>
             <li>
+                <a class="nav-link" href="{{ route('product.list') }}">
+                    <span class="dz-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+                            fill="#000000">
+                            <path
+                                d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z" />
+                        </svg>
+                    </span>
+                    <span>All Class</span>
+                </a>
+            </li>
+            <li>
                 <a class="nav-link" href="{{ route('myclass') }}">
                     <span class="dz-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
@@ -118,6 +130,18 @@
             @if (Route::has('login'))
                 <div>
                     @auth
+                        <li>
+                            <a class="nav-link" href="{{ route('profile.edit') }}">
+                                <span class="dz-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+                                        fill="#000000">
+                                        <path
+                                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v1c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-1c0-2.66-5.33-4-8-4z" />
+                                    </svg>
+                                </span>
+                                <span>Profile</span>
+                            </a>
+                        </li>
                         <li>
                             <a class="nav-link" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -209,13 +233,13 @@
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M18.1776 17.8443C16.6362 17.8428 15.3854 19.0912 15.3839 20.6326C15.3824 22.1739 16.6308 23.4247 18.1722 23.4262C19.7136 23.4277 20.9643 22.1794 20.9658 20.638C20.9658 20.6371 20.9658 20.6362 20.9658 20.6353C20.9644 19.0955 19.7173 17.8473 18.1776 17.8443Z"
-                        fill="#2C406E" />
+                        fill="#a88a54" />
                     <path
                         d="M23.1278 4.47973C23.061 4.4668 22.9932 4.46023 22.9251 4.46012H5.93181L5.66267 2.65958C5.49499 1.46381 4.47216 0.574129 3.26466 0.573761H1.07655C0.481978 0.573761 0 1.05574 0 1.65031C0 2.24489 0.481978 2.72686 1.07655 2.72686H3.26734C3.40423 2.72586 3.52008 2.82779 3.53648 2.96373L5.19436 14.3267C5.42166 15.7706 6.66363 16.8358 8.12528 16.8405H19.3241C20.7313 16.8423 21.9454 15.8533 22.2281 14.4747L23.9802 5.74121C24.0931 5.15746 23.7115 4.59269 23.1278 4.47973Z"
-                        fill="#2C406E" />
+                        fill="#a88a54" />
                     <path
                         d="M11.3404 20.5158C11.2749 19.0196 10.0401 17.8418 8.54244 17.847C7.0023 17.9092 5.80422 19.2082 5.86645 20.7484C5.92617 22.2262 7.1283 23.4008 8.60704 23.4262H8.67432C10.2142 23.3587 11.4079 22.0557 11.3404 20.5158Z"
-                        fill="#2C406E" />
+                        fill="#a88a54" />
                 </svg>
                 {{-- <span class="badge badge-danger counter">5</span> --}}
             </a>
@@ -228,22 +252,6 @@
 
         <div class="content-inner pt-0">
             <div class="container fb">
-                <!-- Search -->
-                <form>
-                    <div class="mb-3 input-group input-radius">
-                        <span class="input-group-text">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path
-                                    d="M20.5605 18.4395L16.7528 14.6318C17.5395 13.446 18 12.0262 18 10.5C18 6.3645 14.6355 3 10.5 3C6.3645 3 3 6.3645 3 10.5C3 14.6355 6.3645 18 10.5 18C12.0262 18 13.446 17.5395 14.6318 16.7528L18.4395 20.5605C19.0245 21.1462 19.9755 21.1462 20.5605 20.5605C21.1462 19.9748 21.1462 19.0252 20.5605 18.4395ZM5.25 10.5C5.25 7.605 7.605 5.25 10.5 5.25C13.395 5.25 15.75 7.605 15.75 10.5C15.75 13.395 13.395 15.75 10.5 15.75C7.605 15.75 5.25 13.395 5.25 10.5Z"
-                                    fill="#B9B9B9" />
-                            </svg>
-                        </span>
-                        <input type="text" placeholder="Search learning of baking"
-                            class="form-control main-in ps-0 bs-0">
-                    </div>
-                </form>
-
-                <!-- Dashboard Area -->
                 <div class="dashboard-area">
                     <!-- Categorie -->
                     <div class="d-flex justify-content-between align-item-center">
@@ -603,7 +611,7 @@
     <!-- CART -->
 
     <!-- PWA Offcanvas -->
-    <div class="offcanvas offcanvas-bottom pwa-offcanvas">
+    {{-- <div class="offcanvas offcanvas-bottom pwa-offcanvas">
         <div class="container">
             <div class="offcanvas-body small">
                 <img class="logo" src="{{ asset('') }}logo.png" alt="">
@@ -614,9 +622,9 @@
             </div>
         </div>
     </div>
-    <div class="offcanvas-backdrop pwa-backdrop"></div>
+    <div class="offcanvas-backdrop pwa-backdrop"></div> --}}
 @endsection
-@push('pwa')
+{{-- @push('pwa')
 <script src="{{ asset('/sw.js') }}"></script>
 <script>
     if ("serviceWorker" in navigator) {
@@ -665,4 +673,4 @@
         console.error("Service workers are not supported.");
     }
 </script>
-@endpush
+@endpush --}}

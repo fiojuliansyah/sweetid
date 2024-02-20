@@ -39,6 +39,7 @@ Route::get('/', function () {
 });
 
 Route::get('home', [HomeController::class, 'index']);
+Route::get('install', [HomeController::class, 'install']);
 
 Route::get('/my-classes', [HomeController::class, 'myclass'])->name('myclass');
 Route::get('/my-classes/{room}', [HomeController::class, 'classShow'])->name('class.show');

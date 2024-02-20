@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Otp as ModelsOtp;
-use App\Notifications\Otp;
 use Illuminate\View\View;
+use App\Notifications\Otp;
+use Jenssegers\Agent\Agent;
 use Illuminate\Http\Request;
+use App\Models\Otp as ModelsOtp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
@@ -19,10 +20,22 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $agent = New Agent;
         $user = Auth::user();
-        return view('admin.profile.edit', [
-            'user' => $request->user(),
-        ]);
+
+        if ($agent->isMobile()) {
+            return view('profile', [
+                'user' => $request->user(),
+            ]);
+        } elseif ($agent->isDesktop()) {
+            return view('admin.profile.edit', [
+                'user' => $request->user(),
+            ]);
+        } else {
+            return view('admin.profile.edit', [
+                'user' => $request->user(),
+            ]);
+        }
     }
 
     public function updateUserDetail(Request $request)

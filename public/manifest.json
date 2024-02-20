@@ -2,10 +2,10 @@
     "name": "SweetTroops",
     "short_name": "ST",
     "start_url": "/index.php",
-    "background_color": "#42a7e5",
+    "background_color": "#f0b1b7",
     "description": "Baking Studio",
     "display": "fullscreen",
-    "theme_color": "#42a7e5",
+    "theme_color": "#f0b1b7",
     "icons": [
         {
             "src": "logo.PNG",
