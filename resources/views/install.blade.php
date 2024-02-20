@@ -31,8 +31,10 @@
     <p>Install SweetTroops - hanya tersedia di link dibawah ini</p>
     <div class="row">
         <div class="col-6">
-            <a href="javascript:void(0);"  id="addToHomeScreenButton">
-                <img src="https://bekya.com.au/wp-content/uploads/2019/11/Playstore-button.png" alt="" width="200">
+            <a href="javascript:void(0);">
+                <span id="addToHomeScreenButton">
+                    <img src="https://bekya.com.au/wp-content/uploads/2019/11/Playstore-button.png" alt="" width="200">
+                </span>
             </a>
         </div>
         <div class="col-6">
