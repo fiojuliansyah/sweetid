@@ -80,16 +80,16 @@
   --secondary: #FF6B53;
   --gradient: linear-gradient(73.08deg, #a88a54 15.14%, #d5bdff 92.25%);
   --primary-hover: #f0b1b7;
-  --primary-dark: #11547d;
-  --rgba-primary-1: rgba(66, 167, 229, 0.1);
-  --rgba-primary-2: rgba(66, 167, 229, 0.2);
-  --rgba-primary-3: rgba(66, 167, 229, 0.3);
-  --rgba-primary-4: rgba(66, 167, 229, 0.4);
-  --rgba-primary-5: rgba(66, 167, 229, 0.5);
-  --rgba-primary-6: rgba(66, 167, 229, 0.6);
-  --rgba-primary-7: rgba(66, 167, 229, 0.7);
-  --rgba-primary-8: rgba(66, 167, 229, 0.8);
-  --rgba-primary-9: rgba(66, 167, 229, 0.9);
+  --primary-dark: #f0b1b7;
+  --rgba-primary-1: #f0b1b7;
+  --rgba-primary-2: #f0b1b7;
+  --rgba-primary-3: #f0b1b7;
+  --rgba-primary-4: #f0b1b7;
+  --rgba-primary-5: #f0b1b7;
+  --rgba-primary-6: #f0b1b7;
+  --rgba-primary-7: #f0b1b7;
+  --rgba-primary-8: #f0b1b7;
+  --rgba-primary-9: #f0b1b7;
   --font-family-base: Lato, sans-serif;
   --font-family-title: Lato, sans-serif;
   --border-radius-base: 8px;
@@ -97,7 +97,7 @@
   --body-color: #7D8FAB;
   --dark: #a88a54;
   --bg-white: #FFF;
-  --box-shadow: 0px 12px 30px 0px rgba(48, 48, 48, 0.14);
+  --box-shadow: 0px 12px 30px 0px #f0b1b7;
   --title: #4f658b; }
 
 /*
@@ -150,7 +150,7 @@
   --bs-body-bg-rgb: 247, 247, 247;
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  --bs-gradient: #f0b1b7;
   --bs-body-font-family: Lato, sans-serif;
   --bs-body-font-size: 0.875rem;
   --bs-body-font-weight: 500;
@@ -10689,7 +10689,7 @@ section {
   --secondary: #FF6B53;
   --gradient: linear-gradient(73.08deg, #a88a54 15.14%, #d5bdff 92.25%);
   --primary-hover: #f0b1b7;
-  --primary-dark: #11547d;
+  --primary-dark: #f0b1b7;
   --rgba-primary-1: rgba(66, 167, 229, 0.1);
   --rgba-primary-2: rgba(66, 167, 229, 0.2);
   --rgba-primary-3: rgba(66, 167, 229, 0.3);
@@ -14109,7 +14109,7 @@ del {
     width: 436px;
     height: 436px;
     border-radius: 50%;
-    background: #263965;
+    background: #f0b1b7;
     position: absolute;
     top: -270px;
     right: -220px;
@@ -14119,7 +14119,7 @@ del {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: #334878;
+    background: #f0b1b7;
     position: absolute;
     bottom: -40px;
     left: -40px;
@@ -14128,7 +14128,7 @@ del {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: #334878;
+    background: #f0b1b7;
     position: absolute;
     top: 50px;
     left: 40px;
@@ -15168,7 +15168,7 @@ ul.list-check {
     width: 436px;
     height: 436px;
     border-radius: 50%;
-    background: #263965;
+    background: #f0b1b7;
     position: absolute;
     z-index: -1;
     top: -170px;
@@ -15178,7 +15178,7 @@ ul.list-check {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: #263965;
+    background: #f0b1b7;
     position: absolute;
     top: 240px;
     left: 80px;
@@ -15187,7 +15187,7 @@ ul.list-check {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: #334878;
+    background: #f0b1b7;
     position: absolute;
     bottom: 60px;
     left: -40px;
@@ -15196,7 +15196,7 @@ ul.list-check {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: #334878;
+    background: #f0b1b7;
     position: absolute;
     bottom: 210px;
     left: 20px;
@@ -15205,7 +15205,7 @@ ul.list-check {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: #334878;
+    background: #f0b1b7;
     position: absolute;
     bottom: 215px;
     right: 55px;
