@@ -72,7 +72,7 @@
                         <div class="item-content">
                             <div class="item-inner">
                                 <div class="item-title-row">
-                                    <h6 class="item-title"><a href="{{ route('product.show',$room->id) }}">{{ $room->title }} <span class="badge badge-sm badge-warning">{{ $room->classtype['name'] }}</span></a></h6>
+                                    <h6 class="item-title"><a href="{{ route('product.show',$room->id) }}">{{ $room->title }} <span class="badge badge-xs badge-warning">{{ $room->classtype['name'] }}</span></a></h6>
                                     <div class="item-subtitle">{!! Str::limit($room->short_description, 30, ' ...') !!}</div>
                                 </div>
                                 <div class="item-footer">
@@ -85,12 +85,12 @@
                                     <div class="d-flex align-items-center">
                                         @if ($room->is_recommended == '1')
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <span class="badge badge-sm badge-info">Recomended</span>
+                                            <span class="badge badge-xs badge-info">Recomended</span>
                                         </div> 
                                         @endif
                                         @if ($room->is_featured == '1')
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <span class="badge badge-sm badge-secondary">Featured</span>
+                                            <span class="badge badge-xs badge-secondary">Featured</span>
                                         </div> 
                                         @endif
                                     </div>
