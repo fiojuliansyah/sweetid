@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\User;
+use App\Models\Image;
 use App\Models\Competition;
 use App\Models\Transaction;
-use App\Notifications\SuccessPaid;
-use App\Notifications\FailedPaid;
 use Illuminate\Http\Request;
+use App\Notifications\FailedPaid;
+use App\Notifications\SuccessPaid;
 use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
 {
     public function dashboard()
     {
-        $rooms = Room::paginate(4);   
+        $rooms = Room::with('images')->paginate(15); 
         
         $user = User::find(auth()->user()->id);
 
@@ -47,6 +48,8 @@ class MemberController extends Controller
         $courses = $room->courses;
         
         $user = Auth::user();
+        $imageRoomId = Image::where('room_id',$room->id)->paginate(1);
+        $imageRoom = Image::where('room_id',$room->id)->get();
 
         $isJoin = $user->competition->contains($room->id);
 
@@ -56,7 +59,7 @@ class MemberController extends Controller
             $room['is_joined'] = false;
         }
 
-        return view('member.markets.detail', compact('courses', 'room'));
+        return view('member.markets.detail', compact('courses', 'room', 'imageRoomId'));
     }
 
     public function checkout(Room $room)

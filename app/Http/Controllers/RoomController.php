@@ -77,25 +77,13 @@ class RoomController extends Controller
         $classroom->is_active = $request->is_active;
         $classroom->meta_keyword = $request->meta_keyword;
         $classroom->save();
-    
-        foreach ($request->file('images') as $imagefile)
-        {
-            if ($imagefile->isValid()) { // Pastikan file yang diunggah valid
-                $image = new Image;
-                $path = $imagefile->store('public/covers');
-    
-                $image->image = $path;
-                $image->room_id = $classroom->id; // Menggunakan $classroom->id bukan $room->id
-                $image->save();
-            }
-        }
 
         $imageData = [];
 
         if($files = $request->file('images'))
         {
             foreach($files as $file){
-                $path = $imagefile->store('public/covers');
+                $path = $file->store('public/covers');
                 $imageData[] = [
                     'room_id' => $classroom->id,
                     'image' => $path,

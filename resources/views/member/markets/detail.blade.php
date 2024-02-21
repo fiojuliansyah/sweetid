@@ -34,11 +34,13 @@ Detail {{ $room->title }} | SweetTroops Baking Studio
                                 </div>
                                 <div class="tab-slide-content new-arrival-product mb-4 mb-xl-0">
                                     <!-- Nav tabs -->
+                                    @foreach ($imageRoomId as $imgId)     
                                     <ul class="nav slide-item-list mt-3" role="tablist">
                                         <li role="presentation" class="show">
-                                                <img src="{{ Storage::url($room->cover) }}" width="300" alt="">
+                                                <img src="{{ Storage::url($imgId->image) }}" width="300" alt="">
                                         </li>
                                     </ul>
+                                    @endforeach
                                 </div>
                             </div>
                             <!--Tab slider End-->

@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\Image;
 use App\Models\Category;
 use App\Models\Classtype;
 use App\Models\Discussion;
 use App\Models\Competition;
-use App\Models\Transaction;
 
+use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\DiscussionDetail;
@@ -20,7 +21,7 @@ class HomeController extends Controller
     {
         $category = Category::all();
         $classtype = Classtype::all();
-        $rooms = Room::paginate(15);
+        $rooms = Room::with('images')->paginate(15);
         return view('home',compact('classtype','category', 'rooms'));
     }
 
@@ -73,20 +74,20 @@ class HomeController extends Controller
 
     public function productShow(Room $room)
     {
-        // Check if the user is authenticated
         if (Auth::check()) {
             $user = Auth::user();
             $isJoin = $user->competition->contains($room->id);
         } else {
-            // If user is not authenticated, set $isJoin to false
             $isJoin = false;
         }
+
+        $imageRoom = Image::where('room_id',$room->id)->get();
     
         $room['is_joined'] = $isJoin;
     
         $courses = $room->courses;
     
-        return view('mobile.products.show', compact('room', 'courses'));
+        return view('mobile.products.show', compact('room', 'courses', 'imageRoom'));
     }
 
     public function productByCat($slug)

@@ -46,10 +46,10 @@
                             <div class="card-body">
                                 <div class="new-arrival-product">
                                     <div class="new-arrivals-img-contnent">
-                                        <img class="img-fluid" src="{{ Storage::url($room->cover) }}" alt="">
+                                        <img class="img-fluid" src="{{ Storage::url($room->images->first()->image) }}" alt="">
                                     </div>
                                     <div class="new-arrival-content text-center mt-3">
-                                        <h4><a href="{{ route('rooms.show',$room->id) }}">{{ $room->title }}</a></h4>
+                                        <h4><a href="{{ route('member.detail',$room->id) }}">{{ $room->title }}</a></h4>
                                         <ul>
                                             <li>
                                                 @if ($room->is_featured == '1')
@@ -79,7 +79,7 @@
                                           <a href="{{ route('member.detail',$room->id) }}" class="btn btn-primary">View Detail <span class="btn-icon-end"><i class="fas fa-eye"></i></span>
                                           </a>
                                         @else
-                                          <a type="button" class="btn btn-primary">Enroll Now <span class="btn-icon-end"><i class="fas fa-money-bill"></i></span>
+                                          <a href="{{ route('member.checkout',$room->id) }}" class="btn btn-primary">Enroll Now <span class="btn-icon-end"><i class="fas fa-money-bill"></i></span>
                                           </a>
                                         @endif
                                     </div>

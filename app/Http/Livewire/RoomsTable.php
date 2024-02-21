@@ -27,7 +27,7 @@ class RoomsTable extends Component
                 ->orWhere('short_description', 'like', '%' . $this->search . '%')
                 ->paginate(6);
         } else {
-            $data = Room::paginate(6);
+            $data = Room::with('images')->paginate(15);
         }
 
         return view('admin.livewire.rooms-table', compact('data'));

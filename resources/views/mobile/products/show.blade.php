@@ -53,13 +53,15 @@
             <div class="swiper-btn-center-lr my-0">
                 <div class="swiper-container demo-swiper">
                     <div class="swiper-wrapper">
+                        @foreach ($imageRoom as $img)  
                         <div class="swiper-slide">
                             <div class="dz-banner-heading">
                                 <div class="overlay-black-light">
-                                    <img src="{{ Storage::url($room->cover) }}" class="bnr-img">
+                                    <img src="{{ Storage::url($img->image) }}" class="bnr-img">
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                     <div class="swiper-btn">
                         <div class="swiper-pagination style-2 flex-1"></div>

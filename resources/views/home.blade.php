@@ -330,7 +330,7 @@
                                         <div class="swiper-slide">
                                             <div class="recomended-list">
                                                 <div class="image-box">
-                                                    <img src="{{ Storage::url($room->cover) }}" alt="image">
+                                                    <img src="{{ Storage::url($room->images->first()->image) }}" alt="image">
                                                 </div>
                                                 <div class="text-content">
                                                     <a href="{{ route('product.show', $room->id) }}">
@@ -367,7 +367,7 @@
                         @if ($room->is_featured == '1')
                             <div class="item-box">
                                 <div class="item-media">
-                                    <img src="{{ Storage::url($room->cover) }}" width="100" alt="food">
+                                    <img src="{{ Storage::url($room->images->first()->image) }}" width="100" alt="food">
                                 </div>
                                 <div class="item-content">
                                     <a href="{{ route('product.show', $room->id) }}">

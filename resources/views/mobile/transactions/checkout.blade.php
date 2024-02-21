@@ -43,7 +43,7 @@
         <div class="content-body">
             <div class="dz-banner-heading position-relative">
                 <div class="overlay-black-light style-2">
-                    <img src="{{ Storage::url($room->cover) }}" class="bnr-img" alt="">
+                    <img src="{{ Storage::url($room->images->first()->image) }}" class="bnr-img" alt="">
                 </div>
                 <div class="banner-content">
                     <div class="container">
@@ -90,10 +90,10 @@
                                                 Valid first name is required.
                                             </div>
                                         </div>
-                                        @if($user ? $user->profile?->phone : '')        
+                                        @if($user ? $user->phone : '')        
                                         <div class="col-md-6 mb-3">
                                             <label for="lastName" class="form-label">Phone</label>
-                                            <input type="text" class="form-control" name="phone" value="{{ $user ? $user->profile?->phone : '' }}" required="">
+                                            <input type="text" class="form-control" name="phone" value="{{ $user ? $user->phone : '' }}" required="">
                                             <div class="invalid-feedback">
                                                 Valid last name is required.
                                             </div>
