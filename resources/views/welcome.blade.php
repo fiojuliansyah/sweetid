@@ -36,17 +36,17 @@
                         <div class="swiper-slide">
                             <div class="slide-info">
                                 <div class="dz-media">
-                                    <img src="{{ asset('') }}mobile/images/shop.png" alt="image" />
+                                    <img src="{{ asset('') }}logo.png" alt="image" />
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide">
+                        {{-- <div class="swiper-slide">
                             <div class="slide-info">
                                 <div class="dz-media">
-                                    <img src="{{ asset('') }}mobile/images/truck.png" alt="image" />
+                                    <img src="{{ asset('') }}logo.png" alt="image" />
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- <div class="swiper-slide">
                                                 <div class="slide-info">
                                                     <div class="dz-media">
@@ -68,8 +68,7 @@
                 </div>
                 <div class="slide-content">
                     <h1 class="brand-title">SweetTroops</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore</p>
+                    <p>Baking Studio App</p>
                 </div>
             </div>
             <!-- Onboading End-->
