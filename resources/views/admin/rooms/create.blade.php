@@ -55,7 +55,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label class="form-label">Cover</label>
-                                    <input type="file" id="cover" name="cover" class="form-file-input form-control">
+                                    <input type="file" id="cover" name="images[]" class="form-file-input form-control" multiple>
                                     <small style="color: red">Image Require 200px x 200px</small>
                                 </div>
                                 <div class="col-md-6">

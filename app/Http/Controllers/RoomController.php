@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
     
 use App\Models\Room;
+use App\Models\Image;
 use App\Models\Category;
 use App\Models\Classtype;
 use Illuminate\Http\Request;
@@ -54,16 +55,14 @@ class RoomController extends Controller
         $request->validate([
             'classtype_id' => 'required',
             'category_id' => 'required',
-            'cover' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'images.*' => 'required|image', // Pastikan semua gambar diunggah adalah file gambar
         ]);
-
-        $path = $request->file('cover')->store('public/covers');
+    
         $path2 = $request->file('trailer')->store('public/trailers');
-
+    
         $classroom = new Room;
         $classroom->classtype_id = $request->classtype_id;
         $classroom->category_id = $request->category_id;
-        $classroom->cover = $path;
         $classroom->title = $request->title;
         $classroom->slug = $request->slug;
         $classroom->short_description = $request->short_description;
@@ -78,11 +77,38 @@ class RoomController extends Controller
         $classroom->is_active = $request->is_active;
         $classroom->meta_keyword = $request->meta_keyword;
         $classroom->save();
+    
+        foreach ($request->file('images') as $imagefile)
+        {
+            if ($imagefile->isValid()) { // Pastikan file yang diunggah valid
+                $image = new Image;
+                $path = $imagefile->store('public/covers');
+    
+                $image->image = $path;
+                $image->room_id = $classroom->id; // Menggunakan $classroom->id bukan $room->id
+                $image->save();
+            }
+        }
 
+        $imageData = [];
+
+        if($files = $request->file('images'))
+        {
+            foreach($files as $file){
+                $path = $imagefile->store('public/covers');
+                $imageData[] = [
+                    'room_id' => $classroom->id,
+                    'image' => $path,
+                ];
+            }
+        }
+
+        Image::insert($imageData);
+    
         return redirect()->route('rooms.index')
                         ->with('success','Class Room created successfully.');
-
-    }
+    
+    }    
     
     /**
      * Display the specified resource.

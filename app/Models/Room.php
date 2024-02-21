@@ -38,4 +38,9 @@ class Room extends Model
         return $this->hasMany(Discussion::class, 'room_id');
     }
 
+    public function image()
+    {
+        return $this->hasMany(Image::class, 'room_id');
+    }
+
 }
