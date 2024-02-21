@@ -71,7 +71,18 @@
                     <div class="detail-content">
                         <div class="flex-1">
                             <h4>{{ $room->title }}</h4>
-                            <p>{{ $room->short_description }}</p>
+                            <p>{{ $room->short_description }} <a href="javascript:void(0);" class="item-content item-link"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal5">baca selengkapnya ...</a></p>
+                        </div>
+                        <div class="modal fade" tabindex="-1" id="exampleModal5" aria-labelledby="exampleModal5"
+                                    aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body text-center small p-4">
+                                        {{ $room->description }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <ul class="item-inner">
