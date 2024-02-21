@@ -32,14 +32,14 @@
                             @csrf
                             <div class="input-group input-mini mb-3">
                                 <span class="input-group-text"><i class="fa fa-user"></i></span>
-                                <input id="email" class="form-control" @error('email') is-invalid @enderror" type="email" name="email" :value="old('email')" required autofocus autocomplete="username">
+                                <input id="loginname" class="form-control" @error('loginname') is-invalid @enderror" type="text" name="loginname" :value="old('loginname')" required placeholder="login dengan email / no whatsapp">
                                 @error('email')
                                     <p style="color: red">ini masih proses production</p>
                                 @enderror
                             </div>
                             <div class="mb-3 input-group input-mini">
                                 <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                                <input id="password" class="form-control" @error('password') is-invalid @enderror" type="password" name="password" required autocomplete="current-password">
+                                <input id="password" class="form-control" @error('password') is-invalid @enderror" type="password" name="password" required autocomplete="current-password" placeholder="password">
                                 @error('password')
                                     <p style="color: red">ini masih proses production</p>
                                 @enderror

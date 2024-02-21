@@ -33,19 +33,23 @@
                             @csrf
                             <div class="input-group input-mini mb-3">
                                 <span class="input-group-text"><i class="fa fa-user"></i></span>
-                                <input id="name" class="form-control" type="text" name="name" :value="old('name')" required autofocus autocomplete="name">
+                                <input id="name" class="form-control" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="nama kamu">
                             </div>
                             <div class="mb-3 input-group input-mini">
                                 <span class="input-group-text"><i class="fa fa-at"></i></span>
-                                <input id="email" class="form-control" @error('email') is-invalid @enderror" type="email" name="email" :value="old('email')" required autocomplete="username">
+                                <input id="email" class="form-control" @error('email') is-invalid @enderror" type="email" name="email" :value="old('email')" required autocomplete="email" placeholder="email">
+                            </div>
+                            <div class="mb-3 input-group input-mini">
+                                <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                <input id="phone" class="form-control" @error('phone') is-invalid @enderror" type="phone" name="phone" :value="old('phone')" required autocomplete="phone" placeholder="no whatsapp aktif">
                             </div>
                             <div class="mb-3 input-group input-mini">
                                 <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                                <input id="password" class="form-control" @error('password') is-invalid @enderror" type="password" name="password" required autocomplete="new-password">
+                                <input id="password" class="form-control" @error('password') is-invalid @enderror" type="password" name="password" required autocomplete="new-password" placeholder="password">
                             </div>
                             <div class="mb-3 input-group input-mini">
                                 <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                                <input id="password_confirmation" class="form-control" @error('password_confirmation') is-invalid @enderror" type="password" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password_confirmation" class="form-control" @error('password_confirmation') is-invalid @enderror" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="confirm password">
                             </div>
                             <div class="input-group">
                                 <button type="submit" class="btn mt-2 btn-primary w-100 btn-rounded">SIGN UP</button>
