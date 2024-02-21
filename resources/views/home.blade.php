@@ -303,10 +303,6 @@
                             <div class="swiper-container tag-group mt-4 recomand-swiper">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
-                                        <img src="https://static.vecteezy.com/system/resources/thumbnails/010/425/973/small/bakery-horizontal-banner-cover-lettering-advertising-design-with-bread-pastry-pie-buns-sweets-cupcake-modern-hand-drawn-linear-graphic-template-bakery-shop-made-with-love-vector.jpg"
-                                            alt="" width="1000" height="200">
-                                    </div>
-                                    <div class="swiper-slide">
                                         <img src="https://previews.123rf.com/images/goodstudio/goodstudio1905/goodstudio190500034/122536528-banner-template-with-various-types-of-breads-delicious-natural-baked-goods-or-sweet-homemade-pastry.jpg"
                                             alt="" width="1000" height="200">
                                     </div>
