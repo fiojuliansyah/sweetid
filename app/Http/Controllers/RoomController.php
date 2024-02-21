@@ -55,7 +55,6 @@ class RoomController extends Controller
             'classtype_id' => 'required',
             'category_id' => 'required',
             'cover' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'trailer' => 'required',
         ]);
 
         $path = $request->file('cover')->store('public/covers');
