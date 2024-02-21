@@ -15,7 +15,7 @@
                             <div class="card-body">
                                 <div class="new-arrival-product">
                                     <div class="new-arrivals-img-contnent">
-                                        <img class="img-fluid" src="{{ Storage::url($room->images->first()->image) }}" alt="">
+                                        <img class="img-fluid" src="{{ Storage::url($room->images->first()->image ?? '') }}" alt="">
                                     </div>
                                     <div class="new-arrival-content text-center mt-3">
                                         <h4><a href="{{ route('member.detail',$room->id) }}">{{ $room->title }}</a></h4>

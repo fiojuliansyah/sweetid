@@ -19,7 +19,7 @@ Checkout {{ $room->title }} | SweetTroops Baking Studio
                                 <ul class="list-group mb-3">
                                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                                         <div>
-                                            <img class="img-fluid" src="{{ Storage::url($room->cover) }}" alt="">
+                                            <img class="img-fluid" src="{{ Storage::url($room->images->first()->image ?? '') }}" alt="">
                                         </div>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between lh-condensed">

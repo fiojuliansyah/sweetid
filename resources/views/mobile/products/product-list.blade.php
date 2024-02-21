@@ -96,7 +96,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="item-media media media-90"><img src="{{ Storage::url($room->images->first()->image) }}"
+                            <div class="item-media media media-90"><img src="{{ Storage::url($room->images->first()->image ?? '') }}"
                                     alt="logo">
                                 <a href="javascript:void(0);" class="item-bookmark icon-2">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

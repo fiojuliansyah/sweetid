@@ -43,7 +43,7 @@
         <div class="content-body">
             <div class="dz-banner-heading position-relative">
                 <div class="overlay-black-light style-2">
-                    <img src="{{ Storage::url($room->images->first()->image) }}" class="bnr-img" alt="">
+                    <img src="{{ Storage::url($room->images->first()->image ?? '') }}" class="bnr-img" alt="">
                 </div>
                 <div class="banner-content">
                     <div class="container">
