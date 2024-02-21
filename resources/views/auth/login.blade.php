@@ -51,7 +51,7 @@
                                 <h6 class="title">Or</h6>
                             </div>
                             <div class="input-group">
-                                <a href="{{ url('authorized/google') }}" class="btn mt-2 btn-dark w-100 btn-rounded"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" width="20" alt="">&nbsp; &nbsp;Sign In With Google Account</a>
+                                <a href="{{ url('authorized/google') }}" class="btn mt-2 btn-dark w-100 btn-rounded"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/480px-Google_%22G%22_logo.svg.png" width="20" alt="">&nbsp; &nbsp;Sign In With Google Account</a>
                             </div>
                             
                             <div class="d-flex justify-content-between align-items-center">

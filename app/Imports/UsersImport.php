@@ -26,6 +26,7 @@ class UsersImport implements ToModel, WithStartRow
                 'email' => $row[0],
                 'name' => $row[1],
                 'password' => bcrypt($row[2]),
+                'phone' => $row[3],
             ]);
 
             // Simpan pengguna ke database
@@ -35,6 +36,7 @@ class UsersImport implements ToModel, WithStartRow
             $user->email = $row[0];
             $user->name = $row[1];
             $user->password = bcrypt($row[2]);
+            $user->phone = $row[3];
             $user->save();
         }
 
@@ -42,7 +44,6 @@ class UsersImport implements ToModel, WithStartRow
         $profile = Profile::updateOrCreate(
             ['user_id' => $user->id],
             [
-                'phone' => $row[3],
                 'address' => $row[4],
             ]);
 

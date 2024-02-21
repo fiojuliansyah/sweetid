@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('thumbnail')->nullable();
             $table->text('address')->nullable();
-            $table->string('phone')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
