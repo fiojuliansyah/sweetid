@@ -227,7 +227,7 @@
                     </div>
                 @endif
             </div>
-            <a href="javascript:void(0);" class="position-relative me-2 notify-cart" data-bs-toggle="offcanvas"
+            {{-- <a href="javascript:void(0);" class="position-relative me-2 notify-cart" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasBottom2" aria-controls="offcanvasBottom">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -241,8 +241,8 @@
                         d="M11.3404 20.5158C11.2749 19.0196 10.0401 17.8418 8.54244 17.847C7.0023 17.9092 5.80422 19.2082 5.86645 20.7484C5.92617 22.2262 7.1283 23.4008 8.60704 23.4262H8.67432C10.2142 23.3587 11.4079 22.0557 11.3404 20.5158Z"
                         fill="#a88a54" />
                 </svg>
-                {{-- <span class="badge badge-danger counter">5</span> --}}
-            </a>
+                {{-- <span class="badge badge-danger counter">5</span>
+            </a> --}}
         </div>
     </div>
     <!-- Banner End -->
