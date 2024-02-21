@@ -73,7 +73,7 @@
                             <div class="item-inner">
                                 <div class="item-title-row">
                                     <h6 class="item-title"><a href="{{ route('product.show',$room->id) }}">{{ $room->title }} <span class="badge badge-sm badge-warning">{{ $room->classtype['name'] }}</span></a></h6>
-                                    <div class="item-subtitle">{{ $room->short_description }}</div>
+                                    <div class="item-subtitle">{!! Str::limit($room->short_description, 10, ' ...') !!}</div>
                                 </div>
                                 <div class="item-footer">
                                     <div class="d-flex align-items-center">
