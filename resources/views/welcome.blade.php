@@ -54,13 +54,13 @@
                                                     </div>
                                                 </div>
                                             </div> -->
-                        <div class="swiper-slide">
+                        {{-- <div class="swiper-slide">
                             <div class="slide-info">
                                 <div class="dz-media">
                                     <img src="{{ asset('') }}mobile/images/delivery.png" alt="image" />
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="swiper-btn">
@@ -68,7 +68,7 @@
                 </div>
                 <div class="slide-content">
                     <h1 class="brand-title">SweetTroops</h1>
-                    <p>Baking Studio App</p>
+                    <p>Artisan Baking Studio App</p>
                 </div>
             </div>
             <!-- Onboading End-->
