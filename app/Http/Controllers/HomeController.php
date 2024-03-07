@@ -44,14 +44,14 @@ class HomeController extends Controller
 
     public function classShow(Room $room)
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-            $isJoin = $user->competition->contains($room->id);
+        $user = Auth::user();
+        $isJoin = $user->competition->contains($room->id);
+
+        if ($isJoin) {
+            $room['is_joined'] = true;
         } else {
-            $isJoin = false;
+            $room['is_joined'] = false;
         }
-    
-        $room['is_joined'] = $isJoin;
     
         $courses = $room->courses;
         $imageRoomId = Image::where('room_id',$room->id)->paginate(1);
@@ -69,16 +69,16 @@ class HomeController extends Controller
 
     public function productShow(Room $room)
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-            $isJoin = $user->competition->contains($room->id);
+        $user = Auth::user();
+        $isJoin = $user->competition->contains($room->id);
+
+        if ($isJoin) {
+            $room['is_joined'] = true;
         } else {
-            $isJoin = false;
+            $room['is_joined'] = false;
         }
 
         $imageRoom = Image::where('room_id',$room->id)->get();
-    
-        $room['is_joined'] = $isJoin;
     
         $courses = $room->courses;
     
