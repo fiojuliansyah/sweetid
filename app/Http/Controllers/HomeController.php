@@ -32,37 +32,32 @@ class HomeController extends Controller
 
     public function myclass()
     {
-        // Check if the user is authenticated
         if (Auth::check()) {
             $user = Auth::user();
-    
-            // Fetch the user's competitions (rooms)
             $myClass = Competition::where('user_id', $user->id)->get();
     
-            // Pass the data to the view
             return view('mobile.my-class.index', compact('myClass'));
         } else {
-            // Redirect or handle the case where the user is not authenticated
             return redirect()->route('login');
         }
     }
 
     public function classShow(Room $room)
     {
-        // Check if the user is authenticated
         if (Auth::check()) {
             $user = Auth::user();
             $isJoin = $user->competition->contains($room->id);
         } else {
-            // If user is not authenticated, set $isJoin to false
             $isJoin = false;
         }
     
         $room['is_joined'] = $isJoin;
     
         $courses = $room->courses;
+        $imageRoomId = Image::where('room_id',$room->id)->paginate(1);
+        $imageRoom = Image::where('room_id',$room->id)->get();
     
-        return view('mobile.my-class.show', compact('room', 'courses'));
+        return view('mobile.my-class.show', compact('room', 'courses', 'imageRoomId', 'imageRoom'));
     }
 
     public function productList()

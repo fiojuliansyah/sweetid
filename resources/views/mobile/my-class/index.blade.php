@@ -38,7 +38,7 @@
                     <li>
                         <div class="item-content">
                             <div class="item-media media media-60">
-                                <img src="{{ Storage::url($myclass->room['cover']) }}" alt="logo">
+                                <img src="{{ Storage::url($myclass->room->images->first()->image ?? '') }}" alt="logo">
                             </div>
                             <div class="item-inner">
                                 <div class="item-title-row">

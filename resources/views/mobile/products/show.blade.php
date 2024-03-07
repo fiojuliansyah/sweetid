@@ -168,14 +168,11 @@
                                                 @foreach ($courses as $course)
                                                     <a href="#">
                                                         <div class="rounded-circle">
-                                                            <i class="fas fa-lock" style="font-size: 20px;" ></i>
+                                                            <i class="fas fa-lock" style="font-size: 20px;"></i>
                                                         </div>
                                                         <div class="media-content">
                                                             <div>
-                                                                <h6 class="name">Step 1</h6>
-                                                                <p class="my-1">
-                                                                {{ $course->title }}
-                                                                </p>
+                                                                <h6 class="name">{{ $course->title }}</h6>
                                                             </div>
                                                             <span class="time">{{ $course->duration }}</span>
                                                         </div>
