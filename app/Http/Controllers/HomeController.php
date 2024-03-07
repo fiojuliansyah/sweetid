@@ -146,7 +146,7 @@ class HomeController extends Controller
     public function callback(Request $request)
     {
         $serverKey = config('midtrans.server_key');
-        $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
+        $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
     
         if ($hashed == $request->signature_key) {
             if ($request->transaction_status == 'capture' || $request->transaction_status == 'settlement') {
@@ -156,18 +156,13 @@ class HomeController extends Controller
                         'status' => '1'
                     ]);
     
-                    if ($transaction->status == '1') {
-                        $competition = new Competition;
-                        $competition->user_id = Auth::id();
-                        $competition->room_id = $transaction->room_id;
-                        $competition->save();
+                    $competition = new Competition;
+                    $competition->user_id = Auth::id();
+                    $competition->room_id = $transaction->room_id;
+                    $competition->save();
     
-                        // Kirim notifikasi bahwa pembayaran berhasil
-                        User::find(Auth::id())->notify(new SuccessPaid($request->order_id));
-                    }
-                } else {
-                    // Jika tidak ditemukan transaksi yang sesuai
-                    User::find(Auth::id())->notify(new FailedPaid($request->order_id));
+                    // Kirim notifikasi bahwa pembayaran berhasil
+                    User::find(Auth::id())->notify(new SuccessPaid($request->order_id));
                 }
             } else {
                 // Jika status transaksi bukan 'capture' atau 'settlement'
@@ -177,7 +172,8 @@ class HomeController extends Controller
             // Jika penandatanganan tidak cocok
             User::find(Auth::id())->notify(new FailedPaid($request->order_id));
         }
-    }    
+    }
+      
 
     public function invoiceDone($id)
     {

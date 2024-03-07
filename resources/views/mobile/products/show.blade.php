@@ -211,9 +211,9 @@
                                   
                                     <p class="mb-0">Community Discussion</p>
                                   @if ($room->is_joined)
-                                    <div style="text-align: right;">
+                                    {{-- <div style="text-align: right;">
                                       <a href="{{ route('product.create.discussion', $room->id) }}" class="btn btn-primary btn-sm btn-rounded pull-right">Create Discussion</a>
-                                    </div>                                  
+                                    </div>                                   --}}
                                     @foreach ($room->discussions as $discussion)
                                       <div class="card">
                                         <div class="card-body">

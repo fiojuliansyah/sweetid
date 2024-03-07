@@ -20,12 +20,16 @@ class MemberController extends Controller
         
         $user = User::find(auth()->user()->id);
 
-        $competitionId = $user->competition->pluck('id');
+        $competitionId = $user->competition->pluck('room_id');
 
-        foreach ($rooms as $key => $value) {
-            if ($competitionId->contains($value->id)) {
-                $rooms[$key]['is_joined'] = true;
-            } else {
+        if ($user) {
+            $competitionRoomIds = $user->competition->pluck('room_id');
+    
+            foreach ($rooms as $key => $room) {
+                $rooms[$key]['is_joined'] = $competitionRoomIds->contains($room->id);
+            }
+        } else {
+            foreach ($rooms as $key => $room) {
                 $rooms[$key]['is_joined'] = false;
             }
         }
@@ -45,19 +49,19 @@ class MemberController extends Controller
 
     public function detail(Room $room)
     {
-        $courses = $room->courses;
-        
+        $isJoin = false;
         $user = Auth::user();
+        if ($user) {
+            $competition = $user->competition;
+            if ($competition) {
+                $isJoin = $competition->contains('room_id', $room->id);
+            }
+        }
+        $room['is_joined'] = $isJoin;
+
+        $courses = $room->courses;
         $imageRoomId = Image::where('room_id',$room->id)->paginate(1);
         $imageRoom = Image::where('room_id',$room->id)->get();
-
-        $isJoin = $user->competition->contains($room->id);
-
-        if ($isJoin) {
-            $room['is_joined'] = true;
-        } else {
-            $room['is_joined'] = false;
-        }
 
         return view('member.markets.detail', compact('courses', 'room', 'imageRoomId'));
     }
@@ -113,7 +117,7 @@ class MemberController extends Controller
     public function callback(Request $request)
     {
         $serverKey = config('midtrans.server_key');
-        $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
+        $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
     
         if ($hashed == $request->signature_key) {
             if ($request->transaction_status == 'capture' || $request->transaction_status == 'settlement') {
@@ -123,18 +127,13 @@ class MemberController extends Controller
                         'status' => '1'
                     ]);
     
-                    if ($transaction->status == '1') {
-                        $competition = new Competition;
-                        $competition->user_id = Auth::id();
-                        $competition->room_id = $transaction->room_id;
-                        $competition->save();
+                    $competition = new Competition;
+                    $competition->user_id = Auth::id();
+                    $competition->room_id = $transaction->room_id;
+                    $competition->save();
     
-                        // Kirim notifikasi bahwa pembayaran berhasil
-                        User::find(Auth::id())->notify(new SuccessPaid($request->order_id));
-                    }
-                } else {
-                    // Jika tidak ditemukan transaksi yang sesuai
-                    User::find(Auth::id())->notify(new FailedPaid($request->order_id));
+                    // Kirim notifikasi bahwa pembayaran berhasil
+                    User::find(Auth::id())->notify(new SuccessPaid($request->order_id));
                 }
             } else {
                 // Jika status transaksi bukan 'capture' atau 'settlement'
@@ -144,7 +143,8 @@ class MemberController extends Controller
             // Jika penandatanganan tidak cocok
             User::find(Auth::id())->notify(new FailedPaid($request->order_id));
         }
-    } 
+    }
+    
 
     public function invoiceDone($id)
     {
