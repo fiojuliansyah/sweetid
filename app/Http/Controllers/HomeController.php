@@ -155,6 +155,9 @@ class HomeController extends Controller
         if ($hashed == $request->signature_key) {
             if ($request->transaction_status == 'capture' || $request->transaction_status == 'settlement') {
                 $transaction = Transaction::where('invoice_id', $request->order_id)->first();
+                $transaction->update([
+                    'status' => '1'
+                ]);
 
                 if ($transaction->status == '1') {
                     // Transaction status is 1, create competition

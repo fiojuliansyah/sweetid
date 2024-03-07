@@ -13,7 +13,7 @@
         <h6 class="item-title">Invoice : {{ $transaction->invoice_id }}</h6>
         <strong>{{ \Carbon\Carbon::parse($transaction->created_at)->format('d M Y') }}</strong>
         <div class="view-title row mb-5">
-            {{-- <div class="mt-4 col-xl-3 col-lg-3 col-md-6 col-sm-12" style="font-size: 10px">
+            <div class="mt-4 col-xl-3 col-lg-3 col-md-6 col-sm-12" style="font-size: 10px">
                 <h6>From:</h6>
                 <div> <strong>Sweet Troops Artisan Baking Studio</strong> </div>
                 <div>Jl. Teuku Nyak Arief No.3, RT.3/RW.2,</div>
@@ -21,7 +21,7 @@
                 <div> Daerah Khusus Ibukota Jakarta 12220</div>
                 <div>Phone: 0859-4591-2722</div>
                 <div>Email: info@sweettroops.com</div>
-            </div> --}}
+            </div>
             {{-- <div class="mt-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 d-flex justify-content-lg-end justify-content-md-center justify-content-xs-start" style="font-size: 10px">
                 <div class="row align-items-center">
                     <div class="col-sm-9"> 
