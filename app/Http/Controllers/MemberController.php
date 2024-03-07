@@ -128,7 +128,7 @@ class MemberController extends Controller
                     ]);
     
                     $competition = new Competition;
-                    $competition->user_id = Auth::id();
+                    $competition->user_id = $transaction->user_id;
                     $competition->room_id = $transaction->room_id;
                     $competition->save();
     
