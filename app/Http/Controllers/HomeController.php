@@ -160,14 +160,10 @@ class HomeController extends Controller
                         'status' => '1'
                     ]);
     
-                    // Pastikan status transaksi telah diperbarui sebelum membuat kompetisi
                     if ($transaction->status == '1') {
-                        // Membuat kompetisi
-                        $competition = new Competition();
-                        $competition->user_id = Auth::id(); // User ID dari Auth
+                        $competition = new Competition;
+                        $competition->user_id = Auth::id();
                         $competition->room_id = $transaction->room_id;
-                        // Set informasi kompetisi lainnya sesuai kebutuhan
-                        // ...
                         $competition->save();
     
                         // Kirim notifikasi bahwa pembayaran berhasil
