@@ -49,7 +49,7 @@ class HomeController extends Controller
         if ($user) {
             $competition = $user->competition;
             if ($competition) {
-                $isJoin = $competition->where('room_id', $room->id)->exists();
+                $isJoin = $competition->contains('room_id', $room->id);
             }
         }
         $room['is_joined'] = $isJoin;
@@ -75,16 +75,16 @@ class HomeController extends Controller
         if ($user) {
             $competition = $user->competition;
             if ($competition) {
-                $isJoin = $competition->where('room_id', $room->id)->exists();
+                $isJoin = $competition->contains('room_id', $room->id);
             }
         }
         $room['is_joined'] = $isJoin;
     
-        $courses = $room->courses;
         $imageRoom = Image::where('room_id', $room->id)->get();
+        $courses = $room->courses;
     
         return view('mobile.products.show', compact('room', 'courses', 'imageRoom'));
-    }
+    }    
 
     public function productByCat($slug)
     {
