@@ -44,15 +44,16 @@ class HomeController extends Controller
 
     public function classShow(Room $room)
     {
+        $isJoin = false;
         $user = Auth::user();
-        $isJoin = $user->competition->contains($room->id);
-
-        if ($isJoin) {
-            $room['is_joined'] = true;
-        } else {
-            $room['is_joined'] = false;
+        if ($user) {
+            $competition = $user->competition;
+            if ($competition) {
+                $isJoin = $competition->where('room_id', $room->id)->exists();
+            }
         }
-    
+        $room['is_joined'] = $isJoin;
+
         $courses = $room->courses;
         $imageRoomId = Image::where('room_id',$room->id)->paginate(1);
         $imageRoom = Image::where('room_id',$room->id)->get();
@@ -69,18 +70,18 @@ class HomeController extends Controller
 
     public function productShow(Room $room)
     {
+        $isJoin = false;
         $user = Auth::user();
-        $isJoin = $user->competition->contains($room->id);
-
-        if ($isJoin) {
-            $room['is_joined'] = true;
-        } else {
-            $room['is_joined'] = false;
+        if ($user) {
+            $competition = $user->competition;
+            if ($competition) {
+                $isJoin = $competition->where('room_id', $room->id)->exists();
+            }
         }
-
-        $imageRoom = Image::where('room_id',$room->id)->get();
+        $room['is_joined'] = $isJoin;
     
         $courses = $room->courses;
+        $imageRoom = Image::where('room_id', $room->id)->get();
     
         return view('mobile.products.show', compact('room', 'courses', 'imageRoom'));
     }
