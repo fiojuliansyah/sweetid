@@ -114,32 +114,41 @@ class MemberController extends Controller
     {
         $serverKey = config('midtrans.server_key');
         $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
-
+    
         if ($hashed == $request->signature_key) {
             if ($request->transaction_status == 'capture' || $request->transaction_status == 'settlement') {
                 $transaction = Transaction::where('invoice_id', $request->order_id)->first();
-                $transaction->update([
-                    'status' => '1'
-                ]);
-
-                if ($transaction->status == '1') {
-                    // Transaction status is 1, create competition
-                    $competition = new Competition();
-                    $competition->user_id = Auth::id(); // User ID dari Auth
-                    $competition->room_id = $transaction->room_id;
-                    // Set informasi kompetisi lainnya sesuai kebutuhan
-                    // ...
-                    $competition->save();
-
-                    User::find(Auth::id())->notify(new SuccessPaid($request->order_id));
+                if ($transaction) {
+                    $transaction->update([
+                        'status' => '1'
+                    ]);
+    
+                    // Pastikan status transaksi telah diperbarui sebelum membuat kompetisi
+                    if ($transaction->status == '1') {
+                        // Membuat kompetisi
+                        $competition = new Competition();
+                        $competition->user_id = Auth::id(); // User ID dari Auth
+                        $competition->room_id = $transaction->room_id;
+                        // Set informasi kompetisi lainnya sesuai kebutuhan
+                        // ...
+                        $competition->save();
+    
+                        // Kirim notifikasi bahwa pembayaran berhasil
+                        User::find(Auth::id())->notify(new SuccessPaid($request->order_id));
+                    }
+                } else {
+                    // Jika tidak ditemukan transaksi yang sesuai
+                    User::find(Auth::id())->notify(new FailedPaid($request->order_id));
                 }
             } else {
-              User::find(Auth::id())->notify(new FailedPaid($request->order_id));
+                // Jika status transaksi bukan 'capture' atau 'settlement'
+                User::find(Auth::id())->notify(new FailedPaid($request->order_id));
             }
         } else {
-          User::find(Auth::id())->notify(new FailedPaid($request->order_id));
+            // Jika penandatanganan tidak cocok
+            User::find(Auth::id())->notify(new FailedPaid($request->order_id));
         }
-    }
+    }  
 
     public function invoiceDone($id)
     {
