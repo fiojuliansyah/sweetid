@@ -22,7 +22,7 @@
                 <div>Phone: 0859-4591-2722</div>
                 <div>Email: info@sweettroops.com</div>
             </div> --}}
-            <div class="mt-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 d-flex justify-content-lg-end justify-content-md-center justify-content-xs-start" style="font-size: 10px">
+            {{-- <div class="mt-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 d-flex justify-content-lg-end justify-content-md-center justify-content-xs-start" style="font-size: 10px">
                 <div class="row align-items-center">
                     <div class="col-sm-9"> 
                         <div class="brand-logo mb-3">
@@ -35,7 +35,7 @@
                     </div>
                     <div class="col-sm-3 mt-3"> <img src="{{ asset('') }}admin/images/qr.png" alt="" class="img-fluid width110"> </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="mt-4 col-xl-3 col-lg-3 col-md-6 col-sm-12" style="font-size: 10px">
                 <h6>Detail Member</h6>
                 <div> <strong>{{ $transaction->user['name'] }}</strong> </div>

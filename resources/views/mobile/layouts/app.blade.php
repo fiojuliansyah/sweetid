@@ -60,6 +60,7 @@
     <script src="{{ asset('') }}mobile/vendor/wow/dist/wow.min.js"></script>
     <script src="{{ asset('') }}mobile/js/settings.js"></script>
     <script src="{{ asset('') }}mobile/js/custom.js"></script>
+    @yield('footer')
     @stack('pwa')
 </body>
 </html>

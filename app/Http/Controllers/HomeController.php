@@ -151,16 +151,27 @@ class HomeController extends Controller
     {
         $serverKey = config('midtrans.server_key');
         $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
-        // dd($request->order_id.$request->status_code.$request->gross_amount.$serverKey);
+
         if ($hashed == $request->signature_key) {
-            // dd($request->all());
             if ($request->transaction_status == 'capture' || $request->transaction_status == 'settlement') {
-                $transaction = Transaction::where('invoice_id',$request->order_id)->first();
-                $transaction->update([
-                    'status' => '1'
-                ]);
-                
+                $transaction = Transaction::where('invoice_id', $request->order_id)->first();
+
+                if ($transaction->status == '1') {
+                    // Transaction status is 1, create competition
+                    $competition = new Competition();
+                    $competition->user_id = Auth::id(); // User ID dari Auth
+                    $competition->room_id = $transaction->room_id;
+                    // Set informasi kompetisi lainnya sesuai kebutuhan
+                    // ...
+                    $competition->save();
+
+                    User::find(Auth::id())->notify(new SuccessPaid($request->order_id));
+                }
+            } else {
+              User::find(Auth::id())->notify(new FailedPaid($request->order_id));
             }
+        } else {
+          User::find(Auth::id())->notify(new FailedPaid($request->order_id));
         }
     }
 

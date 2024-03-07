@@ -196,47 +196,6 @@
             </div>
         </div>
     </div>
-    <!-- Page Content End -->
-
-    <!-- Footer -->
-    {{-- <div class="footer fixed">
-        <div class="container">
-            @if (Route::has('login'))
-                <div>
-                    @auth
-                    <a href="javascript:void(0);" class="btn scrollTop btn-primary btn-rounded px-3 chat-btn"><i
-                        class="	fas fa-money-bill me-2"></i> Enroll Now</a>
-                    @else
-                    <a href="{{ route('login') }}" class="btn scrollTop btn-primary btn-rounded px-3 chat-btn">
-                        LOGIN or REGISTER
-                    </a>
-                    @endauth
-                </div>
-            @endif
-        </div>
-    </div> --}}
-    <div class="footer fixed">
-        <div class="container">
-            @if (Route::has('login'))
-                <div>
-                    @auth
-                      @if(!$room->is_joined)
-                        <a href="{{ route('product.checkout',$room->id) }}" class="btn btn-primary text-start w-100 btn-rounded">
-                            <i
-                            class="	fas fa-money-bill me-2"></i> Enroll Now</a>
-                        </a>
-                      @endif
-                    @else
-                      <a href="{{ route('login') }}" class="btn btn-danger text-start w-100 btn-rounded">
-                          LOGIN or REGISTER
-                      </a>
-                    @endauth
-                </div>
-            @endif
-        </div>
-    </div>
-    <!-- Footer End -->
-
 </div>
 @endsection
 @section('footer')
