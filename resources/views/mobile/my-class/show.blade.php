@@ -207,7 +207,7 @@
                                           <div class="row">
                                             <div class="col">
                                               {{ $discussion->title }}
-                                              <br><span class="blockquote-footer">{{ $discussion->body }}</span>
+                                              <br><span class="my-1">{{ $discussion->body }}</span>
                                             </div>
                                             <div class="col">
                                               <div class="d-flex justify-content-end">
@@ -227,7 +227,7 @@
                                       <div class="row">
                                         <div class="col">
                                           {{ $discussion->title }}
-                                          <br><span class="blockquote-footer">{{ $discussion->body }}</span>
+                                          <br><span class="my-1">{{ $discussion->body }}</span>
                                         </div>
                                         <div class="col">
                                           <div class="d-flex justify-content-end">
