@@ -158,38 +158,38 @@
                                             <br>
                                             @if (Route::has('login'))
                                                 @auth
-                                                @foreach ($courses as $course)
-                                                    <a href="#">
-                                                        <div class="rounded-circle">
-                                                            <i class="fas fa-lock" style="font-size: 20px;" ></i>
-                                                        </div>
-                                                        <div class="media-content">
-                                                            <div>
-                                                                <h6 class="name">Step 1</h6>
-                                                                <p class="my-1">
-                                                                {{ $course->title }}
-                                                                </p>
-                                                            </div>
-                                                            <span class="time">{{ $course->duration }}</span>
-                                                        </div>
-                                                    </a>
-                                                @endforeach
-                                                @else
                                                     @foreach ($courses as $course)
-                                                    <a href="#">
-                                                        <div class="rounded-circle">
-                                                            <i class="fas fa-lock" style="font-size: 20px;" ></i>
-                                                        </div>
-                                                        <div class="media-content">
-                                                            <div>
-                                                                <h6 class="name">{{ $course->title }}</h6>
-                                                                <p class="my-1">
-                                                                Click to View
-                                                                </p>
+                                                        <a href="#">
+                                                            <div class="rounded-circle">
+                                                                <i class="fas fa-lock" style="font-size: 20px;" ></i>
                                                             </div>
-                                                            <span class="time">{{ $course->duration }}</span>
-                                                        </div>
-                                                    </a>
+                                                            <div class="media-content">
+                                                                <div>
+                                                                    <h6 class="name">{{ $course->title }}</h6>
+                                                                    <p class="my-1">
+                                                                        Click to View
+                                                                    </p>
+                                                                </div>
+                                                                <span class="time">{{ $course->duration }}</span>
+                                                            </div>
+                                                        </a>
+                                                    @endforeach
+                                                    @else
+                                                        @foreach ($courses as $course)
+                                                        <a href="#">
+                                                            <div class="rounded-circle">
+                                                                <i class="fas fa-lock" style="font-size: 20px;" ></i>
+                                                            </div>
+                                                            <div class="media-content">
+                                                                <div>
+                                                                    <h6 class="name">{{ $course->title }}</h6>
+                                                                    <p class="my-1">
+                                                                    Click to View
+                                                                    </p>
+                                                                </div>
+                                                                <span class="time">{{ $course->duration }}</span>
+                                                            </div>
+                                                        </a>
                                                     @endforeach
                                                 @endauth
                                             @endif
