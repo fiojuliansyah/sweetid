@@ -234,7 +234,7 @@
                                           <div class="row">
                                             <div class="col">
                                               {{ $discussion->title }}
-                                              <br><span class="blockquote-footer">{{ $discussion->user->name .' - '. $discussion->created_at }}</span>
+                                              <br><span class="blockquote-footer">{{ $discussion->user->name .' - '. $discussion->created_at->diffForHumans() }}</span>
                                             </div>
                                             <div class="col">
                                               <div class="d-flex justify-content-end">
@@ -248,7 +248,25 @@
                                       </div>                                    
                                     @endforeach
                                   @else
-                                    <p class="mb-0">Buy This Class to View Community</p>
+                                  @foreach ($room->discussions as $discussion)
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <div class="row">
+                                        <div class="col">
+                                          {{ $discussion->title }}
+                                          <br><span class="blockquote-footer">{{ $discussion->user->name .' - '. $discussion->created_at->diffForHumans() }}</span>
+                                        </div>
+                                        <div class="col">
+                                          <div class="d-flex justify-content-end">
+                                            <a href="#">
+                                              <div class="badge badge-primary badge-pill">Lihat</div>
+                                            </a>                                            
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>                                    
+                                @endforeach
                                   @endif
                                 @endauth
                             </div>
