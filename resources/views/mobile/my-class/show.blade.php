@@ -182,9 +182,9 @@
                                                         </div>
                                                         <div class="media-content">
                                                             <div>
-                                                                <h6 class="name"></h6>
+                                                                <h6 class="name">{{ $course->title }}</h6>
                                                                 <p class="my-1">
-                                                                {{ $course->title }}
+                                                                Click to View
                                                                 </p>
                                                             </div>
                                                             <span class="time">{{ $course->duration }}</span>
