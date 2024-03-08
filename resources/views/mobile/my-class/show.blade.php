@@ -232,7 +232,7 @@
                                         <div class="col">
                                           <div class="d-flex justify-content-end">
                                             <a href="#">
-                                              <div class="badge badge-primary badge-pill">Lihat</div>
+                                                <div class="badge badge-danger badge-pill">Beli Kursus Ini</div>
                                             </a>                                            
                                           </div>
                                         </div>
