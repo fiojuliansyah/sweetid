@@ -207,7 +207,7 @@
                                           <div class="row">
                                             <div class="col">
                                               {{ $discussion->title }}
-                                              <br><span class="blockquote-footer">{{ $discussion->user->name .' - '. $discussion->created_at->diffForHumans() }}</span>
+                                              <br><span class="blockquote-footer">{{ $discussion->body }}</span>
                                             </div>
                                             <div class="col">
                                               <div class="d-flex justify-content-end">
@@ -227,7 +227,7 @@
                                       <div class="row">
                                         <div class="col">
                                           {{ $discussion->title }}
-                                          <br><span class="blockquote-footer">{{ $discussion->user->name .' - '. $discussion->created_at->diffForHumans() }}</span>
+                                          <br><span class="blockquote-footer">{{ $discussion->body }}</span>
                                         </div>
                                         <div class="col">
                                           <div class="d-flex justify-content-end">
