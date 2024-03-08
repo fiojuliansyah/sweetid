@@ -5,8 +5,9 @@
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
+        content="width=device-width; initial-scale=1; maximum-scale=1; minimum-scale=1; minimal-ui; viewport-fit=cover">
     <meta name="theme-color" content="#2196f3">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="author" content="DexignZone" />
     <meta name="keywords" content="" />
     <meta name="robots" content="" />
@@ -16,7 +17,7 @@
     <meta property="og:image" content="#" />
     <meta name="format-detection" content="telephone=no">
     <meta name="theme-color" content="#6777ef"/>
-    <link rel="apple-touch-icon" href="{{ asset('logo.PNG') }}">
+    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
 
     <!-- Favicons Icon -->
