@@ -156,43 +156,34 @@
                                                 </div>
                                             </a>
                                             <br>
-                                            @if (Route::has('login'))
-                                                @auth
-                                                    @foreach ($courses as $course)
-                                                        <a href="#">
-                                                            <div class="rounded-circle">
-                                                                <i class="fas fa-lock" style="font-size: 20px;" ></i>
+                                            @foreach ($courses as $course)
+                                                <a href="#" class="item-content item-link" data-bs-toggle="modal" data-bs-target="#course{{ $course->id }}">
+                                                    <div class="rounded-circle">
+                                                        <i class="fas fa-play" style="font-size: 30px;"></i>
+                                                    </div>
+                                                    <div class="media-content">
+                                                        <div>
+                                                            <h6 class="name">{{ $course->title }}</h6>
+                                                            <p class="my-1">
+                                                                Click to View
+                                                            </p>
+                                                        </div>
+                                                        <span class="time">{{ $course->duration }}</span>
+                                                    </div>
+                                                </a>
+                                                <br>
+                                                <div class="modal fade" tabindex="-1" id="course{{ $course->id }}" aria-labelledby="course{{ $course->id }}" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body text-center small p-4">
+                                                                <video width="300" controls autoplay controlsList="nodownload" oncontextmenu="return false;">
+                                                                    <source src="{{ Storage::url($room->trailer) }}" type="video/mp4" />
+                                                                </video>
                                                             </div>
-                                                            <div class="media-content">
-                                                                <div>
-                                                                    <h6 class="name">{{ $course->title }}</h6>
-                                                                    <p class="my-1">
-                                                                        Click to View
-                                                                    </p>
-                                                                </div>
-                                                                <span class="time">{{ $course->duration }}</span>
-                                                            </div>
-                                                        </a>
-                                                    @endforeach
-                                                    @else
-                                                        @foreach ($courses as $course)
-                                                        <a href="#">
-                                                            <div class="rounded-circle">
-                                                                <i class="fas fa-lock" style="font-size: 20px;" ></i>
-                                                            </div>
-                                                            <div class="media-content">
-                                                                <div>
-                                                                    <h6 class="name">{{ $course->title }}</h6>
-                                                                    <p class="my-1">
-                                                                    Click to View
-                                                                    </p>
-                                                                </div>
-                                                                <span class="time">{{ $course->duration }}</span>
-                                                            </div>
-                                                        </a>
-                                                    @endforeach
-                                                @endauth
-                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </li>
                                     </ul>
                                 </div>
