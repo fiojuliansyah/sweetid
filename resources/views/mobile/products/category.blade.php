@@ -113,6 +113,7 @@
                 </ul>
                 {{-- <div class="saprater"></div> --}}
             </div>
+            {{ $rooms->links() }}
             <!-- Job List -->
         </div>
     </div>

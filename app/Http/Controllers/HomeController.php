@@ -21,7 +21,7 @@ class HomeController extends Controller
     {
         $category = Category::all();
         $classtype = Classtype::all();
-        $rooms = Room::with('images')->paginate(15);
+        $rooms = Room::with('images')->paginate(8);
         return view('home',compact('classtype','category', 'rooms'));
     }
 
@@ -157,7 +157,7 @@ class HomeController extends Controller
                     ]);
     
                     $competition = new Competition;
-                    $competition->user_id = Auth::id();
+                    $competition->user_id = $transaction->user_id;
                     $competition->room_id = $transaction->room_id;
                     $competition->save();
     
