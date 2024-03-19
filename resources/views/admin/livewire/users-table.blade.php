@@ -37,6 +37,7 @@
                         </td>
                         <td>    
                             <form action="{{ route('users.destroy',$user->id) }}" method="POST">
+                                <a class="btn btn-xs btn-success" href="{{ route('users.class',$user->id) }}" target="_blank">List Class</a>
                                 <a class="btn btn-xs btn-primary" href="{{ route('users.show',$user->id) }}">Show</a>
                                 @can('user-edit')
                                 <a class="btn btn-xs btn-warning" href="{{ route('users.edit',$user->id) }}">Edit</a>
@@ -44,7 +45,7 @@
                                 @csrf
                                 @method('DELETE')
                                 @can('user-delete')
-                                <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-xs btn-dan ger">Delete</button>
                                 @endcan
                             </form>
                         </td>
@@ -53,4 +54,5 @@
             @endforeach
         </table>
         {!! $data->render() !!}
-    </div></div>
+    </div>
+</div>

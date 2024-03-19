@@ -78,6 +78,9 @@ Route::middleware('auth')->group(function () {
 
   Route::resource('roles', RoleController::class);
   Route::resource('users', UserController::class);
+  Route::get('/user/{id}/class', [UserController::class, 'listClass'])->name('users.class');
+  Route::get('/user/{id}/class/create', [UserController::class, 'createClass'])->name('class.create');
+  Route::post('/user/class/create/send', [UserController::class, 'storeClass'])->name('class.store');
   Route::post('users-import', [UserController::class, 'import'])->name('users.import');
   Route::resource('rooms', RoomController::class);
   Route::resource('cruds', CrudController::class);

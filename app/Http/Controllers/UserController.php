@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
     
 use DB;
 use Hash;
+use App\Models\Room;
 use App\Models\User;
+use App\Models\Competition;
 use Illuminate\Support\Arr;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
@@ -30,7 +32,31 @@ class UserController extends Controller
     {
         return view('admin.users.index');
     }
+
+    public function listClass($id)
+    {
+        $user = User::find($id);
+        $competitions = Competition::where('user_id', $id)->get();
+        return view('admin.users.class',compact('competitions', 'user'));
+    }
+
+    public function createClass($id)
+    {
+        $user = User::find($id);
+        $rooms = Room::all();
+        return view('admin.users.create-class',compact('user', 'rooms'));
+    }
+
+    public function storeClass(Request $request)
+    {
+        $competition = new Competition;
+        $competition->user_id = $request->user_id;
+        $competition->room_id = $request->room_id;
+        $competition->save();
     
+        return redirect()->route('users.index')
+                        ->with('success','User created successfully');
+    }
     /**
      * Show the form for creating a new resource.
      *
