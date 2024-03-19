@@ -31,7 +31,7 @@ class MarketsTable extends Component
                 ->orWhere('short_description', 'like', '%' . $this->search . '%')
                 ->paginate(6);
         } else {
-            $data = Room::with('images')->paginate(15);
+            $data = Room::with('images')->where('is_active', 1)->paginate(15);
         }
         
         foreach ($data as $key => $value) {

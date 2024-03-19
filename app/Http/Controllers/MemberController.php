@@ -16,7 +16,7 @@ class MemberController extends Controller
 {
     public function dashboard()
     {
-        $rooms = Room::with('images')->paginate(6); 
+        $rooms = Room::with('images')->where('is_active', 1)->paginate(6); 
         
         $user = User::find(auth()->user()->id);
 

@@ -21,7 +21,7 @@ class HomeController extends Controller
     {
         $category = Category::all();
         $classtype = Classtype::all();
-        $rooms = Room::with('images')->paginate(8);
+        $rooms = Room::where('is_active', 1)->with('images')->paginate(8);
         return view('home',compact('classtype','category', 'rooms'));
     }
 
@@ -64,7 +64,7 @@ class HomeController extends Controller
     public function productList()
     {
         $allCategory = Category::all();
-        $rooms = Room::paginate(15);
+        $rooms = Room::where('is_active', 1)->paginate(15);
         return view('mobile.products.product-list',compact('rooms','allCategory'));
     }
 
@@ -90,7 +90,7 @@ class HomeController extends Controller
     {
         $allCategory = Category::all();
         $categories = Category::where('slug', $slug)->first();
-        $rooms = Room::where('category_id', $categories->id)->paginate(10);
+        $rooms = Room::where('category_id', $categories->id)->where('is_active', 1)->paginate(10);
         return view('mobile.products.category',compact('rooms','categories','allCategory'));
     }
 
