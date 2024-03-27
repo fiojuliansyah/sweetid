@@ -28,7 +28,7 @@
                                             <p class="fs-16">{{ Auth::user()->name }}</p>
                                             <span>{{ Auth::user()->email }}</span>
                                         </div>
-                                        <a class="change-btn" href="javascript:void(0);"><i class="fa fa-caret-up up-ico"></i>My Class Room<span class="reload-icon"><i class="fas fa-sync-alt reload active"></i></span></a>
+                                        <a class="change-btn" href="{{ url('/my-classes') }}"><i class="fa fa-caret-up up-ico"></i>My Class Room<span class="reload-icon"><i class="fas fa-sync-alt reload active"></i></span></a>
                                     </div>
                                     <br>
                                     <br>
