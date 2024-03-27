@@ -12,7 +12,7 @@
                 <ul class="navbar-nav header-right">
                     @yield('button-add')
                     <li class="nav-item dropdown notification_dropdown">
-                        <a class="nav-link" href="javascript:void(0);" data-bs-toggle="dropdown">
+                        <a class="nav-link" href="{{ route('home') }}" data-bs-toggle="dropdown">
                             <svg fill="#4f7086" width="28" height="28" viewbox="0 0 28 28" fill="none" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 viewBox="0 0 27.442 27.442" xml:space="preserve">
                                 <path d="M19.494,0H7.948C6.843,0,5.951,0.896,5.951,1.999v23.446c0,1.102,0.892,1.997,1.997,1.997h11.546
