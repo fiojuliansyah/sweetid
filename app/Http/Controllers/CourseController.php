@@ -107,32 +107,31 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course, $id)
+    public function update(Request $request, Course $course)
     {
         $request->validate([
             'title' => 'required',
             'duration' => 'required',
         ]);
         
-        $course = Course::find($id);
-
-        if($request->hasFile('videos')){
+        if($request->hasFile('video')){
             $request->validate([
-              'videos' => 'required',
+              'video' => 'required',
             ]);
             $file = Storage::disk('google')->put(Str::slug($request->title), $request->file('video'));
             $course->video = $file;
         }
-
+    
         $course->room_id = $request->room_id;
         $course->title = $request->title;
         $course->duration = $request->duration;
         
         $course->save();
-        // $course->update($request->all());
+        
         return redirect()->route('courses.index')
                         ->with('success','Course updated successfully');
     }
+    
 
     /**
      * Remove the specified resource from storage.
