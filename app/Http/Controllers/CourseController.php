@@ -6,10 +6,11 @@ use App\Models\Room;
 use App\Models\User;
 use App\Models\Course;
 
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Notifications\NewCourse;
 
+use App\Notifications\NewCourse;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
@@ -125,8 +126,8 @@ class CourseController extends Controller
             $publicId = 'courses/'. $course->title . '/' . pathinfo($filename, PATHINFO_FILENAME);
             Cloudinary::destroy($publicId);
         }
+
     
-        // Mengganti file video yang ada di Google Drive jika ada file yang diunggah
         if ($request->hasFile('video')) {
             
             $folderName = 'courses';
