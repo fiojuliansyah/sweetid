@@ -29,6 +29,7 @@
                     <td>{{ $course->title }}</td>                    
                     <td>
                         <a class="btn btn-xs btn-primary" href="{{ route('courses.show',$course->id) }}">Show</a>
+                        <a class="btn btn-xs btn-warning" href="{{ route('courses.edit',$course->id) }}">Edit</a>
                         <form action="{{ route('courses.destroy',$course->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
