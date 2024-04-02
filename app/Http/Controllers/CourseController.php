@@ -54,18 +54,18 @@ class CourseController extends Controller
     {
         $request->validate([
             'room_id' => 'required',
-            // 'video' => 'required',
+            'video' => 'required',
             'title' => 'required',
             'duration' => 'required',
         ]);                
 
-        // $file = Storage::disk('google')->put(Str::slug($request->title), $request->file('video'));
+        $file = Storage::disk('google')->put(Str::slug($request->title), $request->file('video'));
         
         $course = new Course;
         $course->room_id = $request->room_id;
         $course->title = $request->title;
         $course->duration = $request->duration;
-        // $course->video = $file;
+        $course->video = $file;
         $course->save();
         
         $users = User::all();
