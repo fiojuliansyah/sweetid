@@ -40,11 +40,15 @@
                             <tr>
                                 <th>Video</th>
                                 <td>
-                                    <video width="720" height="480" controls>
-                                        <source src="{{ Storage::cloud()->url($course->video) }}" type="video/mp4">
-                                        <source src="{{ Storage::cloud()->url($course->video) }}" type="video/ogg">
-                                        Your browser does not support the video tag.
-                                    </video>
+                                    @if($course->video)
+                                        <video width="720" height="480" controls>
+                                            <source src="{{ Storage::cloud()->url($course->video) }}" type="video/mp4">
+                                            <source src="{{ Storage::cloud()->url($course->video) }}" type="video/ogg">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    @else
+                                        Video tidak tersedia.
+                                    @endif
                                 </td>
                             </tr>
                           </table>                            
