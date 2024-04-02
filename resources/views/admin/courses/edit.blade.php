@@ -38,9 +38,9 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <label class="form-label">Room</label>
                                     <select id="room_id" name="room_id" class="default-select form-control wide">
-                                        <option selected="">Pilih Room</option>
+                                        <option disabled>Pilih Room</option>
                                         @foreach ($rooms as $room)    
-                                        <option value="{{ $room->id }}"> {{ $room->name }}</option>
+                                            <option value="{{ $room->id }}" @if($room->id == $course->room_id) selected @endif>{{ $room->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
