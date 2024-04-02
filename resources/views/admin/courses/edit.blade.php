@@ -48,14 +48,14 @@
                                     <div class="form-group">
                                         <br>
                                         <strong>Title:</strong>
-                                        <input type="text" name="title" class="form-control" placeholder="Title">
+                                        <input type="text" name="title" class="form-control" value="{{ $course->title }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <br>
                                         <strong>Duration:</strong>
-                                        <input type="text" name="duration" class="form-control" placeholder="Duration">
+                                        <input type="text" name="duration" class="form-control" value="{{ $course->duration }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
