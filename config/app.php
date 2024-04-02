@@ -182,6 +182,7 @@ return [
     Illuminate\Validation\ValidationServiceProvider::class,
     Illuminate\View\ViewServiceProvider::class,
     Ladumor\LaravelPwa\PWAServiceProvider::class,
+    CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
 
     /*
          * Package Service Providers...
@@ -213,6 +214,7 @@ return [
   'aliases' => Facade::defaultAliases()->merge([
     'Zoom' => Jubaer\Zoom\Facades\Zoom::class,
     'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
+    'Cloudinary' => CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary::class,
   ])->toArray(),
 
 ];

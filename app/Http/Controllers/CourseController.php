@@ -59,7 +59,13 @@ class CourseController extends Controller
             'duration' => 'required',
         ]);                
 
-        $file = Storage::disk('google')->put(Str::slug($request->title), $request->file('video'));
+        // $file = Storage::disk('google')->put(Str::slug($request->title), $request->file('video'));
+
+        $folderName = 'courses';
+        $file = Storage::disk('cloudinary')->put(
+            $folderName . '/' . Str::slug($request->title),
+            $request->file('video')
+        );
         
         $course = new Course;
         $course->room_id = $request->room_id;
@@ -114,11 +120,21 @@ class CourseController extends Controller
             'duration' => 'required',
         ]);
         
-        if($request->hasFile('video')){
-            $request->validate([
-              'video' => 'required',
-            ]);
-            $file = Storage::disk('google')->put(Str::slug($request->title), $request->file('video'));
+        if ($course->video && $request->hasFile('video')) {
+            $filename = basename($course->video);
+            $publicId = 'courses/'. $course->title . '/' . pathinfo($filename, PATHINFO_FILENAME);
+            Cloudinary::destroy($publicId);
+        }
+    
+        // Mengganti file video yang ada di Google Drive jika ada file yang diunggah
+        if ($request->hasFile('video')) {
+            
+            $folderName = 'courses';
+            $file = Storage::disk('cloudinary')->put(
+                $folderName . '/' . Str::slug($request->title),
+                $request->file('video')
+            );
+    
             $course->video = $file;
         }
     
