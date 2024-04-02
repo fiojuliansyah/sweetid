@@ -120,8 +120,8 @@ class CourseController extends Controller
             $request->validate([
               'videos' => 'required',
             ]);
-            $path = $request->file('videos')->store('public/videoss');
-            $course->video = $path;
+            $file = Storage::disk('google')->put(Str::slug($request->title), $request->file('video'));
+            $course->video = $file;
         }
 
         $course->room_id = $request->room_id;

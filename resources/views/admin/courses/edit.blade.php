@@ -40,7 +40,7 @@
                                     <select id="room_id" name="room_id" class="default-select form-control wide">
                                         <option disabled>Pilih Room</option>
                                         @foreach ($rooms as $room)    
-                                            <option value="{{ $room->id }}" @if($room->id == $course->room_id) selected @endif>{{ $room->name }}</option>
+                                            <option value="{{ $room->id }}" @if($room->id == $course->room_id) selected @endif>{{ $room->title }}</option>
                                         @endforeach
                                     </select>
                                 </div>
