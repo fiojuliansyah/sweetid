@@ -97,7 +97,7 @@ class CourseController extends Controller
     public function edit(Course $course)
     {
         $rooms = Room::all();
-        return view('admin.courses.create',compact('course','rooms'));
+        return view('admin.courses.edit',compact('course','rooms'));
     }
 
     /**
