@@ -177,7 +177,7 @@
                                                         <div class="modal-content">
                                                             <div class="modal-body text-center small p-4">
                                                                 <video width="300" controls autoplay controlsList="nodownload" oncontextmenu="return false;">
-                                                                    <source src="{{ Storage::url($room->trailer) }}" type="video/mp4" />
+                                                                    <source src="{{ Storage::disk('cloudinary')->url($course->video) }}" type="video/mp4" />
                                                                 </video>
                                                             </div>
                                                         </div>
