@@ -41,7 +41,7 @@
                                 <th>Video</th>
                                 <td>
                                     @if($course->video)
-                                    <iframe src="{{ $course->video }}" width="640" height="480" allow="autoplay"></iframe>
+                                    <iframe src="{{ $course->video }}" width="500" allowfullscreen></iframe>
                                     @else
                                         Video tidak tersedia.
                                     @endif

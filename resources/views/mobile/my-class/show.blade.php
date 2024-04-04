@@ -176,7 +176,7 @@
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
                                                             <div class="modal-body text-center small p-4">
-                                                                <iframe src="{{ $course->video }}" width="360" allow="autoplay"></iframe>
+                                                                <iframe src="{{ $course->video }}" width="360" allowfullscreen></iframe>
                                                             </div>
                                                         </div>
                                                     </div>
