@@ -109,7 +109,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-body text-center small p-4">
-                                <video width="300" controls autoplay controlsList="nodownload" oncontextmenu="return false;">
+                                <video width="300" controls controlsList="nodownload" oncontextmenu="return false;">
                                     <source src="{{ Storage::url($room->trailer) }}" type="video/mp4" />
                                 </video>
                             </div>
@@ -184,9 +184,7 @@
                                                         <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
                                                                 <div class="modal-body text-center small p-4">
-                                                                    <video width="300" controls autoplay controlsList="nodownload" oncontextmenu="return false;">
-                                                                        <source src="{{ $course->video }}" type="video/mp4" />
-                                                                    </video>
+                                                                    <iframe src="{{ $course->video }}" width="360"></iframe>
                                                                 </div>
                                                             </div>
                                                         </div>
