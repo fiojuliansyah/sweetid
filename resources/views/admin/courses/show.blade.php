@@ -42,8 +42,8 @@
                                 <td>
                                     @if($course->video)
                                         <video width="720" height="480" controls>
-                                            <source src="{{ Storage::disk('cloudinary')->url($course->video) }}" type="video/mp4">
-                                            <source src="{{ Storage::disk('cloudinary')->url($course->video) }}" type="video/ogg">
+                                            <source src="{{ Storage::cloud()->url($course->video) }}" type="video/mp4">
+                                            <source src="{{ Storage::cloud()->url($course->video) }}" type="video/ogg">
                                             Your browser does not support the video tag.
                                         </video>
                                     @else

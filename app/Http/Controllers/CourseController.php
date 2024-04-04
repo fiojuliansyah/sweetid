@@ -60,13 +60,13 @@ class CourseController extends Controller
             'duration' => 'required',
         ]);                
 
-        // $file = Storage::disk('google')->put(Str::slug($request->title), $request->file('video'));
+        $file = Storage::disk('google')->put(Str::slug($request->title), $request->file('video'));
 
-        $folderName = 'courses';
-        $file = Storage::disk('cloudinary')->put(
-            $folderName . '/' . Str::slug($request->title),
-            $request->file('video')
-        );
+        // $folderName = 'courses';
+        // $file = Storage::disk('cloudinary')->put(
+        //     $folderName . '/' . Str::slug($request->title),
+        //     $request->file('video')
+        // );
         
         $course = new Course;
         $course->room_id = $request->room_id;
@@ -121,17 +121,17 @@ class CourseController extends Controller
             'duration' => 'required',
         ]);
         
-        if ($course->video && $request->hasFile('video')) {
-            $filename = basename($course->video);
-            $publicId = 'courses/'. $course->title . '/' . pathinfo($filename, PATHINFO_FILENAME);
-            Cloudinary::destroy($publicId);
-        }
+        // if ($course->video && $request->hasFile('video')) {
+        //     $filename = basename($course->video);
+        //     $publicId = 'courses/'. $course->title . '/' . pathinfo($filename, PATHINFO_FILENAME);
+        //     Cloudinary::destroy($publicId);
+        // }
 
     
         if ($request->hasFile('video')) {
             
             $folderName = 'courses';
-            $file = Storage::disk('cloudinary')->put(
+            $file = Storage::disk('google')->put(
                 $folderName . '/' . Str::slug($request->title),
                 $request->file('video')
             );
