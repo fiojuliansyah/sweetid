@@ -8,16 +8,17 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClasstypeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DiscussionController;
+use App\Http\Controllers\MeetingRoomController;
 use App\Http\Controllers\PointmarketController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\LoginWithGoogleController;
-use App\Http\Controllers\MeetingRoomController;
-use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\DiscussionDetailController;
 
 /*
@@ -88,6 +89,7 @@ Route::middleware('auth')->group(function () {
   Route::resource('categories', CategoryController::class);
   Route::resource('transactions', TransactionController::class);
   Route::resource('pointmarkets', PointmarketController::class);
+  Route::resource('sliders', SliderController::class);
 
   // Course
   Route::resource('courses', CourseController::class);  

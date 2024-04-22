@@ -55,6 +55,10 @@ class PermissionTableSeeder extends Seeder
             'meeting-create',
             'meeting-edit',
             'meeting-delete',
+            'slider-list',
+            'slider-create',
+            'slider-edit',
+            'slider-delete',
         ];
        
         foreach ($permissions as $permission) {

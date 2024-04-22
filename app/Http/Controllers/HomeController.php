@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\Image;
+use App\Models\Slider;
 use App\Models\Category;
 use App\Models\Classtype;
 use App\Models\Discussion;
-use App\Models\Competition;
 
+use App\Models\Competition;
 use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -19,10 +20,11 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $sliders = Slider::all();
         $category = Category::all();
         $classtype = Classtype::all();
         $rooms = Room::where('is_active', 1)->with('images')->paginate(8);
-        return view('home',compact('classtype','category', 'rooms'));
+        return view('home',compact('classtype','category', 'rooms', 'sliders'));
     }
 
     public function install()

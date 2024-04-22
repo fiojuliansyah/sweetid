@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class SliderController extends Controller
 {
+    // function __construct()
+    // {
+    //      $this->middleware('permission:slider-list|slider-create|slider-edit|slider-delete', ['only' => ['index','show']]);
+    //      $this->middleware('permission:slider-create', ['only' => ['create','store']]);
+    //      $this->middleware('permission:slider-edit', ['only' => ['edit','update']]);
+    //      $this->middleware('permission:slider-delete', ['only' => ['destroy']]);
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        //
+        $sliders = Slider::all();
+        return view('admin.sliders.index', compact('sliders'));
     }
 
     /**
@@ -24,7 +32,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.sliders.create');
     }
 
     /**
@@ -35,7 +43,15 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $path = $request->file('image')->store('public/sliders');
+        
+        $slider = new Slider;
+        $slider->image = $path;
+        $slider->link = $request->link;
+        $slider->save();
+        // Crud::create($request->all());
+        return redirect()->route('sliders.index')
+                        ->with('success','Slider created successfully.');
     }
 
     /**
