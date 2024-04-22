@@ -136,7 +136,6 @@ class RoomController extends Controller
             foreach ($room->images as $image) {
                 Storage::delete($image->image);
             }
-            // Hapus gambar-gambar sebelumnya dari database
             $room->images()->delete();
         }
 
@@ -153,13 +152,7 @@ class RoomController extends Controller
                 }
             }
         } else {
-            // Jika tidak ada gambar yang diperbarui, gunakan gambar-gambar yang ada sebelumnya
-            foreach ($room->images as $image) {
-                $imageData[] = [
-                    'room_id' => $room->id,
-                    'image' => $image->image,
-                ];
-            }
+            
         }
 
         // Masukkan data gambar-gambar baru atau yang sudah ada ke dalam database
@@ -191,6 +184,7 @@ class RoomController extends Controller
         return redirect()->route('rooms.index')
                         ->with('success', 'Product updated successfully');
     }
+
     /**
      * Remove the specified resource from storage.
      *
