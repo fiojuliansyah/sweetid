@@ -132,15 +132,13 @@ class RoomController extends Controller
      */
     public function update(Request $request, Room $room)
     {
-        // Hapus gambar-gambar sebelumnya dari penyimpanan
         if ($request->hasFile('images')) {
             foreach ($room->images as $image) {
                 Storage::delete($image->image);
             }
+            // Hapus gambar-gambar sebelumnya dari database
+            $room->images()->delete();
         }
-
-        // Hapus gambar-gambar sebelumnya dari database
-        $room->images()->delete();
 
         // Simpan gambar-gambar baru jika ada, atau gunakan gambar-gambar yang ada sebelumnya
         $imageData = [];
