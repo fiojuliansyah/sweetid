@@ -280,4 +280,10 @@ class HomeController extends Controller
               ->with('success','Chat created successfully.');
     }
 
+    public function otp()
+    {
+        $user = Auth::user();
+      return view ('auth.otp-verification', compact('user'));
+    }
+
 }

@@ -41,6 +41,8 @@ Route::get('/', function () {
 
 Route::get('home', [HomeController::class, 'index']);
 Route::get('install', [HomeController::class, 'install']);
+Route::get('otp-verification', [HomeController::class, 'otp'])->name('otp-verification');;
+Route::post('/user/get-otp', [ProfileController::class, 'sendOTPNew'])->name('new.get-otp');
 
 Route::get('/my-classes', [HomeController::class, 'myclass'])->name('myclass');
 Route::get('/my-classes/{room}', [HomeController::class, 'classShow'])->name('class.show');

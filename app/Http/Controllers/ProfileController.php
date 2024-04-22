@@ -127,6 +127,28 @@ class ProfileController extends Controller
                         ->with('status','verification-link-sent');
     }
 
+    public function sendOTPNew(Request $request)
+    {
+        $phone = $request->phone;
+
+        $otp = rand(1000,9999);        
+
+        $user = User::find(Auth::user()->id);
+
+        $user->notify(new Otp($phone, $otp));
+
+        $otp = ModelsOtp::create([
+            'number' => $phone,
+            'otp' => $otp,
+            'type' => 'verify_phone',
+            'user_id' => Auth::user()->id
+        ]);
+
+        return redirect()->route('otp-verification')
+                        ->with('success','OTP sent successfully')
+                        ->with('status','verification-link-sent');
+    }
+
     public function verifyOTP(Request $request)
     {
         $otp = ModelsOtp::where('otp', $request->otp)->first();
@@ -146,10 +168,10 @@ class ProfileController extends Controller
                 ]
             );
 
-            return redirect()->route('profile.edit')
+            return redirect()->route('home')
                         ->with('success','OTP verified successfully');                        
         }else{
-            return redirect()->route('profile.edit')
+            return redirect()->route('home')
                         ->with('error','OTP verification failed');
         }
     }
