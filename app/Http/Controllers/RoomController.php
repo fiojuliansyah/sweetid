@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\Category;
 use App\Models\Classtype;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
     
 class RoomController extends Controller
 { 
@@ -115,9 +116,11 @@ class RoomController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Courses $course)
+    public function edit(Room $room)
     {
-        return view('courses.edit',compact('course'));
+        $classtype = Classtype::all();
+        $category = Category::all();
+        return view('admin.rooms.edit',compact('room','classtype','category'));
     }
     
     /**
@@ -129,12 +132,67 @@ class RoomController extends Controller
      */
     public function update(Request $request, Room $room)
     {
-        $room->update($request->all());
-    
+        // Hapus gambar-gambar sebelumnya dari penyimpanan
+        if ($request->hasFile('images')) {
+            foreach ($room->images as $image) {
+                Storage::delete($image->image);
+            }
+        }
+
+        // Hapus gambar-gambar sebelumnya dari database
+        $room->images()->delete();
+
+        // Simpan gambar-gambar baru jika ada, atau gunakan gambar-gambar yang ada sebelumnya
+        $imageData = [];
+        if ($files = $request->file('images')) {
+            foreach ($files as $file) {
+                if ($file) { // Periksa apakah file ada sebelum menyimpannya
+                    $path = $file->store('public/covers');
+                    $imageData[] = [
+                        'room_id' => $room->id,
+                        'image' => $path,
+                    ];
+                }
+            }
+        } else {
+            // Jika tidak ada gambar yang diperbarui, gunakan gambar-gambar yang ada sebelumnya
+            foreach ($room->images as $image) {
+                $imageData[] = [
+                    'room_id' => $room->id,
+                    'image' => $image->image,
+                ];
+            }
+        }
+
+        // Masukkan data gambar-gambar baru atau yang sudah ada ke dalam database
+        Image::insert($imageData);
+
+        // Update atribut lainnya
+        if ($request->hasFile('trailer')) {
+            $path2 = $request->file('trailer')->store('public/trailers');
+            $room->trailer = $path2;
+        }
+
+        $room->update([
+            'classtype_id' => $request->classtype_id,
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'slug' => $request->slug,
+            'short_description' => $request->short_description,
+            'description' => $request->description,
+            'duration' => $request->duration,
+            'point' => $request->point,
+            'price' => $request->price,
+            'disc_price' => $request->disc_price,
+            'is_featured' => $request->is_featured,
+            'is_recommended' => $request->is_recommended,
+            'is_active' => $request->is_active,
+            'meta_keyword' => $request->meta_keyword,
+        ]);
+
         return redirect()->route('rooms.index')
-                        ->with('success','Product updated successfully');
+                        ->with('success', 'Product updated successfully');
     }
-    
     /**
      * Remove the specified resource from storage.
      *
