@@ -9,17 +9,17 @@
     <meta name="author" content="DexignZone">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Dompet : Payment Admin Template">
-    <meta property="og:title" content="Dompet : Payment Admin Template">
-    <meta property="og:description" content="Dompet : Payment Admin Template">
-    <meta property="og:image" content="https://dompet.dexignlab.com/xhtml/social-image.png">
+    <meta name="description" content="Sweettroops Dashboard">
+    <meta property="og:title" content="Sweettroops Dashboard">
+    <meta property="og:description" content="Sweettroops Dashboard">
+    <meta property="og:image" content="{{ asset('') }}logo.png">
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
     <title>@yield('title')</title>
 
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="{{ asset('/') }}admin/images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('') }}logo.png">
     @yield('css')
     <link href="{{ asset('/') }}admin/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="{{ asset('/') }}admin/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
