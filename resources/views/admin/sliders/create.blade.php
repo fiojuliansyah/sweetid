@@ -36,7 +36,15 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label>Icon:</label>
+                                            <label>Template Banner Size:</label>
+                                            <small style="color: red">*Right Click to Download</small>
+                                            <img src="https://previews.123rf.com/images/anaumenko/anaumenko1608/anaumenko160800133/62396884-baking-ingredients-on-rustic-background-top-view-long-format-banner.jpg"
+                                                alt="" width="500">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label>Image:</label>
                                             <input type="file" name="image" class="form-control">
                                         </div>
                                     </div>
