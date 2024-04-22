@@ -83,15 +83,15 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="mb-3 col-md-6">
+                                    <div class="mb-3 col-md-12">
                                         <label class="form-label">Short Description</label>
                                         <input type="text" id="short_description" name="short_description"
                                             class="form-control" placeholder="Deskripsi Singkat">
                                     </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Description</label>
-                                        <textarea name="description" id="description" class="form-control" cols="30"></textarea>
-                                    </div>
+                                </div>
+                                <div class="pb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control" id="content" placeholder="Enter the Description" cols="30" name="description"></textarea>
                                 </div>
                                 <div class="row">
                                     <div class="mb-3 col-md-2">
@@ -161,4 +161,12 @@
             </div>
         </div>
     </div>
+@endsection
+@section('footer')
+    <script>
+        ClassicEditor.create(document.querySelector('#content'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 @endsection

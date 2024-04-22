@@ -100,12 +100,10 @@
                                             class="form-control" value="{{ $room->short_description }}">
                                     </div>
                                 </div>
+                                <textarea class="pt-3" name="" id="" cols="30" rows="10">{{ $room->description }}</textarea>
                                 <div class="pb-3">
-                                    <label class="form-label">Description <button type="button"
-                                            class="btn btn-primary mb-2 btn-xs" data-bs-toggle="modal"
-                                            data-bs-target="#basicModal">Source</button></label>
+                                    <label class="form-label">Description</label>
                                     <textarea class="form-control" id="content" placeholder="Enter the Description" cols="30" name="description">{{ $room->description }}</textarea>
-                                    <textarea class="pt-3" name="" id="" cols="30" rows="10">{{ $room->description }}</textarea>
                                 </div>
                                 <div class="row">
                                     <div class="mb-3 col-md-2">
