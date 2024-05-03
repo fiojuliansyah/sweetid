@@ -36,7 +36,7 @@ class UsersImport implements ToModel, WithStartRow
             $user->email = $row[0];
             $user->name = $row[1];
             $user->password = bcrypt($row[2]);
-            $user->phone = $row[3];
+            $user->phone = strval($row[3]);
             $user->save();
         }
 
