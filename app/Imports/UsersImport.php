@@ -44,6 +44,7 @@ class UsersImport implements ToModel, WithStartRow
         $profile = Profile::updateOrCreate(
             ['user_id' => $user->id],
             [
+                'phone' => strval($row[3]),
                 'address' => $row[4],
             ]);
 
