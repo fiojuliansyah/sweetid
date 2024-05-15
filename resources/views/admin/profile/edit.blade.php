@@ -70,74 +70,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-4">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="profile-statistics">
-                                    <div class="text-center">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h3 class="m-b-0">150</h3><span>Class</span>
-                                            </div>
-                                            <div class="col">
-                                                <h3 class="m-b-0">140</h3><span>E-Book</span>
-                                            </div>
-                                            <div class="col">
-                                                <h3 class="m-b-0">45</h3><span>Certificate</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="profile-blog">
-                                    <h5 class="text-primary d-inline">Today Highlights</h5>
-                                    <img src="images/profile/1.jpg" alt="" class="img-fluid mt-4 mb-4 w-100">
-                                    <h4><a href="post-details.html" class="text-black">Darwin Creative Agency Theme</a></h4>
-                                    <p class="mb-0">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="profile-news">
-                                    <h5 class="text-primary d-inline">Our Latest News</h5>
-                                    <div class="media pt-3 pb-3">
-                                        <img src="images/profile/5.jpg" alt="image" class="me-3 rounded" width="75">
-                                        <div class="media-body">
-                                            <h5 class="m-b-5"><a href="post-details.html" class="text-black">Collection of textile samples</a></h5>
-                                            <p class="mb-0">I shared this on my fb wall a few months back, and I thought.</p>
-                                        </div>
-                                    </div>
-                                    <div class="media pt-3 pb-3">
-                                        <img src="images/profile/6.jpg" alt="image" class="me-3 rounded" width="75">
-                                        <div class="media-body">
-                                            <h5 class="m-b-5"><a href="post-details.html" class="text-black">Collection of textile samples</a></h5>
-                                            <p class="mb-0">I shared this on my fb wall a few months back, and I thought.</p>
-                                        </div>
-                                    </div>
-                                    <div class="media pt-3 pb-3">
-                                        <img src="images/profile/7.jpg" alt="image" class="me-3 rounded" width="75">
-                                        <div class="media-body">
-                                            <h5 class="m-b-5"><a href="post-details.html" class="text-black">Collection of textile samples</a></h5>
-                                            <p class="mb-0">I shared this on my fb wall a few months back, and I thought.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-8">
+            <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
                         @include('admin.profile.partials.update-profile-information-form')

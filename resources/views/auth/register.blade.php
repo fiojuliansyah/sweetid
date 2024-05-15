@@ -28,7 +28,6 @@
                 <div class="container">
                     <div class="account-area">
                         <h3 class="title">Create your account</h3>
-                        <p>Lorem ipsum dolor sit amet</p>
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="input-group input-mini mb-3">

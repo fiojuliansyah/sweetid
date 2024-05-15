@@ -7,7 +7,7 @@
     <li>
         <div class="card-body">
             <div class="btn-group">
-                <a href="{{ route('class.create',$user->id) }}" type="button" class="btn btn-sm btn-success"><i class="fa fa-plus color-info"></i> Add User</a>
+                <a href="{{ route('class.create',$user->id) }}" type="button" class="btn btn-sm btn-success"><i class="fa fa-plus color-info"></i> Add Class</a>
                 <div class="btn-group">
                     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown">Import</button>
                 </div>

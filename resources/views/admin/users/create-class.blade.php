@@ -16,22 +16,48 @@
                         <form action="{{ route('class.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                <div class="mb-3 col-md-6">
-                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                    <label class="form-label">Class Room</label>
-                                    <select id="room_id" name="room_id" class="default-select form-control wide" multiple>
-                                        <option selected="">Pilih Kelas</option>
-                                        @foreach ($rooms as $class)    
-                                        <option value="{{ $class->id }}">{{ $class->title }}</option>
-                                        @endforeach
-                                    </select>
+                                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                <label class="form-label">Class Room</label>
+                        
+                                <div class="col-md-4">
+                                    @foreach ($rooms->slice(0, ceil($rooms->count() / 3)) as $class)
+                                        <div class="form-check">
+                                            <input type="checkbox" id="room_{{ $class->id }}" name="room_id[]" value="{{ $class->id }}">
+                                            <label class="form-check-label" for="room_{{ $class->id }}">
+                                                {{ $class->title }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                        
+                                <div class="col-md-4">
+                                    @foreach ($rooms->slice(ceil($rooms->count() / 3), ceil($rooms->count() / 3)) as $class)
+                                        <div class="form-check">
+                                            <input type="checkbox" id="room_{{ $class->id }}" name="room_id[]" value="{{ $class->id }}">
+                                            <label class="form-check-label" for="room_{{ $class->id }}">
+                                                {{ $class->title }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                        
+                                <div class="col-md-4">
+                                    @foreach ($rooms->slice(2 * ceil($rooms->count() / 3), ceil($rooms->count() / 3)) as $class)
+                                        <div class="form-check">
+                                            <input type="checkbox" id="room_{{ $class->id }}" name="room_id[]" value="{{ $class->id }}">
+                                            <label class="form-check-label" for="room_{{ $class->id }}">
+                                                {{ $class->title }}
+                                            </label>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
+                        
                             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                                 <br>
                                 <button type="submit" class="btn btn-secondary">Submit</button>
                             </div>
-                        </form>
+                        </form>                                                
                     </div>
                 </div>
             </div>

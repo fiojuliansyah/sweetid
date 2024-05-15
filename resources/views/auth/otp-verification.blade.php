@@ -26,7 +26,6 @@
             <div class="account-box">
                 <div class="container">
                     <h3 class="title">Verifikasi No Handphone/Whatsapp</h3>
-                    <p style="color: red">ini masih proses production</p>
                     <form id="send-otp" method="post" action="{{ route('new.get-otp') }}">
                         @csrf
                         <div class="row">

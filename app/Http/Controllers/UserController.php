@@ -49,14 +49,21 @@ class UserController extends Controller
 
     public function storeClass(Request $request)
     {
-        $competition = new Competition;
-        $competition->user_id = $request->user_id;
-        $competition->room_id = $request->room_id;
-        $competition->save();
+        $user_id = $request->user_id;
+        $room_ids = $request->room_id;
     
-        return redirect()->route('users.index')
-                        ->with('success','User created successfully');
-    }
+        if ($room_ids && is_array($room_ids)) {
+            foreach ($room_ids as $room_id) {
+                $competition = new Competition;
+                $competition->user_id = $user_id;
+                $competition->room_id = $room_id;
+                $competition->save();
+            }
+        }
+    
+        return redirect()->route('users.class', $user->id)
+                        ->with('success', 'User created successfully');
+    }    
     /**
      * Show the form for creating a new resource.
      *

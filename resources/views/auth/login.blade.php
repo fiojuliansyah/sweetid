@@ -27,7 +27,6 @@
                 <div class="container">
                     <div class="account-area">
                         <h3 class="title">Welcome back</h3>
-                        <p style="color: red">ini masih proses production</p>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="input-group input-mini mb-3">
