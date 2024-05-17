@@ -44,26 +44,36 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $rooms = Room::all();
-        return view('admin.users.create-class',compact('user', 'rooms'));
-    }
+        // Retrieve the IDs of the rooms associated with the user via the Competition model
+        $userRoomIds = Competition::where('user_id', $id)->pluck('room_id')->toArray();
+        return view('admin.users.create-class', compact('user', 'rooms', 'userRoomIds'));
+    }    
 
     public function storeClass(Request $request)
     {
         $user_id = $request->user_id;
         $room_ids = $request->room_id;
     
+        // Ensure room_ids is an array
         if ($room_ids && is_array($room_ids)) {
+            // First, detach all current rooms for the user to handle deselections
+            Competition::where('user_id', $user_id)->delete();
+    
+            // Loop through the selected rooms
             foreach ($room_ids as $room_id) {
-                $competition = new Competition;
-                $competition->user_id = $user_id;
-                $competition->room_id = $room_id;
-                $competition->save();
+                // Check if the competition entry already exists
+                $competition = Competition::firstOrNew(['user_id' => $user_id, 'room_id' => $room_id]);
+    
+                // Save the competition entry if it is newly created
+                if (!$competition->exists) {
+                    $competition->save();
+                }
             }
         }
     
-        return redirect()->route('users.class', $user->id)
-                        ->with('success', 'User created successfully');
-    }    
+        return redirect()->route('users.class', $user_id)
+                        ->with('success', 'User class updated successfully');
+    }       
     /**
      * Show the form for creating a new resource.
      *

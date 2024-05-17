@@ -22,7 +22,7 @@
                                 <div class="col-md-4">
                                     @foreach ($rooms->slice(0, ceil($rooms->count() / 3)) as $class)
                                         <div class="form-check">
-                                            <input type="checkbox" id="room_{{ $class->id }}" name="room_id[]" value="{{ $class->id }}">
+                                            <input type="checkbox" id="room_{{ $class->id }}" name="room_id[]" value="{{ $class->id }}" {{ in_array($class->id, $userRoomIds) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="room_{{ $class->id }}">
                                                 {{ $class->title }}
                                             </label>
@@ -33,7 +33,7 @@
                                 <div class="col-md-4">
                                     @foreach ($rooms->slice(ceil($rooms->count() / 3), ceil($rooms->count() / 3)) as $class)
                                         <div class="form-check">
-                                            <input type="checkbox" id="room_{{ $class->id }}" name="room_id[]" value="{{ $class->id }}">
+                                            <input type="checkbox" id="room_{{ $class->id }}" name="room_id[]" value="{{ $class->id }}" {{ in_array($class->id, $userRoomIds) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="room_{{ $class->id }}">
                                                 {{ $class->title }}
                                             </label>
@@ -44,7 +44,7 @@
                                 <div class="col-md-4">
                                     @foreach ($rooms->slice(2 * ceil($rooms->count() / 3), ceil($rooms->count() / 3)) as $class)
                                         <div class="form-check">
-                                            <input type="checkbox" id="room_{{ $class->id }}" name="room_id[]" value="{{ $class->id }}">
+                                            <input type="checkbox" id="room_{{ $class->id }}" name="room_id[]" value="{{ $class->id }}" {{ in_array($class->id, $userRoomIds) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="room_{{ $class->id }}">
                                                 {{ $class->title }}
                                             </label>
@@ -57,7 +57,7 @@
                                 <br>
                                 <button type="submit" class="btn btn-secondary">Submit</button>
                             </div>
-                        </form>                                                
+                        </form>                                                                        
                     </div>
                 </div>
             </div>

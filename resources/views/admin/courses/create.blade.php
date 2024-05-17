@@ -28,7 +28,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <label class="form-label">Room</label>
-                                        <select id="room_id" name="room_id" class="default-select form-control wide">
+                                        <select id="room_id" name="room_id" class="form-control">
                                             <option selected="">Pilih Room</option>
                                             @foreach ($rooms as $room)    
                                             <option value="{{ $room->id }}"> {{ $room->title }}</option>
