@@ -49,6 +49,12 @@
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>Phone:</strong>
+                                    {!! Form::text('phone', null, array('placeholder' => 'Phone','class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
                                 <br>
                                 <div class="form-group">
                                     <strong>Password:</strong>
@@ -69,10 +75,48 @@
                                     {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                <br>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <label class="form-label">Class Room</label>
+                                
+                                <div class="col-md-4">
+                                    @foreach ($rooms->slice(0, ceil($rooms->count() / 3)) as $class)
+                                        <div class="form-check">
+                                            <input type="checkbox" id="room_{{ $class->id }}" name="room_id[]" value="{{ $class->id }}">
+                                            <label class="form-check-label" for="room_{{ $class->id }}">
+                                                {{ $class->title }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                        
+                                <div class="col-md-4">
+                                    @foreach ($rooms->slice(ceil($rooms->count() / 3), ceil($rooms->count() / 3)) as $class)
+                                        <div class="form-check">
+                                            <input type="checkbox" id="room_{{ $class->id }}" name="room_id[]" value="{{ $class->id }}">
+                                            <label class="form-check-label" for="room_{{ $class->id }}">
+                                                {{ $class->title }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                        
+                                <div class="col-md-4">
+                                    @foreach ($rooms->slice(2 * ceil($rooms->count() / 3), ceil($rooms->count() / 3)) as $class)
+                                        <div class="form-check">
+                                            <input type="checkbox" id="room_{{ $class->id }}" name="room_id[]" value="{{ $class->id }}">
+                                            <label class="form-check-label" for="room_{{ $class->id }}">
+                                                {{ $class->title }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>                                                              
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                            <br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                         {!! Form::close() !!}
                     </div>

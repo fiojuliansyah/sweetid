@@ -44,7 +44,6 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $rooms = Room::all();
-        // Retrieve the IDs of the rooms associated with the user via the Competition model
         $userRoomIds = Competition::where('user_id', $id)->pluck('room_id')->toArray();
         return view('admin.users.create-class', compact('user', 'rooms', 'userRoomIds'));
     }    
@@ -81,8 +80,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        $rooms = Room::all();
         $roles = Role::pluck('name','name')->all();
-        return view('admin.users.create',compact('roles'));
+        return view('admin.users.create',compact('roles','rooms'));
     }
     
     /**
@@ -97,18 +97,36 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
-            'roles' => 'required'
         ]);
     
+        // Extract input
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-    
+        
+        // Create user
         $user = User::create($input);
+        
+        // Assign role to user
         $user->assignRole($request->input('roles'));
+        
+        // Assign rooms if any are selected
+        $room_ids = $request->input('room_id');
+        if ($room_ids && is_array($room_ids)) {
+            // First, detach all current rooms for the user to handle deselections
+            Competition::where('user_id', $user->id)->delete();
+    
+            // Loop through the selected rooms and save new competitions
+            foreach ($room_ids as $room_id) {
+                Competition::create([
+                    'user_id' => $user->id,
+                    'room_id' => $room_id,
+                ]);
+            }
+        }
     
         return redirect()->route('users.index')
-                        ->with('success','User created successfully');
-    }
+                         ->with('success', 'User created successfully');
+    }    
     
     /**
      * Display the specified resource.
@@ -150,7 +168,6 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
-            'roles' => 'required'
         ]);
     
         $input = $request->all();
