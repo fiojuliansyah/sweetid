@@ -32,6 +32,11 @@ class HomeController extends Controller
         return view('install');
     }
 
+    public function contact()
+    {
+        return view('contact');
+    }
+
     public function myclass()
     {
         if (Auth::check()) {

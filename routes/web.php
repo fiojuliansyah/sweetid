@@ -41,6 +41,7 @@ Route::get('/', function () {
 
 Route::get('home', [HomeController::class, 'index']);
 Route::get('install', [HomeController::class, 'install']);
+Route::get('contact', [HomeController::class, 'contact']);
 Route::get('otp-verification', [HomeController::class, 'otp'])->name('otp-verification');;
 Route::post('/user/get-otp', [ProfileController::class, 'sendOTPNew'])->name('new.get-otp');
 
