@@ -130,9 +130,10 @@ class HomeController extends Controller
         $transaction->save();
 
         \Midtrans\Config::$serverKey = config('midtrans.server_key');
-        \Midtrans\Config::$isProduction = false;
+        \Midtrans\Config::$isProduction = config('midtrans.is_production');;
         \Midtrans\Config::$isSanitized = true;
         \Midtrans\Config::$is3ds = true;
+        \Midtrans\Config::$overrideNotifUrl = config('app.url').'/api/midtrans-callback';
 
         $params = array(
             'transaction_details' => array(
