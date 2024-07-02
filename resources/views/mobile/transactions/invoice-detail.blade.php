@@ -4,8 +4,8 @@
 @endsection
 @section('css')
     <script type="text/javascript"
-    src="https://app.sandbox.midtrans.com/snap/snap.js"
-    data-client-key="SET_YOUR_CLIENT_KEY_HERE"></script>
+    src="{{config('midtrans.snap_url')}}"
+    data-client-key="{{config('midtrans.client_key')}}"></script>
 @endsection
 @section('content')
 <div class="page-content">
