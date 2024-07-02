@@ -17,7 +17,7 @@ class WhatsappChannel
 
         return Http::asJson()
           ->withHeaders([
-            'Authorization' => env('fonnte_token', 'hsi@GhUGKEGi+!-@s7JD'),
+            'Authorization' => env('fonnte_token', 'pMFE7kaoDKdpRb-Gm3_m'),
           ])
           ->post('https://api.fonnte.com/send', [
             'target' => $message['number'],
